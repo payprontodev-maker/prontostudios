@@ -31,19 +31,19 @@ z-index:-1;
 
 .bg-glow{
 position:fixed;
-width:800px;
-height:800px;
+width:900px;
+height:900px;
 background:#7a5cff;
-filter:blur(180px);
-opacity:0.2;
+filter:blur(200px);
+opacity:0.25;
 top:-300px;
 left:-300px;
-animation:moveGlow 15s infinite alternate;
+animation:moveGlow 18s infinite alternate;
 z-index:-1;
 }
 
 @keyframes moveGlow{
-100%{transform:translate(300px,300px);}
+100%{transform:translate(350px,350px);}
 }
 
 /* HEADER */
@@ -80,53 +80,59 @@ width:40px;
 
 /* GRID */
 .grid{
-padding:140px 50px 50px;
+padding:150px 50px 50px;
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:30px;
+gap:40px;
 }
 
 /* CARD */
 .card{
 background:rgba(255,255,255,0.05);
 border-radius:25px;
-padding:30px;
-text-align:center;
-transition:0.35s;
-position:relative;
 overflow:hidden;
+transition:0.4s;
+position:relative;
+backdrop-filter:blur(20px);
 }
 
-.card::before{
-content:"";
-position:absolute;
-width:200%;
-height:200%;
-background:radial-gradient(circle,#7a5cff33,transparent);
-top:-50%;
-left:-50%;
-opacity:0;
-transition:0.5s;
+.card img{
+width:100%;
+height:180px;
+object-fit:cover;
 }
 
-.card:hover::before{
-opacity:1;
-}
-
-.card:hover{
-transform:translateY(-12px) scale(1.04);
-box-shadow:0 0 40px rgba(122,92,255,0.6);
+.card-body{
+padding:25px;
+text-align:center;
 }
 
 .card h3{
 margin-bottom:10px;
-font-size:20px;
 }
 
 .price{
 color:#00d4ff;
+margin-bottom:15px;
 font-size:18px;
-margin-bottom:20px;
+}
+
+/* BADGE */
+.badge{
+position:absolute;
+top:15px;
+left:15px;
+background:linear-gradient(90deg,#ff0080,#ff8c00);
+padding:5px 12px;
+border-radius:20px;
+font-size:12px;
+font-weight:bold;
+}
+
+/* HOVER */
+.card:hover{
+transform:translateY(-15px) scale(1.04);
+box-shadow:0 0 50px rgba(122,92,255,0.6);
 }
 
 /* BUTTON */
@@ -138,7 +144,6 @@ background:linear-gradient(90deg,#7a5cff,#00d4ff);
 color:white;
 cursor:pointer;
 width:100%;
-font-size:15px;
 transition:0.3s;
 }
 
@@ -162,24 +167,19 @@ z-index:9999;
 
 .popup-box{
 background:rgba(255,255,255,0.05);
-padding:35px;
+padding:40px;
 border-radius:20px;
-width:320px;
+width:340px;
 text-align:center;
 animation:fadeUp 0.4s ease;
-}
-
-.popup-box h2{
-margin-bottom:10px;
 }
 
 .popup-box input{
 width:100%;
 padding:12px;
-margin-top:10px;
+margin-top:15px;
 border-radius:10px;
 border:none;
-outline:none;
 }
 
 .popup-box button{
@@ -191,21 +191,11 @@ border-radius:10px;
 background:#7a5cff;
 color:white;
 cursor:pointer;
-transition:0.2s;
-}
-
-.popup-box button:hover{
-background:#6a4be0;
 }
 
 @keyframes fadeUp{
-from{opacity:0;transform:translateY(30px);}
+from{opacity:0;transform:translateY(40px);}
 to{opacity:1;}
-}
-
-/* MOBILE */
-@media(max-width:768px){
-.grid{padding:120px 20px;}
 }
 </style>
 </head>
@@ -231,9 +221,8 @@ to{opacity:1;}
 <div id="popup">
 <div class="popup-box">
 <h2>Enter Discord</h2>
-<p style="color:#aaa;font-size:14px;">We’ll contact you about your order</p>
 <input id="discord" placeholder="username#0000">
-<button onclick="buy()">Continue to Payment</button>
+<button onclick="buy()">Continue</button>
 <button onclick="closePopup()">Cancel</button>
 </div>
 </div>
@@ -242,13 +231,13 @@ to{opacity:1;}
 window.addEventListener("DOMContentLoaded",()=>{
 
 const products=[
-["Turf Showcases",4.5],
-["Gang Movie Trailer",10],
-["Custom Film",7.5],
-["Gang Pics",1.5],
-["Gang Edits",5],
-["Custom Edits",4],
-["Advertisement",2]
+["Turf Showcases",4.5,true],
+["Gang Movie Trailer",10,false],
+["Custom Film",7.5,false],
+["Gang Pics",1.5,false],
+["Gang Edits",5,false],
+["Custom Edits",4,false],
+["Advertisement",2,false]
 ];
 
 const grid=document.getElementById("grid");
@@ -258,14 +247,16 @@ let card=document.createElement("div");
 card.className="card";
 
 card.innerHTML=`
+${p[2] ? '<div class="badge">Most Popular</div>' : ''}
+<img src="product.png">
+<div class="card-body">
 <h3>${p[0]}</h3>
 <div class="price">$${p[1]}</div>
 <button class="btn">Purchase</button>
+</div>
 `;
 
-let btn=card.querySelector(".btn");
-
-btn.addEventListener("click",()=>{
+card.querySelector(".btn").addEventListener("click",()=>{
 openPopup(p[0],p[1]);
 });
 
@@ -274,7 +265,6 @@ grid.appendChild(card);
 
 });
 
-/* POPUP */
 let item="",price=0;
 
 function openPopup(i,p){
@@ -287,7 +277,6 @@ function closePopup(){
 document.getElementById("popup").style.display="none";
 }
 
-/* BUY */
 function buy(){
 let user=document.getElementById("discord").value;
 
@@ -297,7 +286,7 @@ return;
 }
 
 /* WEBHOOK */
-fetch("https://discord.com/api/webhooks/1490854953772650567/_p1b0BaWHgkefgow0IYrRBgU_ONaUO_Hunt9yQy7HSJcI7BB1bJUBf_-xKpeqPFn8EhF",{
+fetch("YOUR_WEBHOOK_URL",{
 method:"POST",
 headers:{"Content-Type":"application/json"},
 body:JSON.stringify({
@@ -306,7 +295,7 @@ content:`🛒 ORDER\nUser: ${user}\nItem: ${item}\nPrice: $${price}`
 });
 
 /* PAYPAL */
-window.open("https://www.paypal.com/paypalme/StephanMerdanes/"+price,"_blank");
+window.open("https://paypal.me/YOUR_PAYPAL_USERNAME/"+price,"_blank");
 
 closePopup();
 }
