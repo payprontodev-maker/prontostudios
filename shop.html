@@ -4,15 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Shop - Pronto Studios</title>
+<title>Pronto Shop</title>
 <link rel="icon" href="logo.png">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
 
 body{
-background:#020617;
+background:linear-gradient(120deg,#020617,#0f172a);
 color:white;
+overflow-x:hidden;
 }
 
 /* HEADER */
@@ -21,78 +27,111 @@ position:fixed;
 width:100%;
 display:flex;
 justify-content:space-between;
+align-items:center;
 padding:20px 50px;
-background:rgba(255,255,255,0.03);
-backdrop-filter:blur(15px);
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(20px);
 z-index:1000;
 }
 
-.logo{display:flex;gap:10px;align-items:center;}
+.logo{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
 .logo img{width:40px;}
 
 nav a{
 margin-left:20px;
 color:#aaa;
 text-decoration:none;
-cursor:pointer;
 }
 
 /* HERO */
 .hero{
-margin-top:120px;
+padding-top:120px;
 text-align:center;
 }
 
 .hero h1{
-font-size:50px;
+font-size:55px;
 background:linear-gradient(90deg,#7a5cff,#00d4ff);
 -webkit-background-clip:text;
 color:transparent;
 }
 
-/* PRODUCTS */
+/* GRID */
 .grid{
-padding:40px;
+padding:50px;
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:25px;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:30px;
 }
 
+/* CARD */
 .card{
 background:rgba(255,255,255,0.05);
-border-radius:20px;
+border-radius:25px;
 overflow:hidden;
-backdrop-filter:blur(10px);
-transition:0.3s;
+backdrop-filter:blur(20px);
+transition:0.4s;
+position:relative;
+}
+
+.card::before{
+content:"";
+position:absolute;
+inset:0;
+background:linear-gradient(120deg,transparent,#7a5cff44,transparent);
+opacity:0;
+transition:0.4s;
+}
+
+.card:hover::before{
+opacity:1;
 }
 
 .card:hover{
-transform:translateY(-10px) scale(1.03);
-box-shadow:0 0 30px #7a5cff;
+transform:translateY(-12px) scale(1.04);
+box-shadow:0 0 40px rgba(122,92,255,0.4);
 }
 
-.card img{width:100%;}
+.card img{
+width:100%;
+height:180px;
+object-fit:cover;
+}
 
-.card-body{padding:20px;}
+.card-body{
+padding:20px;
+}
 
 .price{
 color:#00d4ff;
 margin:10px 0;
-font-weight:bold;
+font-size:18px;
 }
 
-button{
+/* BUTTON */
+.buy-btn{
 width:100%;
 padding:12px;
 border:none;
-border-radius:20px;
+border-radius:30px;
 background:linear-gradient(90deg,#7a5cff,#00d4ff);
 color:white;
 cursor:pointer;
+transition:0.3s;
 }
 
-/* 🔥 POPUP */
-#buyPopup{
+.buy-btn:hover{
+transform:scale(1.07);
+box-shadow:0 0 25px #7a5cff;
+}
+
+/* POPUP */
+#popup{
 position:fixed;
 top:0;
 left:0;
@@ -108,16 +147,12 @@ z-index:9999;
 
 .popup-box{
 background:linear-gradient(145deg,#0d1025,#05070f);
-padding:35px;
-border-radius:20px;
-width:320px;
+padding:40px;
+border-radius:25px;
+width:340px;
 text-align:center;
-box-shadow:0 0 50px rgba(122,92,255,0.4);
+box-shadow:0 0 60px rgba(122,92,255,0.5);
 animation:pop 0.4s ease;
-}
-
-.popup-box h2{
-margin-bottom:10px;
 }
 
 .popup-box input{
@@ -126,15 +161,21 @@ padding:12px;
 margin-top:15px;
 border:none;
 border-radius:10px;
-outline:none;
 }
 
 .popup-box button{
 margin-top:15px;
+width:100%;
+padding:12px;
+border:none;
+border-radius:20px;
+background:linear-gradient(90deg,#7a5cff,#00d4ff);
+color:white;
+cursor:pointer;
 }
 
 @keyframes pop{
-from{transform:scale(0.7);opacity:0;}
+from{transform:scale(0.6);opacity:0;}
 to{transform:scale(1);opacity:1;}
 }
 </style>
@@ -155,6 +196,7 @@ to{transform:scale(1);opacity:1;}
 
 <div class="hero">
 <h1>Shop</h1>
+<p style="color:#aaa;margin-top:10px;">Premium services — instant delivery setup</p>
 </div>
 
 <div class="grid">
@@ -177,7 +219,7 @@ document.write(products.map(p=>`
 <div class="card-body">
 <h3>${p[0]}</h3>
 <div class="price">$${p[1]}</div>
-<button onclick="openPopup('${p[0]}',${p[1]})">Buy</button>
+<button class="buy-btn" onclick="openPopup('${p[0]}',${p[1]})">Purchase</button>
 </div>
 </div>
 `).join(""));
@@ -185,50 +227,52 @@ document.write(products.map(p=>`
 
 </div>
 
-<!-- 🔥 POPUP -->
-<div id="buyPopup">
+<!-- POPUP -->
+<div id="popup">
 <div class="popup-box">
-<h2>Enter Discord</h2>
-<p style="font-size:13px;color:#aaa;">We’ll contact you for your order</p>
-<input id="discordInput" placeholder="username#0000">
-<button onclick="confirmBuy()">Continue</button>
+<h2>Secure Checkout</h2>
+<p style="font-size:13px;color:#aaa;">Enter your Discord so we can contact you</p>
+
+<input id="discord" placeholder="username#0000">
+
+<button onclick="buy()">Continue to PayPal</button>
 <button onclick="closePopup()">Cancel</button>
 </div>
 </div>
 
 <script>
-let selectedItem="";
-let selectedPrice=0;
+let item="";
+let price=0;
 
-function openPopup(item,price){
-selectedItem=item;
-selectedPrice=price;
-document.getElementById("buyPopup").style.display="flex";
+function openPopup(i,p){
+item=i;
+price=p;
+document.getElementById("popup").style.display="flex";
 }
 
 function closePopup(){
-document.getElementById("buyPopup").style.display="none";
+document.getElementById("popup").style.display="none";
 }
 
-function confirmBuy(){
-let user=document.getElementById("discordInput").value;
+function buy(){
+let user=document.getElementById("discord").value;
 
 if(!user){
 alert("Enter Discord username");
 return;
 }
 
-/* 🔥 DISCORD WEBHOOK */
-fetch("YOUR_WEBHOOK_URL",{
+/* DISCORD WEBHOOK */
+fetch("https://discord.com/api/webhooks/1490854953772650567/_p1b0BaWHgkefgow0IYrRBgU_ONaUO_Hunt9yQy7HSJcI7BB1bJUBf_-xKpeqPFn8EhF",{
 method:"POST",
 headers:{"Content-Type":"application/json"},
 body:JSON.stringify({
-content:`🛒 NEW ORDER\nUser: ${user}\nItem: ${selectedItem}\nPrice: $${selectedPrice}`
+content:`🛒 ORDER\nUser: ${user}\nItem: ${item}\nPrice: $${price}`
 })
 });
 
-/* 💸 PAYPAL */
-window.open("https://paypal.me/YOUR_PAYPAL_USERNAME/"+selectedPrice,"_blank");
+/* PAYPAL */
+window.open("https://www.paypal.com/paypalme/StephanMerdanes/"+price,"_blank");
 
 closePopup();
 }
