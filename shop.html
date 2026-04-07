@@ -4,269 +4,299 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Pronto Shop</title>
-<link rel="icon" type="image/png" href="logo.png">
+<title>Shop - Pronto Studios</title>
+<link rel="icon" href="logo.png">
 
 <style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: radial-gradient(circle at top, #0a0f2c, #02030a);
-    color: white;
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
+
+body{
+background:#020617;
+color:white;
+overflow:hidden;
 }
 
-/* HEADER */
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 40px;
-    background: rgba(0,0,0,0.5);
-    backdrop-filter: blur(10px);
+/* TRANSITION */
+body.fade-out{
+opacity:0;
+transition:0.4s;
 }
 
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+/* NAV */
+header{
+position:fixed;
+width:100%;
+display:flex;
+justify-content:space-between;
+padding:20px 50px;
+background:rgba(255,255,255,0.03);
+backdrop-filter:blur(15px);
+z-index:1000;
 }
 
-.logo img {
-    width: 40px;
+.logo{display:flex;gap:10px;align-items:center;}
+.logo img{width:40px;}
+
+nav a{
+margin-left:20px;
+color:#aaa;
+text-decoration:none;
+cursor:pointer;
 }
 
-nav a {
-    margin-left: 20px;
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
+/* HERO */
+.hero{
+margin-top:120px;
+text-align:center;
 }
 
-/* TITLE */
-.hero {
-    text-align: center;
-    padding: 50px 20px;
+.hero h1{
+font-size:50px;
+background:linear-gradient(90deg,#7a5cff,#00d4ff);
+-webkit-background-clip:text;
+color:transparent;
 }
 
-.hero h1 {
-    font-size: 50px;
-    background: linear-gradient(90deg, #7a5cff, #00d4ff);
-    -webkit-background-clip: text;
-    color: transparent;
+/* INPUT */
+.user-input{
+margin-top:20px;
+}
+
+.user-input input{
+padding:10px;
+border-radius:10px;
+border:none;
+outline:none;
 }
 
 /* PRODUCTS */
-.products {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px;
-    padding: 40px;
+.grid{
+padding:40px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:25px;
 }
 
-.card {
-    background: rgba(255,255,255,0.05);
-    border-radius: 15px;
-    overflow: hidden;
-    transition: 0.3s;
+/* CARD */
+.card{
+background:rgba(255,255,255,0.05);
+border-radius:20px;
+overflow:hidden;
+backdrop-filter:blur(10px);
+transition:0.3s;
 }
 
-.card:hover {
-    transform: scale(1.05);
+.card:hover{
+transform:translateY(-10px) scale(1.03);
+box-shadow:0 0 30px #7a5cff;
 }
 
-.card img {
-    width: 100%;
+.card img{width:100%;}
+
+.card-body{padding:20px;}
+
+.price{
+color:#00d4ff;
+margin:10px 0;
+font-weight:bold;
 }
 
-.card-content {
-    padding: 20px;
+button{
+width:100%;
+padding:12px;
+border:none;
+border-radius:20px;
+background:linear-gradient(90deg,#7a5cff,#00d4ff);
+color:white;
+cursor:pointer;
 }
 
-.price {
-    color: #00ffcc;
-    font-size: 18px;
+/* CURSOR */
+.cursor{
+position:fixed;
+width:12px;
+height:12px;
+background:#7a5cff;
+border-radius:50%;
+pointer-events:none;
+z-index:9999;
+box-shadow:0 0 25px #7a5cff;
 }
 
-.buy-btn {
-    margin-top: 10px;
-    padding: 10px;
-    border: none;
-    background: #7a5cff;
-    color: white;
-    border-radius: 8px;
-    cursor: pointer;
-    width: 100%;
-}
-
-.buy-btn:hover {
-    background: #5a3cff;
-}
-
-/* POPUP */
-.popup {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%;
-    height: 100%;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    background: rgba(0,0,0,0.7);
-}
-
-.popup-box {
-    background: #111;
-    padding: 25px;
-    border-radius: 10px;
-    width: 300px;
-}
-
-input {
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    border: none;
-    border-radius: 5px;
-}
-
-.confirm-btn {
-    margin-top: 15px;
-    padding: 10px;
-    width: 100%;
-    background: #00d4ff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+/* CANVAS */
+canvas{
+position:fixed;
+top:0;
+left:0;
+z-index:-1;
 }
 </style>
 </head>
 
 <body>
 
+<canvas id="bg"></canvas>
+<div class="cursor" id="cursor"></div>
+
 <header>
-    <div class="logo">
-        <img src="logo.png">
-        <h2>Pronto</h2>
-    </div>
-    <nav>
-        <a href="index.html">Home</a>
-    </nav>
+<div class="logo">
+<img src="logo.png">
+<h3>Pronto Studios</h3>
+</div>
+
+<nav>
+<a onclick="goHome()">Home</a>
+</nav>
 </header>
 
 <div class="hero">
-    <h1>Pronto Shop</h1>
-    <p>Select a service and purchase instantly</p>
+<h1>Shop</h1>
+
+<div class="user-input">
+<input type="text" id="discord" placeholder="Enter Discord Username">
+</div>
 </div>
 
-<div class="products">
+<div class="grid">
 
-<!-- PRODUCT -->
+<!-- PRODUCT TEMPLATE -->
 <div class="card">
-    <img src="product.png">
-    <div class="card-content">
-        <h3>Turf Showcase</h3>
-        <p class="price">$4.50</p>
-        <button class="buy-btn" onclick="buy('Turf Showcase', 4.5)">Buy</button>
-    </div>
+<img src="product.png">
+<div class="card-body">
+<h3>Turf Showcases</h3>
+<div class="price">$4.50</div>
+<button onclick="buy('Turf Showcases',4.5)">Buy</button>
 </div>
-
-<div class="card">
-    <img src="product.png">
-    <div class="card-content">
-        <h3>Gang Movie Trailer</h3>
-        <p class="price">$10</p>
-        <button class="buy-btn" onclick="buy('Gang Movie Trailer', 10)">Buy</button>
-    </div>
 </div>
 
 <div class="card">
-    <img src="product.png">
-    <div class="card-content">
-        <h3>Custom Film</h3>
-        <p class="price">$7.50</p>
-        <button class="buy-btn" onclick="buy('Custom Film', 7.5)">Buy</button>
-    </div>
+<img src="product.png">
+<div class="card-body">
+<h3>Gang Movie Trailer</h3>
+<div class="price">$10</div>
+<button onclick="buy('Gang Movie Trailer',10)">Buy</button>
+</div>
 </div>
 
 <div class="card">
-    <img src="product.png">
-    <div class="card-content">
-        <h3>Gang Pics</h3>
-        <p class="price">$1.50</p>
-        <button class="buy-btn" onclick="buy('Gang Pics', 1.5)">Buy</button>
-    </div>
+<img src="product.png">
+<div class="card-body">
+<h3>Custom Film</h3>
+<div class="price">$7.50</div>
+<button onclick="buy('Custom Film',7.5)">Buy</button>
+</div>
 </div>
 
 <div class="card">
-    <img src="product.png">
-    <div class="card-content">
-        <h3>Gang Edits</h3>
-        <p class="price">$5</p>
-        <button class="buy-btn" onclick="buy('Gang Edits', 5)">Buy</button>
-    </div>
+<img src="product.png">
+<div class="card-body">
+<h3>Gang Pics</h3>
+<div class="price">$1.50</div>
+<button onclick="buy('Gang Pics',1.5)">Buy</button>
+</div>
 </div>
 
 <div class="card">
-    <img src="product.png">
-    <div class="card-content">
-        <h3>Custom Edits</h3>
-        <p class="price">$4</p>
-        <button class="buy-btn" onclick="buy('Custom Edits', 4)">Buy</button>
-    </div>
+<img src="product.png">
+<div class="card-body">
+<h3>Gang Edits</h3>
+<div class="price">$5</div>
+<button onclick="buy('Gang Edits',5)">Buy</button>
+</div>
 </div>
 
 <div class="card">
-    <img src="product.png">
-    <div class="card-content">
-        <h3>Advertisement</h3>
-        <p class="price">$2</p>
-        <button class="buy-btn" onclick="buy('Advertisement', 2)">Buy</button>
-    </div>
+<img src="product.png">
+<div class="card-body">
+<h3>Custom Edits</h3>
+<div class="price">$4</div>
+<button onclick="buy('Custom Edits',4)">Buy</button>
+</div>
 </div>
 
+<div class="card">
+<img src="product.png">
+<div class="card-body">
+<h3>Advertisement</h3>
+<div class="price">$2</div>
+<button onclick="buy('Advertisement',2)">Buy</button>
+</div>
 </div>
 
-<!-- POPUP -->
-<div class="popup" id="popup">
-    <div class="popup-box">
-        <h3>Enter Discord Username</h3>
-        <input type="text" id="discordUser" placeholder="username#0000">
-        <button class="confirm-btn" onclick="confirmPurchase()">Continue to PayPal</button>
-    </div>
 </div>
 
 <script>
-let selectedProduct = "";
-let selectedPrice = 0;
 
-function buy(product, price) {
-    selectedProduct = product;
-    selectedPrice = price;
-    document.getElementById("popup").style.display = "flex";
+/* NAV TRANSITIONS */
+function goHome(){
+document.body.classList.add("fade-out");
+setTimeout(()=>{
+window.location.href="index.html";
+},400);
 }
 
-function confirmPurchase() {
-    let user = document.getElementById("discordUser").value;
+/* CURSOR */
+const cursor=document.getElementById("cursor");
+document.addEventListener("mousemove",e=>{
+cursor.style.left=e.clientX+"px";
+cursor.style.top=e.clientY+"px";
+});
 
-    if(user === "") {
-        alert("Enter Discord username");
-        return;
-    }
+/* PARTICLES */
+const canvas=document.getElementById("bg");
+const ctx=canvas.getContext("2d");
 
-    // 🔥 DISCORD WEBHOOK
-    fetch("https://discord.com/api/webhooks/1490854953772650567/_p1b0BaWHgkefgow0IYrRBgU_ONaUO_Hunt9yQy7HSJcI7BB1bJUBf_-xKpeqPFn8EhF", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({
-            content: "**NEW ORDER**\nUser: " + user + "\nProduct: " + selectedProduct + "\nPrice: $" + selectedPrice
-        })
-    });
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
 
-    // ✅ PAYPAL LINK
-    window.open("https://www.paypal.com/paypalme/StephanMerdanes/" + selectedPrice, "_blank");
-
-    document.getElementById("popup").style.display = "none";
+let particles=[];
+for(let i=0;i<80;i++){
+particles.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+r:Math.random()*2
+});
 }
+
+function animate(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+particles.forEach(p=>{
+ctx.beginPath();
+ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+ctx.fillStyle="#7a5cff";
+ctx.fill();
+
+p.y-=0.2;
+if(p.y<0)p.y=canvas.height;
+});
+
+requestAnimationFrame(animate);
+}
+animate();
+
+/* 🔥 KEEP YOUR LOGIC SAME */
+const webhook = "https://discord.com/api/webhooks/1490854953772650567/_p1b0BaWHgkefgow0IYrRBgU_ONaUO_Hunt9yQy7HSJcI7BB1bJUBf_-xKpeqPFn8EhF";
+
+function buy(item, price){
+let user=document.getElementById("discord").value;
+
+if(!user){
+alert("Enter Discord username");
+return;
+}
+
+fetch(webhook,{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({
+content:`🛒 ORDER\nUser: ${user}\nItem: ${item}\nPrice: $${price}`
+})
+});
+
+window.open("https://www.paypal.com/paypalme/StephanMerdanes/"+price,"_blank");
+}
+
 </script>
 
 </body>
