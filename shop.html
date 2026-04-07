@@ -8,68 +8,124 @@
 <link rel="icon" href="logo.png">
 
 <style>
-body{
+*{
 margin:0;
-font-family:Arial;
-background:#0b0f1a;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:#020617;
 color:white;
+overflow-x:hidden;
+}
+
+/* GLOW BACKGROUND */
+.bg-glow{
+position:fixed;
+width:700px;
+height:700px;
+background:#7a5cff;
+filter:blur(150px);
+opacity:0.25;
+top:-200px;
+left:-200px;
+z-index:-1;
 }
 
 /* HEADER */
 header{
-background:#111827;
-padding:15px 30px;
+position:fixed;
+top:0;
+width:100%;
+display:flex;
+justify-content:center;
+z-index:1000;
+}
+
+.nav{
+margin-top:15px;
+width:90%;
+max-width:1200px;
 display:flex;
 justify-content:space-between;
 align-items:center;
+padding:15px 30px;
+border-radius:20px;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(20px);
+box-shadow:0 0 40px rgba(122,92,255,0.3);
 }
 
-header img{
+.logo{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.logo img{
 width:40px;
-vertical-align:middle;
-}
-
-header a{
-color:white;
-text-decoration:none;
-margin-left:20px;
 }
 
 /* GRID */
 .grid{
-padding:40px;
+padding:150px 40px 40px;
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:30px;
 }
 
 /* CARD */
 .card{
-background:#1f2937;
-padding:20px;
-border-radius:10px;
-text-align:center;
+background:rgba(255,255,255,0.05);
+border-radius:20px;
+overflow:hidden;
+transition:0.3s;
+backdrop-filter:blur(20px);
+}
+
+.card:hover{
+transform:translateY(-10px) scale(1.03);
+box-shadow:0 0 40px rgba(122,92,255,0.6);
 }
 
 .card img{
 width:100%;
-border-radius:10px;
+height:170px;
+object-fit:cover;
+}
+
+.card-body{
+padding:20px;
+text-align:center;
+}
+
+.card h3{
+margin-bottom:10px;
 }
 
 .price{
-color:#38bdf8;
-margin:10px 0;
+color:#00d4ff;
+margin-bottom:15px;
+font-size:18px;
 }
 
 /* BUTTON */
-button{
-background:#3b82f6;
+.btn{
+padding:12px;
 border:none;
-padding:10px;
+border-radius:30px;
+background:linear-gradient(90deg,#7a5cff,#00d4ff);
 color:white;
-border-radius:5px;
 cursor:pointer;
 width:100%;
+transition:0.3s;
+}
+
+.btn:hover{
+transform:scale(1.05);
+box-shadow:0 0 20px #7a5cff;
 }
 
 /* POPUP */
@@ -79,38 +135,63 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.8);
+background:rgba(0,0,0,0.9);
 display:none;
 justify-content:center;
 align-items:center;
+z-index:9999;
 }
 
 .popup-box{
-background:#1f2937;
-padding:20px;
-border-radius:10px;
-text-align:center;
+background:#0f172a;
+padding:30px;
+border-radius:20px;
 width:300px;
+text-align:center;
+animation:fadeUp 0.3s ease;
 }
 
-input{
+.popup-box input{
 width:100%;
 padding:10px;
 margin-top:10px;
-border-radius:5px;
 border:none;
+border-radius:10px;
+}
+
+.popup-box button{
+margin-top:10px;
+padding:10px;
+width:100%;
+border:none;
+border-radius:10px;
+background:#7a5cff;
+color:white;
+cursor:pointer;
+}
+
+@keyframes fadeUp{
+from{opacity:0;transform:translateY(30px);}
+to{opacity:1;}
+}
+
+/* MOBILE */
+@media(max-width:768px){
+.grid{padding:130px 20px;}
 }
 </style>
 </head>
 
 <body>
 
+<div class="bg-glow"></div>
+
 <header>
-<div>
+<div class="nav">
+<div class="logo">
 <img src="logo.png">
-<strong>Pronto Studios</strong>
+<h3>Pronto Studios</h3>
 </div>
-<div>
 <a href="index.html">Home</a>
 </div>
 </header>
@@ -119,51 +200,65 @@ border:none;
 
 <div class="card">
 <img src="product.png">
+<div class="card-body">
 <h3>Turf Showcases</h3>
 <div class="price">$4.50</div>
-<button onclick="openPopup('Turf Showcases',4.5)">Purchase</button>
+<button class="btn" onclick="openPopup('Turf Showcases',4.5)">Purchase</button>
+</div>
 </div>
 
 <div class="card">
 <img src="product.png">
+<div class="card-body">
 <h3>Gang Movie Trailer</h3>
 <div class="price">$10</div>
-<button onclick="openPopup('Gang Movie Trailer',10)">Purchase</button>
+<button class="btn" onclick="openPopup('Gang Movie Trailer',10)">Purchase</button>
+</div>
 </div>
 
 <div class="card">
 <img src="product.png">
+<div class="card-body">
 <h3>Custom Film</h3>
 <div class="price">$7.50</div>
-<button onclick="openPopup('Custom Film',7.5)">Purchase</button>
+<button class="btn" onclick="openPopup('Custom Film',7.5)">Purchase</button>
+</div>
 </div>
 
 <div class="card">
 <img src="product.png">
+<div class="card-body">
 <h3>Gang Pics</h3>
 <div class="price">$1.50</div>
-<button onclick="openPopup('Gang Pics',1.5)">Purchase</button>
+<button class="btn" onclick="openPopup('Gang Pics',1.5)">Purchase</button>
+</div>
 </div>
 
 <div class="card">
 <img src="product.png">
+<div class="card-body">
 <h3>Gang Edits</h3>
 <div class="price">$5</div>
-<button onclick="openPopup('Gang Edits',5)">Purchase</button>
+<button class="btn" onclick="openPopup('Gang Edits',5)">Purchase</button>
+</div>
 </div>
 
 <div class="card">
 <img src="product.png">
+<div class="card-body">
 <h3>Custom Edits</h3>
 <div class="price">$4</div>
-<button onclick="openPopup('Custom Edits',4)">Purchase</button>
+<button class="btn" onclick="openPopup('Custom Edits',4)">Purchase</button>
+</div>
 </div>
 
 <div class="card">
 <img src="product.png">
+<div class="card-body">
 <h3>Advertisement</h3>
 <div class="price">$2</div>
-<button onclick="openPopup('Advertisement',2)">Purchase</button>
+<button class="btn" onclick="openPopup('Advertisement',2)">Purchase</button>
+</div>
 </div>
 
 </div>
@@ -173,7 +268,6 @@ border:none;
 <div class="popup-box">
 <h2>Enter Discord</h2>
 <input id="discord" placeholder="username#0000">
-
 <button onclick="buy()">Continue</button>
 <button onclick="closePopup()">Cancel</button>
 </div>
@@ -200,8 +294,7 @@ alert("Enter Discord username");
 return;
 }
 
-/* WEBHOOK */
-fetch("YOUR_WEBHOOK_URL",{
+fetch("https://discord.com/api/webhooks/1490854953772650567/_p1b0BaWHgkefgow0IYrRBgU_ONaUO_Hunt9yQy7HSJcI7BB1bJUBf_-xKpeqPFn8EhF",{
 method:"POST",
 headers:{"Content-Type":"application/json"},
 body:JSON.stringify({
@@ -209,8 +302,7 @@ content:`🛒 ORDER\nUser: ${user}\nItem: ${item}\nPrice: $${price}`
 })
 });
 
-/* PAYPAL */
-window.open("https://paypal.me/YOUR_PAYPAL_USERNAME/"+price,"_blank");
+window.open("https://www.paypal.com/paypalme/StephanMerdanes/"+price,"_blank");
 
 closePopup();
 }
