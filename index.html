@@ -20,6 +20,19 @@ body {
     background: radial-gradient(circle at top, #0b0f2a, #02030a);
     color: white;
     overflow-x: hidden;
+    cursor: none; /* hide default cursor */
+}
+
+/* CUSTOM CURSOR */
+.cursor {
+    position: fixed;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #7a5cff;
+    pointer-events: none;
+    z-index: 99999;
+    box-shadow: 0 0 20px #7a5cff, 0 0 40px #7a5cff;
 }
 
 /* HEADER */
@@ -38,24 +51,15 @@ header {
     gap: 10px;
 }
 
-.logo img {
-    width: 45px;
-}
-
-.logo h2 {
-    font-size: 20px;
-}
+.logo img { width: 45px; }
 
 nav a {
     margin-left: 25px;
     text-decoration: none;
     color: #aaa;
-    transition: 0.3s;
 }
 
-nav a:hover {
-    color: white;
-}
+nav a:hover { color: white; }
 
 /* HERO */
 .hero {
@@ -94,10 +98,11 @@ nav a:hover {
 }
 
 .btn:hover {
-    transform: scale(1.05);
+    transform: scale(1.1);
+    box-shadow: 0 0 25px #7a5cff;
 }
 
-/* FLOATING GLOW ORBS */
+/* ORBS */
 .orb {
     position: absolute;
     width: 300px;
@@ -105,7 +110,6 @@ nav a:hover {
     background: #7a5cff;
     filter: blur(120px);
     opacity: 0.3;
-    animation: float 8s infinite alternate;
 }
 
 .orb2 {
@@ -113,12 +117,7 @@ nav a:hover {
     background: #00d4ff;
 }
 
-@keyframes float {
-    from {transform: translateY(-50px);}
-    to {transform: translateY(50px);}
-}
-
-/* 🔥 NEW PARTICLES */
+/* PARTICLES */
 .particles {
     position: fixed;
     width: 100%;
@@ -129,13 +128,7 @@ nav a:hover {
 .circle {
     position: absolute;
     border-radius: 50%;
-    background: rgba(122,92,255,0.2);
-    animation: floatParticles linear infinite;
-}
-
-@keyframes floatParticles {
-    from { transform: translateY(100vh); }
-    to { transform: translateY(-10vh); }
+    background: rgba(122,92,255,0.3);
 }
 
 /* POPUP */
@@ -153,7 +146,6 @@ nav a:hover {
     z-index: 9999;
 }
 
-/* POPUP BOX */
 #popupBox {
     background: linear-gradient(145deg, #0d1025, #05070f);
     padding: 35px;
@@ -161,22 +153,14 @@ nav a:hover {
     border-radius: 15px;
     text-align: center;
     box-shadow: 0 0 40px rgba(122,92,255,0.3);
-
     animation: popupEnter 0.6s ease;
 }
 
-#popupBox h2 {
-    margin-bottom: 15px;
-    font-size: 22px;
-}
-
 #popupBox p {
-    font-size: 14px;
     color: #ccc;
     line-height: 1.6;
 }
 
-/* BUTTON */
 #popupBox button {
     margin-top: 25px;
     padding: 12px 25px;
@@ -185,53 +169,31 @@ nav a:hover {
     background: linear-gradient(90deg, #7a5cff, #00d4ff);
     color: white;
     cursor: pointer;
-    transition: 0.3s;
 }
 
-#popupBox button:hover {
-    transform: scale(1.05);
-}
-
-/* ANIMATIONS */
 @keyframes popupEnter {
-    from {
-        opacity: 0;
-        transform: scale(0.8) translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-    }
+    from { opacity: 0; transform: scale(0.8);}
+    to { opacity: 1; transform: scale(1);}
 }
 
 @keyframes fadeIn {
     from {opacity: 0;}
     to {opacity: 1;}
 }
-
-/* MOBILE */
-@media(max-width: 768px) {
-    .hero h1 {
-        font-size: 40px;
-    }
-
-    header {
-        padding: 15px 20px;
-    }
-}
 </style>
 </head>
 
 <body>
 
-<!-- 🔥 PARTICLES -->
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+
+<!-- PARTICLES -->
 <div class="particles" id="particles"></div>
 
-<!-- BACKGROUND EFFECTS -->
-<div class="orb"></div>
-<div class="orb orb2"></div>
+<div class="orb" id="orb1"></div>
+<div class="orb orb2" id="orb2"></div>
 
-<!-- HEADER -->
 <header>
     <div class="logo">
         <img src="logo.png">
@@ -243,7 +205,6 @@ nav a:hover {
     </nav>
 </header>
 
-<!-- HERO -->
 <div class="hero">
     <h1>Pronto Studios</h1>
     <p>Premium edits, showcases, and cinematic content</p>
@@ -258,13 +219,13 @@ nav a:hover {
   <div id="popupBox">
     <h2>Welcome to Pronto Studios</h2>
     <p>
-      This website was designed by Pay. Since this is one of our first builds in a while, you may experience minor bugs.
+      This website was designed by Pay. Minor bugs may exist.
       <br><br>
-      Before purchasing any service, please make sure you enter your <b>real Discord username</b>. This is how we will contact you to get details for your order.
+      Please enter your real Discord username when purchasing so we can contact you.
       <br><br>
-      If you enter an invalid username, we will have no way to reach you or complete your order.
+      Invalid usernames = no way to complete your order.
       <br><br>
-      Feel free to leave suggestions and feedback in Pronto Studios — we appreciate it.
+      Thank you for supporting Pronto Studios.
     </p>
 
     <button onclick="closePopup()">I Understand</button>
@@ -272,26 +233,64 @@ nav a:hover {
 </div>
 
 <script>
+// CLOSE POPUP
 function closePopup() {
     document.getElementById("popupOverlay").style.display = "none";
 }
 
-/* 🔥 PARTICLES SCRIPT */
+// PARTICLES
 const container = document.getElementById("particles");
+let particles = [];
 
-for (let i = 0; i < 30; i++) {
+for (let i = 0; i < 40; i++) {
     let c = document.createElement("div");
-    c.classList.add("circle");
+    c.className = "circle";
 
-    let size = Math.random() * 6 + 2;
+    let size = Math.random() * 5 + 2;
     c.style.width = size + "px";
     c.style.height = size + "px";
 
-    c.style.left = Math.random() * 100 + "%";
-    c.style.animationDuration = (Math.random() * 10 + 5) + "s";
+    c.x = Math.random() * window.innerWidth;
+    c.y = Math.random() * window.innerHeight;
+
+    c.style.left = c.x + "px";
+    c.style.top = c.y + "px";
 
     container.appendChild(c);
+    particles.push(c);
 }
+
+// MOUSE INTERACTION
+document.addEventListener("mousemove", e => {
+    let x = e.clientX;
+    let y = e.clientY;
+
+    particles.forEach(p => {
+        let dx = p.x - x;
+        let dy = p.y - y;
+        let dist = Math.sqrt(dx*dx + dy*dy);
+
+        if(dist < 100){
+            p.x += dx * 0.02;
+            p.y += dy * 0.02;
+        }
+
+        p.style.left = p.x + "px";
+        p.style.top = p.y + "px";
+    });
+
+    // cursor
+    const cursor = document.getElementById("cursor");
+    cursor.style.left = x + "px";
+    cursor.style.top = y + "px";
+
+    // parallax orbs
+    document.getElementById("orb1").style.transform =
+        `translate(${x/50}px, ${y/50}px)`;
+
+    document.getElementById("orb2").style.transform =
+        `translate(-${x/60}px, -${y/60}px)`;
+});
 </script>
 
 </body>
