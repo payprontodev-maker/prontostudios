@@ -118,6 +118,26 @@ nav a:hover {
     to {transform: translateY(50px);}
 }
 
+/* 🔥 NEW PARTICLES */
+.particles {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.circle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(122,92,255,0.2);
+    animation: floatParticles linear infinite;
+}
+
+@keyframes floatParticles {
+    from { transform: translateY(100vh); }
+    to { transform: translateY(-10vh); }
+}
+
 /* POPUP */
 #popupOverlay {
     position: fixed;
@@ -204,6 +224,9 @@ nav a:hover {
 
 <body>
 
+<!-- 🔥 PARTICLES -->
+<div class="particles" id="particles"></div>
+
 <!-- BACKGROUND EFFECTS -->
 <div class="orb"></div>
 <div class="orb orb2"></div>
@@ -249,15 +272,25 @@ nav a:hover {
 </div>
 
 <script>
-window.onload = function() {
-    if(localStorage.getItem("seenPopup")) {
-        document.getElementById("popupOverlay").style.display = "none";
-    }
+function closePopup() {
+    document.getElementById("popupOverlay").style.display = "none";
 }
 
-function closePopup() {
-    localStorage.setItem("seenPopup", "true");
-    document.getElementById("popupOverlay").style.display = "none";
+/* 🔥 PARTICLES SCRIPT */
+const container = document.getElementById("particles");
+
+for (let i = 0; i < 30; i++) {
+    let c = document.createElement("div");
+    c.classList.add("circle");
+
+    let size = Math.random() * 6 + 2;
+    c.style.width = size + "px";
+    c.style.height = size + "px";
+
+    c.style.left = Math.random() * 100 + "%";
+    c.style.animationDuration = (Math.random() * 10 + 5) + "s";
+
+    container.appendChild(c);
 }
 </script>
 
