@@ -2,243 +2,302 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Shop</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pronto Shop</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif;}
-
-body{
-  background: radial-gradient(circle at top,#0a1228,#020611);
-  color:white;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
 }
 
-/* HEADER */
-header{
-  display:flex;
-  justify-content:space-between;
-  padding:20px;
+body {
+    background: radial-gradient(circle at top, #0b0f1a, #02040a);
+    color: white;
+    overflow-x: hidden;
 }
 
-.logo{display:flex;align-items:center;gap:10px;}
-.logo img{width:35px;}
-
-nav a{
-  margin-left:15px;
-  color:#aaa;
-  text-decoration:none;
+/* NAV */
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 40px;
+    align-items: center;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(15px);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 999;
 }
 
-/* SHOP GRID */
-.shop{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:20px;
-  padding:20px;
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo img {
+    width: 40px;
+}
+
+.logo span {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+nav a {
+    color: #aaa;
+    text-decoration: none;
+}
+
+nav a:hover {
+    color: #8b5cf6;
+}
+
+/* HERO */
+.hero {
+    text-align: center;
+    margin-top: 120px;
+}
+
+.hero h1 {
+    font-size: 50px;
+    background: linear-gradient(90deg,#8b5cf6,#22d3ee);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.hero p {
+    color: #777;
+}
+
+/* SEARCH */
+.search-box {
+    margin: 25px auto;
+    width: 300px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 30px;
+    border: none;
+    background: #111;
+    color: white;
+    outline: none;
+}
+
+/* USER INPUT */
+.user-box {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.user-box input {
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+}
+
+/* GRID */
+.grid {
+    padding: 50px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+    gap: 25px;
 }
 
 /* CARD */
-.card{
-  background:rgba(255,255,255,0.05);
-  border-radius:15px;
-  overflow:hidden;
-  transition:0.3s;
+.card {
+    background: linear-gradient(145deg,#0f172a,#020617);
+    border-radius: 18px;
+    overflow: hidden;
+    transition: 0.3s;
+    border: 1px solid rgba(255,255,255,0.05);
+    position: relative;
 }
 
-.card:hover{
-  transform:translateY(-5px);
-  box-shadow:0 0 20px rgba(100,140,255,0.3);
+.card:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 0 40px rgba(139,92,246,0.5);
 }
 
-.card img{
-  width:100%;
-  height:140px;
-  object-fit:cover;
+/* BADGE */
+.badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #8b5cf6;
+    padding: 4px 10px;
+    border-radius: 10px;
+    font-size: 12px;
 }
 
-.card-content{
-  padding:15px;
+/* IMAGE */
+.card img {
+    width: 100%;
 }
 
-.price{
-  color:#6c8cff;
-  margin:10px 0;
+/* BODY */
+.card-body {
+    padding: 20px;
 }
 
-button{
-  width:100%;
-  padding:10px;
-  border:none;
-  border-radius:20px;
-  background:linear-gradient(90deg,#6c8cff,#7c3aed);
-  color:white;
-  cursor:pointer;
+.card h3 {
+    margin-bottom: 10px;
 }
 
-/* MODAL */
-.modal{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.85);
-  display:none;
-  justify-content:center;
-  align-items:center;
+.price {
+    color: #22d3ee;
+    margin-bottom: 15px;
+    font-weight: bold;
 }
 
-.box{
-  background:#111827;
-  padding:20px;
-  border-radius:15px;
-  width:300px;
-  text-align:center;
+/* BUTTON */
+button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 30px;
+    background: linear-gradient(90deg,#8b5cf6,#6366f1);
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
 }
 
-.box input{
-  width:100%;
-  padding:10px;
-  margin-top:10px;
-  border-radius:8px;
-  border:none;
+button:hover {
+    box-shadow: 0 0 20px #8b5cf6;
+}
+
+/* PARTICLES */
+.particles {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.circle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(139,92,246,0.15);
+    animation: float 10s linear infinite;
+}
+
+@keyframes float {
+    from { transform: translateY(100vh);}
+    to { transform: translateY(-10vh);}
+}
+
+/* MOBILE */
+@media(max-width:600px){
+    .grid { padding: 20px; }
 }
 </style>
 </head>
 
 <body>
 
-<header>
-  <div class="logo">
-    <img src="logo.png">
-    <span>Pronto Studios</span>
-  </div>
+<div class="particles" id="particles"></div>
 
-  <nav>
+<nav>
+    <div class="logo">
+        <img src="logo.png">
+        <span>Pronto Studios</span>
+    </div>
     <a href="index.html">Home</a>
-    <a href="shop.html">Shop</a>
-  </nav>
-</header>
+</nav>
 
-<section class="shop">
+<div class="hero">
+    <h1>Official Shop</h1>
+    <p>Premium services for Streetz War creators</p>
+</div>
+
+<div class="search-box">
+    <input type="text" id="search" placeholder="Search services..." onkeyup="filter()">
+</div>
+
+<div class="user-box">
+    <input type="text" id="discord" placeholder="Enter Discord Username">
+</div>
+
+<div class="grid" id="products">
 
 <!-- PRODUCTS -->
-
-<div class="card">
-<img src="product.png">
-<div class="card-content">
-<h3>Turf Showcases</h3>
-<div class="price">$4.50</div>
-<button onclick="buy('Turf Showcases',4.5)">Buy</button>
-</div>
-</div>
-
-<div class="card">
-<img src="product.png">
-<div class="card-content">
-<h3>Gang Movie Trailer</h3>
-<div class="price">$10</div>
-<button onclick="buy('Gang Movie Trailer',10)">Buy</button>
-</div>
-</div>
-
-<div class="card">
-<img src="product.png">
-<div class="card-content">
-<h3>Custom Film</h3>
-<div class="price">$7.50</div>
-<button onclick="buy('Custom Film',7.5)">Buy</button>
-</div>
-</div>
-
-<div class="card">
-<img src="product.png">
-<div class="card-content">
-<h3>Gang Pics</h3>
-<div class="price">$1.50</div>
-<button onclick="buy('Gang Pics',1.5)">Buy</button>
-</div>
-</div>
-
-<div class="card">
-<img src="product.png">
-<div class="card-content">
-<h3>Gang Edits</h3>
-<div class="price">$5</div>
-<button onclick="buy('Gang Edits',5)">Buy</button>
-</div>
-</div>
-
-<div class="card">
-<img src="product.png">
-<div class="card-content">
-<h3>Custom Edits</h3>
-<div class="price">$4</div>
-<button onclick="buy('Custom Edits',4)">Buy</button>
-</div>
-</div>
-
-<div class="card">
-<img src="product.png">
-<div class="card-content">
-<h3>Advertisement</h3>
-<div class="price">$2</div>
-<button onclick="buy('Advertisement',2)">Buy</button>
-</div>
-</div>
-
-</section>
-
-<!-- MODAL -->
-<div class="modal" id="modal">
-  <div class="box">
-    <h3 id="itemName"></h3>
-    <input id="discord" placeholder="Discord Username">
-    <br><br>
-    <button onclick="confirmPurchase()">Confirm</button>
-  </div>
 </div>
 
 <script>
+const webhook = "PASTE_WEBHOOK_HERE";
 
-const WEBHOOK = "https://discord.com/api/webhooks/1490854953772650567/_p1b0BaWHgkefgow0IYrRBgU_ONaUO_Hunt9yQy7HSJcI7BB1bJUBf_-xKpeqPFn8EhF";
-const PAYPAL = "https://www.paypal.com/paypalme/StephanMerdanes";
+const items = [
+["Turf Showcases",4.50],
+["Gang Movie Trailer",10],
+["Custom Film",7.50],
+["Gang Pics",1.50],
+["Gang Edits",5],
+["Custom Edits",4],
+["Advertisement",2]
+];
 
-let item = "";
-let price = 0;
+const grid = document.getElementById("products");
 
-function buy(name, cost){
-  document.getElementById("modal").style.display="flex";
-  document.getElementById("itemName").innerText=name;
-  item = name;
-  price = cost;
+function render(list){
+    grid.innerHTML = "";
+    list.forEach(i=>{
+        grid.innerHTML += `
+        <div class="card">
+            <div class="badge">HOT</div>
+            <img src="product.png">
+            <div class="card-body">
+                <h3>${i[0]}</h3>
+                <div class="price">$${i[1]}</div>
+                <button onclick="buy('${i[0]}',${i[1]})">Buy</button>
+            </div>
+        </div>
+        `;
+    });
 }
 
-function confirmPurchase(){
-  const user = document.getElementById("discord").value;
+render(items);
 
-  if(!user){
-    alert("Enter Discord username");
-    return;
-  }
+function filter(){
+    let val = document.getElementById("search").value.toLowerCase();
+    let filtered = items.filter(i=>i[0].toLowerCase().includes(val));
+    render(filtered);
+}
 
-  const time = new Date().toLocaleString();
+function buy(item,price){
+    let user = document.getElementById("discord").value;
+    if(!user){
+        alert("Enter Discord username");
+        return;
+    }
 
-  fetch(WEBHOOK,{
-    method:"POST",
-    headers:{"Content-Type":"application/json"},
-    body:JSON.stringify({
-      content:
-`🛒 NEW ORDER
-👤 User: ${user}
-🛍 Service: ${item}
-💵 Price: $${price}
-⏱ Time: ${time}`
-    })
-  });
+    fetch(webhook,{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({
+            content:`🛒 ORDER\nUser: ${user}\nItem: ${item}\nPrice: $${price}\nTime: ${new Date().toLocaleString()}`
+        })
+    });
 
-  window.open(PAYPAL,"_blank");
-  alert("Order sent! Complete payment.");
+    window.open("https://www.paypal.com/paypalme/YOURNAME/"+price,"_blank");
+}
+
+/* PARTICLES */
+const p = document.getElementById("particles");
+for(let i=0;i<30;i++){
+    let c=document.createElement("div");
+    c.className="circle";
+    c.style.width=Math.random()*6+"px";
+    c.style.height=c.style.width;
+    c.style.left=Math.random()*100+"%";
+    c.style.animationDuration=(Math.random()*10+5)+"s";
+    p.appendChild(c);
 }
 </script>
 
