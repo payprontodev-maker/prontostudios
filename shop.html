@@ -2,83 +2,81 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Pronto Shop</title>
+<title>Shop</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-* {margin:0;padding:0;box-sizing:border-box;font-family:sans-serif;}
+*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif;}
 
-body {
-  background: radial-gradient(circle at top, #0a1228, #020611);
-  color: white;
+body{
+  background: radial-gradient(circle at top,#0a1228,#020611);
+  color:white;
 }
 
 /* HEADER */
-header {
+header{
   display:flex;
   justify-content:space-between;
-  align-items:center;
-  padding:20px 30px;
-  background: rgba(0,0,0,0.4);
+  padding:20px;
 }
 
-.logo {display:flex;align-items:center;gap:10px;}
-.logo img {width:35px;}
+.logo{display:flex;align-items:center;gap:10px;}
+.logo img{width:35px;}
 
-nav a {
+nav a{
   margin-left:15px;
   color:#aaa;
   text-decoration:none;
 }
 
-/* GRID */
-.shop {
+/* SHOP GRID */
+.shop{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
   gap:20px;
-  padding:25px;
+  padding:20px;
 }
 
 /* CARD */
-.card {
-  background: rgba(255,255,255,0.05);
+.card{
+  background:rgba(255,255,255,0.05);
   border-radius:15px;
   overflow:hidden;
   transition:0.3s;
 }
 
-.card:hover {
+.card:hover{
   transform:translateY(-5px);
   box-shadow:0 0 20px rgba(100,140,255,0.3);
 }
 
-.card img {
+.card img{
   width:100%;
   height:140px;
   object-fit:cover;
 }
 
-.card-content {
+.card-content{
   padding:15px;
 }
 
-.price {
+.price{
   color:#6c8cff;
   margin:10px 0;
 }
 
-/* BUTTON */
-button {
+button{
   width:100%;
   padding:10px;
   border:none;
   border-radius:20px;
-  background: linear-gradient(90deg,#6c8cff,#7c3aed);
+  background:linear-gradient(90deg,#6c8cff,#7c3aed);
   color:white;
+  cursor:pointer;
 }
 
 /* MODAL */
-.modal {
+.modal{
   position:fixed;
   top:0;
   left:0;
@@ -90,7 +88,7 @@ button {
   align-items:center;
 }
 
-.modal-box {
+.box{
   background:#111827;
   padding:20px;
   border-radius:15px;
@@ -98,7 +96,7 @@ button {
   text-align:center;
 }
 
-.modal input {
+.box input{
   width:100%;
   padding:10px;
   margin-top:10px;
@@ -124,13 +122,14 @@ button {
 
 <section class="shop">
 
-<!-- ITEMS -->
+<!-- PRODUCTS -->
+
 <div class="card">
 <img src="product.png">
 <div class="card-content">
 <h3>Turf Showcases</h3>
 <div class="price">$4.50</div>
-<button onclick="openModal('Turf Showcases', 4.5)">Buy</button>
+<button onclick="buy('Turf Showcases',4.5)">Buy</button>
 </div>
 </div>
 
@@ -139,7 +138,7 @@ button {
 <div class="card-content">
 <h3>Gang Movie Trailer</h3>
 <div class="price">$10</div>
-<button onclick="openModal('Gang Movie Trailer', 10)">Buy</button>
+<button onclick="buy('Gang Movie Trailer',10)">Buy</button>
 </div>
 </div>
 
@@ -148,7 +147,7 @@ button {
 <div class="card-content">
 <h3>Custom Film</h3>
 <div class="price">$7.50</div>
-<button onclick="openModal('Custom Film', 7.5)">Buy</button>
+<button onclick="buy('Custom Film',7.5)">Buy</button>
 </div>
 </div>
 
@@ -157,7 +156,7 @@ button {
 <div class="card-content">
 <h3>Gang Pics</h3>
 <div class="price">$1.50</div>
-<button onclick="openModal('Gang Pics', 1.5)">Buy</button>
+<button onclick="buy('Gang Pics',1.5)">Buy</button>
 </div>
 </div>
 
@@ -166,7 +165,7 @@ button {
 <div class="card-content">
 <h3>Gang Edits</h3>
 <div class="price">$5</div>
-<button onclick="openModal('Gang Edits', 5)">Buy</button>
+<button onclick="buy('Gang Edits',5)">Buy</button>
 </div>
 </div>
 
@@ -175,7 +174,7 @@ button {
 <div class="card-content">
 <h3>Custom Edits</h3>
 <div class="price">$4</div>
-<button onclick="openModal('Custom Edits', 4)">Buy</button>
+<button onclick="buy('Custom Edits',4)">Buy</button>
 </div>
 </div>
 
@@ -184,7 +183,7 @@ button {
 <div class="card-content">
 <h3>Advertisement</h3>
 <div class="price">$2</div>
-<button onclick="openModal('Advertisement', 2)">Buy</button>
+<button onclick="buy('Advertisement',2)">Buy</button>
 </div>
 </div>
 
@@ -192,77 +191,54 @@ button {
 
 <!-- MODAL -->
 <div class="modal" id="modal">
-  <div class="modal-box">
-    <h3 id="serviceName"></h3>
-    <input type="text" id="username" placeholder="Discord Username">
+  <div class="box">
+    <h3 id="itemName"></h3>
+    <input id="discord" placeholder="Discord Username">
     <br><br>
-    <button onclick="purchase()">Confirm Purchase</button>
+    <button onclick="confirmPurchase()">Confirm</button>
   </div>
 </div>
 
 <script>
 
-const WEBHOOK_URL = "PASTE YOUR WEBHOOK HERE";
-const PAYPAL_LINK = "https://www.paypal.com/paypalme/YOURNAME";
+const WEBHOOK = "https://discord.com/api/webhooks/1490854953772650567/_p1b0BaWHgkefgow0IYrRBgU_ONaUO_Hunt9yQy7HSJcI7BB1bJUBf_-xKpeqPFn8EhF";
+const PAYPAL = "https://www.paypal.com/paypalme/StephanMerdanes";
 
-let currentService = "";
-let currentPrice = 0;
+let item = "";
+let price = 0;
 
-function openModal(service, price){
-  document.getElementById("modal").style.display = "flex";
-  document.getElementById("serviceName").innerText = service;
-  currentService = service;
-  currentPrice = price;
+function buy(name, cost){
+  document.getElementById("modal").style.display="flex";
+  document.getElementById("itemName").innerText=name;
+  item = name;
+  price = cost;
 }
 
-function generateOrderID(){
-  return "ORD" + Math.floor(Math.random()*1000000);
-}
-
-function purchase(){
-  const user = document.getElementById("username").value;
+function confirmPurchase(){
+  const user = document.getElementById("discord").value;
 
   if(!user){
     alert("Enter Discord username");
     return;
   }
 
-  const orderID = generateOrderID();
   const time = new Date().toLocaleString();
 
-  // SAVE TO ADMIN DASHBOARD
-  let orders = JSON.parse(localStorage.getItem("orders")) || [];
-
-  const newOrder = {
-    id: orderID,
-    user: user,
-    service: currentService,
-    price: currentPrice,
-    time: time
-  };
-
-  orders.push(newOrder);
-  localStorage.setItem("orders", JSON.stringify(orders));
-
-  // SEND TO DISCORD
-  fetch(WEBHOOK_URL, {
-    method: "POST",
-    headers: {"Content-Type": "application/json"},
-    body: JSON.stringify({
+  fetch(WEBHOOK,{
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({
       content:
 `🛒 NEW ORDER
-Order ID: ${orderID}
-User: ${user}
-Purchased: ${currentService}
-Price: $${currentPrice}
-Time: ${time}`
+👤 User: ${user}
+🛍 Service: ${item}
+💵 Price: $${price}
+⏱ Time: ${time}`
     })
   });
 
-  // PAYPAL
-  window.open(PAYPAL_LINK, "_blank");
-
-  alert("Order placed! Complete payment on PayPal.");
+  window.open(PAYPAL,"_blank");
+  alert("Order sent! Complete payment.");
 }
 </script>
 
