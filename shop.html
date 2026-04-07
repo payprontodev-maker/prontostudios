@@ -18,7 +18,6 @@ font-family:'Segoe UI',sans-serif;
 body{
 background:linear-gradient(120deg,#020617,#0f172a);
 color:white;
-overflow-x:hidden;
 }
 
 /* HEADER */
@@ -27,7 +26,6 @@ position:fixed;
 width:100%;
 display:flex;
 justify-content:space-between;
-align-items:center;
 padding:20px 50px;
 background:rgba(255,255,255,0.05);
 backdrop-filter:blur(20px);
@@ -75,26 +73,12 @@ background:rgba(255,255,255,0.05);
 border-radius:25px;
 overflow:hidden;
 backdrop-filter:blur(20px);
-transition:0.4s;
-position:relative;
-}
-
-.card::before{
-content:"";
-position:absolute;
-inset:0;
-background:linear-gradient(120deg,transparent,#7a5cff44,transparent);
-opacity:0;
-transition:0.4s;
-}
-
-.card:hover::before{
-opacity:1;
+transition:0.3s;
 }
 
 .card:hover{
-transform:translateY(-12px) scale(1.04);
-box-shadow:0 0 40px rgba(122,92,255,0.4);
+transform:translateY(-10px) scale(1.03);
+box-shadow:0 0 30px rgba(122,92,255,0.4);
 }
 
 .card img{
@@ -110,7 +94,6 @@ padding:20px;
 .price{
 color:#00d4ff;
 margin:10px 0;
-font-size:18px;
 }
 
 /* BUTTON */
@@ -122,12 +105,6 @@ border-radius:30px;
 background:linear-gradient(90deg,#7a5cff,#00d4ff);
 color:white;
 cursor:pointer;
-transition:0.3s;
-}
-
-.buy-btn:hover{
-transform:scale(1.07);
-box-shadow:0 0 25px #7a5cff;
 }
 
 /* POPUP */
@@ -138,7 +115,7 @@ left:0;
 width:100%;
 height:100%;
 background:rgba(0,0,0,0.85);
-backdrop-filter:blur(12px);
+backdrop-filter:blur(10px);
 display:none;
 justify-content:center;
 align-items:center;
@@ -146,37 +123,30 @@ z-index:9999;
 }
 
 .popup-box{
-background:linear-gradient(145deg,#0d1025,#05070f);
-padding:40px;
-border-radius:25px;
-width:340px;
+background:#0f172a;
+padding:30px;
+border-radius:20px;
+width:300px;
 text-align:center;
-box-shadow:0 0 60px rgba(122,92,255,0.5);
-animation:pop 0.4s ease;
 }
 
 .popup-box input{
 width:100%;
-padding:12px;
-margin-top:15px;
+padding:10px;
+margin-top:10px;
 border:none;
 border-radius:10px;
 }
 
 .popup-box button{
-margin-top:15px;
+margin-top:10px;
 width:100%;
-padding:12px;
+padding:10px;
 border:none;
-border-radius:20px;
-background:linear-gradient(90deg,#7a5cff,#00d4ff);
+border-radius:10px;
+background:#7a5cff;
 color:white;
 cursor:pointer;
-}
-
-@keyframes pop{
-from{transform:scale(0.6);opacity:0;}
-to{transform:scale(1);opacity:1;}
 }
 </style>
 </head>
@@ -196,12 +166,20 @@ to{transform:scale(1);opacity:1;}
 
 <div class="hero">
 <h1>Shop</h1>
-<p style="color:#aaa;margin-top:10px;">Premium services — instant delivery setup</p>
 </div>
 
-<div class="grid">
+<div class="grid" id="grid"></div>
 
-<!-- PRODUCTS -->
+<!-- POPUP -->
+<div id="popup">
+<div class="popup-box">
+<h2>Enter Discord</h2>
+<input id="discord" placeholder="username#0000">
+<button onclick="buy()">Continue</button>
+<button onclick="closePopup()">Cancel</button>
+</div>
+</div>
+
 <script>
 const products = [
 ["Turf Showcases",4.5],
@@ -213,34 +191,28 @@ const products = [
 ["Advertisement",2]
 ];
 
-document.write(products.map(p=>`
-<div class="card">
+const grid = document.getElementById("grid");
+
+products.forEach(p=>{
+const card=document.createElement("div");
+card.className="card";
+
+card.innerHTML=`
 <img src="product.png">
 <div class="card-body">
 <h3>${p[0]}</h3>
 <div class="price">$${p[1]}</div>
-<button class="buy-btn" onclick="openPopup('${p[0]}',${p[1]})">Purchase</button>
+<button class="buy-btn">Purchase</button>
 </div>
-</div>
-`).join(""));
-</script>
+`;
 
-</div>
+card.querySelector("button").onclick=()=>{
+openPopup(p[0],p[1]);
+};
 
-<!-- POPUP -->
-<div id="popup">
-<div class="popup-box">
-<h2>Secure Checkout</h2>
-<p style="font-size:13px;color:#aaa;">Enter your Discord so we can contact you</p>
+grid.appendChild(card);
+});
 
-<input id="discord" placeholder="username#0000">
-
-<button onclick="buy()">Continue to PayPal</button>
-<button onclick="closePopup()">Cancel</button>
-</div>
-</div>
-
-<script>
 let item="";
 let price=0;
 
@@ -263,7 +235,7 @@ return;
 }
 
 /* DISCORD WEBHOOK */
-fetch("https://discord.com/api/webhooks/1490854953772650567/_p1b0BaWHgkefgow0IYrRBgU_ONaUO_Hunt9yQy7HSJcI7BB1bJUBf_-xKpeqPFn8EhF",{
+fetch("YOUR_WEBHOOK_URL",{
 method:"POST",
 headers:{"Content-Type":"application/json"},
 body:JSON.stringify({
@@ -272,7 +244,7 @@ content:`🛒 ORDER\nUser: ${user}\nItem: ${item}\nPrice: $${price}`
 });
 
 /* PAYPAL */
-window.open("https://www.paypal.com/paypalme/StephanMerdanes/"+price,"_blank");
+window.open("https://paypal.me/YOUR_PAYPAL_USERNAME/"+price,"_blank");
 
 closePopup();
 }
