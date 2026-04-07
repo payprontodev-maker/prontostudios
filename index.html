@@ -6,93 +6,217 @@
 <title>Pronto Studios</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif;}
-
-body{
-  background: radial-gradient(circle at top,#0a1228,#020611);
-  color:white;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
 }
 
-/* NAV */
-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:20px 30px;
+body {
+    background: radial-gradient(circle at top, #0f172a, #020617);
+    color: white;
+    overflow-x: hidden;
 }
 
-.logo{
-  display:flex;
-  align-items:center;
-  gap:10px;
+/* NAVBAR */
+nav {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(12px);
+    z-index: 1000;
 }
 
-.logo img{width:40px;border-radius:8px;}
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 
-nav a{
-  margin-left:15px;
-  color:#aaa;
-  text-decoration:none;
+.logo img {
+    width: 40px;
+}
+
+.logo span {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.nav-links a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #cbd5f5;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #8b5cf6;
 }
 
 /* HERO */
-.hero{
-  height:90vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
+.hero {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    animation: fadeIn 1.5s ease;
 }
 
-.hero img{
-  width:150px;
-  margin-bottom:20px;
+.hero h1 {
+    font-size: 60px;
+    background: linear-gradient(90deg, #8b5cf6, #22d3ee);
+    -webkit-background-clip: text;
+    color: transparent;
+    margin-bottom: 20px;
 }
 
-.hero h1{
-  font-size:50px;
+.hero p {
+    color: #94a3b8;
+    font-size: 18px;
+    margin-bottom: 30px;
 }
 
-.hero p{
-  color:#aaa;
-  margin-top:10px;
+.btn {
+    padding: 14px 30px;
+    background: linear-gradient(90deg, #8b5cf6, #6366f1);
+    border: none;
+    border-radius: 30px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    text-decoration: none;
 }
 
-button{
-  margin-top:25px;
-  padding:15px 35px;
-  border:none;
-  border-radius:30px;
-  background:linear-gradient(90deg,#6c8cff,#7c3aed);
-  color:white;
-  cursor:pointer;
-  font-size:16px;
+.btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px #8b5cf6;
+}
+
+/* FEATURES */
+.features {
+    padding: 100px 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.card {
+    background: rgba(255,255,255,0.03);
+    padding: 25px;
+    border-radius: 15px;
+    transition: 0.3s;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 25px rgba(139,92,246,0.4);
+}
+
+.card h3 {
+    margin-bottom: 10px;
+    color: #8b5cf6;
+}
+
+/* BACKGROUND PARTICLES */
+.particles {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.circle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(139,92,246,0.2);
+    animation: float 10s infinite linear;
+}
+
+@keyframes float {
+    from { transform: translateY(100vh); }
+    to { transform: translateY(-10vh); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(40px);}
+    to { opacity: 1; transform: translateY(0);}
+}
+
+/* MOBILE */
+@media(max-width: 600px) {
+    .hero h1 {
+        font-size: 40px;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<header>
-  <div class="logo">
-    <img src="logo.png">
-    <span>Pronto Studios</span>
-  </div>
+<!-- PARTICLES -->
+<div class="particles" id="particles"></div>
 
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="shop.html">Shop</a>
-  </nav>
-</header>
+<!-- NAV -->
+<nav>
+    <div class="logo">
+        <img src="logo.png">
+        <span>Pronto Studios</span>
+    </div>
 
-<div class="hero">
-  <div>
-    <img src="logo.png">
-    <h1>PRONTO STUDIOS</h1>
-    <p>Premium edits, showcases & content services</p>
-    <button onclick="location.href='shop.html'">Go to Shop</button>
-  </div>
-</div>
+    <div class="nav-links">
+        <a href="shop.html">Shop</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <h1>Pronto Studios</h1>
+    <p>High-quality edits, showcases, and content for Streetz War creators</p>
+    <a href="shop.html" class="btn">Go To Shop</a>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+    <div class="card">
+        <h3>⚡ Fast Delivery</h3>
+        <p>Quick turnaround times so you stay ahead.</p>
+    </div>
+
+    <div class="card">
+        <h3>🔥 Premium Edits</h3>
+        <p>Clean, high-quality visuals that stand out.</p>
+    </div>
+
+    <div class="card">
+        <h3>🎬 Custom Work</h3>
+        <p>We bring your vision to life exactly how you want.</p>
+    </div>
+</section>
+
+<script>
+const container = document.getElementById("particles");
+
+for (let i = 0; i < 25; i++) {
+    let circle = document.createElement("div");
+    circle.classList.add("circle");
+    circle.style.width = Math.random() * 6 + "px";
+    circle.style.height = circle.style.width;
+    circle.style.left = Math.random() * 100 + "%";
+    circle.style.animationDuration = (Math.random() * 10 + 5) + "s";
+    container.appendChild(circle);
+}
+</script>
 
 </body>
 </html>
