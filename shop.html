@@ -1,10 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop - Pronto Studios</title>
+
 <style>
 body {
-  margin:0;
-  font-family:-apple-system,Arial;
-  background:#0a0f1c;
-  color:white;
+  margin: 0;
+  font-family: -apple-system, Arial;
+  background: #0a0f1c;
+  color: white;
 }
+
+/* HEADER */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 60px;
+  background: rgba(0,0,0,0.3);
+  backdrop-filter: blur(10px);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo img {
+  width: 40px;
+  border-radius: 10px;
+}
+
+nav a {
+  color: #aaa;
+  margin-left: 25px;
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: white;
+}
+
+/* LAYOUT */
+.container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 25px;
+  padding: 50px;
+}
+
+.services {
+  display: grid;
+  gap: 15px;
+}
+
+.card {
+  padding: 20px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.04);
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 20px rgba(58,123,255,0.3);
+}
+
+.price {
+  color: #3a7bff;
+}
+
+/* ORDER PANEL */
+.order-panel {
+  background: rgba(255,255,255,0.05);
+  padding: 25px;
+  border-radius: 16px;
+  position: sticky;
+  top: 40px;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  margin-top: 10px;
+  background: rgba(255,255,255,0.08);
+  color: white;
+}
+
+button {
+  width: 100%;
+  margin-top: 15px;
+  padding: 12px;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(135deg,#3a7bff,#2563eb);
+  color: white;
+  cursor: pointer;
+}
+
+/* ANIMATION */
+.card {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.5s ease forwards;
+}
+
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+
+<body>
 
 <header>
   <div class="logo">
@@ -19,32 +134,85 @@ body {
     <a href="about.html">About</a>
   </nav>
 </header>
+
+<div class="container">
+
+  <div class="services">
+    <div class="card" onclick="selectService('Turf Showcase',4.5)">
+      <div>Turf Showcase</div><div class="price">$4.50</div>
+    </div>
+
+    <div class="card" onclick="selectService('Gang Movie Trailer',10)">
+      <div>Gang Movie Trailer</div><div class="price">$10</div>
+    </div>
+
+    <div class="card" onclick="selectService('Custom Film',7.5)">
+      <div>Custom Film</div><div class="price">$7.50</div>
+    </div>
+
+    <div class="card" onclick="selectService('Gang Pics',1.5)">
+      <div>Gang Pics</div><div class="price">$1.50</div>
+    </div>
+
+    <div class="card" onclick="selectService('Gang Edits',5)">
+      <div>Gang Edits</div><div class="price">$5</div>
+    </div>
+
+    <div class="card" onclick="selectService('Custom Edits',4)">
+      <div>Custom Edits</div><div class="price">$4</div>
+    </div>
+
+    <div class="card" onclick="selectService('Advertisement',2)">
+      <div>Advertisement</div><div class="price">$2</div>
+    </div>
+  </div>
+
+  <div class="order-panel">
+    <h2>Order Summary</h2>
+    <p id="serviceName">No service selected</p>
+    <p id="servicePrice"></p>
+    <input id="discord" placeholder="Discord Username">
+    <button onclick="checkout()">Checkout</button>
+  </div>
+
+</div>
+
+<script>
+let selectedName = "";
+let selectedPrice = 0;
+
+function selectService(name, price) {
+  selectedName = name;
+  selectedPrice = price;
+  document.getElementById("serviceName").innerText = name;
+  document.getElementById("servicePrice").innerText = "$" + price;
 }
 
-.title {
-  text-align:center;
-  margin:50px 0;
-  font-size:32px;
-}
+function checkout() {
+  let discord = document.getElementById("discord").value.trim();
 
-.grid {
-  max-width:800px;
-  margin:auto;
-  display:grid;
-  gap:15px;
-}
+  if (!selectedName) return alert("Select a service first.");
+  if (!discord) return alert("Enter your Discord username.");
 
-.item {
-  display:flex;
-  justify-content:space-between;
-  padding:18px;
-  border-radius:14px;
-  background:rgba(255,255,255,0.04);
-  transition:.3s;
-}
+  let time = new Date().toLocaleString();
 
-.item:hover {
-  transform:translateY(-4px);
-  box-shadow:0 0 20px rgba(58,123,255,0.3);
+  fetch("https://discord.com/api/webhooks/1490854953772650567/_p1b0BaWHgkefgow0IYrRBgU_ONaUO_Hunt9yQy7HSJcI7BB1bJUBf_-xKpeqPFn8EhF", {
+    method: "POST",
+    headers: {"Content-Type":"application/json"},
+    body: JSON.stringify({
+      content:
+        "**New Order**\nUser: " + discord +
+        "\nService: " + selectedName +
+        "\nPrice: $" + selectedPrice +
+        "\nTime: " + time
+    })
+  });
+
+  window.location.href =
+    "https://www.paypal.com/paypalme/StephanMerdanes/" +
+    selectedPrice;
 }
-</style>
+</script>
+
+</body>
+</html>
