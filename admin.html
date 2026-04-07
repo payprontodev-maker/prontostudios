@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Admin Access</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+* {
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background: radial-gradient(circle at top, #0a1228, #020611);
+  overflow:hidden;
+}
+
+/* GLOW BACKGROUND */
+.glow {
+  position:absolute;
+  width:500px;
+  height:500px;
+  background: radial-gradient(circle, #6c8cff, transparent 70%);
+  filter: blur(120px);
+  animation: float 6s infinite ease-in-out;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px);}
+  50% { transform: translateY(-40px);}
+  100% { transform: translateY(0px);}
+}
+
+/* LOGIN BOX */
+.box {
+  position:relative;
+  z-index:2;
+  width:320px;
+  padding:30px;
+  border-radius:20px;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(15px);
+  border:1px solid rgba(255,255,255,0.08);
+  text-align:center;
+  animation: fadeUp 1s ease;
+}
+
+/* LOGO */
+.logo img {
+  width:60px;
+  margin-bottom:10px;
+  border-radius:10px;
+}
+
+/* TITLE */
+.box h2 {
+  margin-bottom:20px;
+  font-weight:600;
+}
+
+/* INPUTS */
+.input-group {
+  position:relative;
+  margin-bottom:15px;
+}
+
+.input-group input {
+  width:100%;
+  padding:12px;
+  border-radius:10px;
+  border:none;
+  background: rgba(255,255,255,0.07);
+  color:white;
+  outline:none;
+}
+
+/* BUTTON */
+button {
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:25px;
+  background: linear-gradient(90deg,#6c8cff,#7c3aed);
+  color:white;
+  font-size:15px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+button:hover {
+  transform:scale(1.05);
+  box-shadow:0 0 20px rgba(108,140,255,0.5);
+}
+
+/* FOOTER TEXT */
+.note {
+  margin-top:15px;
+  font-size:12px;
+  color:#aaa;
+}
+
+/* ANIMATION */
+@keyframes fadeUp {
+  from {opacity:0; transform:translateY(20px);}
+  to {opacity:1; transform:translateY(0);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="glow"></div>
+
+<div class="box">
+  
+  <div class="logo">
+    <img src="logo.png">
+  </div>
+
+  <h2>Admin Panel</h2>
+
+  <div class="input-group">
+    <input id="user" placeholder="Username">
+  </div>
+
+  <div class="input-group">
+    <input id="pass" type="password" placeholder="Password">
+  </div>
+
+  <button onclick="login()">Access Dashboard</button>
+
+  <div class="note">Authorized access only</div>
+
+</div>
+
+<script>
+function login(){
+  const u = document.getElementById("user").value;
+  const p = document.getElementById("pass").value;
+
+  if(u === "admin" && p === "pronto123"){
+    localStorage.setItem("admin", "true");
+    window.location.href = "dashboard.html";
+  } else {
+    alert("Invalid credentials");
+  }
+}
+</script>
+
+</body>
+</html>
