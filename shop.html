@@ -1,153 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Shop - Pronto Studios</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body {
+  margin:0;
+  font-family:-apple-system,Arial;
+  background:#0a0f1c;
+  color:white;
+}
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0a0f1c;
-      color: white;
-    }
+header {
+  display:flex;
+  justify-content:space-between;
+  padding:20px 60px;
+  background:rgba(0,0,0,0.3);
+  backdrop-filter:blur(10px);
+}
 
-    header {
-      padding: 20px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(0,0,0,0.3);
-      backdrop-filter: blur(10px);
-    }
+.title {
+  text-align:center;
+  margin:50px 0;
+  font-size:32px;
+}
 
-    h1 {
-      color: #3a7bff;
-    }
+.grid {
+  max-width:800px;
+  margin:auto;
+  display:grid;
+  gap:15px;
+}
 
-    a {
-      color: white;
-      text-decoration: none;
-      margin-left: 20px;
-    }
+.item {
+  display:flex;
+  justify-content:space-between;
+  padding:18px;
+  border-radius:14px;
+  background:rgba(255,255,255,0.04);
+  transition:.3s;
+}
 
-    .container {
-      padding: 40px;
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    .title {
-      font-size: 2rem;
-      margin-bottom: 30px;
-      text-align: center;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
-
-    .card {
-      background: rgba(255,255,255,0.05);
-      padding: 20px;
-      border-radius: 15px;
-      transition: 0.2s;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-      background: rgba(255,255,255,0.08);
-    }
-
-    .price {
-      color: #3a7bff;
-      margin: 10px 0;
-      font-weight: bold;
-    }
-
-    button {
-      padding: 10px;
-      width: 100%;
-      border: none;
-      background: #3a7bff;
-      color: white;
-      border-radius: 10px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background: #2f63cc;
-    }
-  </style>
-</head>
-
-<body>
-
-<header>
-  <h1>Pronto Studios</h1>
-  <nav>
-    <a href="index.html">Home</a>
-  </nav>
-</header>
-
-<div class="container">
-  <div class="title">Purchase Services</div>
-
-  <div class="grid">
-
-    <div class="card">
-      <h3>Turf Showcase</h3>
-      <div class="price">$4.50</div>
-      <button onclick="buy(4.5)">Buy</button>
-    </div>
-
-    <div class="card">
-      <h3>Gang Movie Trailer</h3>
-      <div class="price">$10</div>
-      <button onclick="buy(10)">Buy</button>
-    </div>
-
-    <div class="card">
-      <h3>Custom Film</h3>
-      <div class="price">$7.50</div>
-      <button onclick="buy(7.5)">Buy</button>
-    </div>
-
-    <div class="card">
-      <h3>Gang Pics</h3>
-      <div class="price">$1.50</div>
-      <button onclick="buy(1.5)">Buy</button>
-    </div>
-
-    <div class="card">
-      <h3>Gang Edits</h3>
-      <div class="price">$3 - $7</div>
-      <button onclick="buy(5)">Buy</button>
-    </div>
-
-    <div class="card">
-      <h3>Custom Edits</h3>
-      <div class="price">$3 - $6</div>
-      <button onclick="buy(4)">Buy</button>
-    </div>
-
-    <div class="card">
-      <h3>Advertisement</h3>
-      <div class="price">$2</div>
-      <button onclick="buy(2)">Buy</button>
-    </div>
-
-  </div>
-</div>
-
-<script>
-  function buy(price) {
-    window.location.href = "https://www.paypal.com/paypalme/StephanMerdanes/" + price;
-  }
-</script>
-
-</body>
-</html>
+.item:hover {
+  transform:translateY(-4px);
+  box-shadow:0 0 20px rgba(58,123,255,0.3);
+}
+</style>
