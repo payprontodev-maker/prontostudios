@@ -13,20 +13,14 @@ body {
   color: white;
 }
 
-/* NAV */
-<header>
-  <div class="logo">
-    <img src="logo.png">
-    <strong>Pronto</strong>
-  </div>
-
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="shop.html">Purchase</a>
-    <a href="learn.html">Learn More</a>
-    <a href="about.html">About</a>
-  </nav>
-</header>
+/* HEADER (SAME AS SHOP) */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 60px;
+  background: rgba(0,0,0,0.3);
+  backdrop-filter: blur(10px);
 }
 
 .logo {
@@ -44,7 +38,6 @@ nav a {
   color: #aaa;
   margin-left: 25px;
   text-decoration: none;
-  transition: 0.3s;
 }
 
 nav a:hover {
@@ -53,70 +46,42 @@ nav a:hover {
 
 /* HERO */
 .hero {
-  height: 90vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   text-align: center;
-}
-
-/* ANIMATION */
-.fade {
-  opacity: 0;
-  transform: translateY(30px);
-  animation: fadeUp 1s ease forwards;
-}
-
-.fade:nth-child(2){ animation-delay: .3s }
-.fade:nth-child(3){ animation-delay: .6s }
-
-@keyframes fadeUp {
-  to { opacity:1; transform:translateY(0); }
+  padding: 120px 20px;
 }
 
 .hero h1 {
-  font-size: 52px;
+  font-size: 56px;
 }
 
 .hero p {
-  color: #888;
+  color: #aaa;
   margin: 15px 0;
 }
 
-/* BUTTONS */
-.btn {
-  padding: 14px 28px;
+.buttons a {
+  display: inline-block;
+  margin: 10px;
+  padding: 12px 25px;
   border-radius: 999px;
   background: linear-gradient(135deg,#3a7bff,#2563eb);
-  text-decoration: none;
   color: white;
-  margin: 10px;
-  display: inline-block;
-  transition: .3s;
+  text-decoration: none;
 }
 
-.btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 0 25px rgba(58,123,255,0.5);
+/* ANIMATION */
+.hero {
+  animation: fadeUp 0.6s ease;
 }
 
-/* GLOW */
-.glow {
-  position: absolute;
-  width: 300px;
-  height: 300px;
-  background: #3a7bff;
-  filter: blur(120px);
-  opacity: 0.2;
-  top: 20%;
-  left: 30%;
+@keyframes fadeUp {
+  from {opacity:0; transform: translateY(20px);}
+  to {opacity:1; transform: translateY(0);}
 }
 </style>
 </head>
 
 <body>
-
-<div class="glow"></div>
 
 <header>
   <div class="logo">
@@ -128,15 +93,17 @@ nav a:hover {
     <a href="index.html">Home</a>
     <a href="shop.html">Purchase</a>
     <a href="learn.html">Learn More</a>
+    <a href="about.html">About</a>
   </nav>
 </header>
 
 <div class="hero">
-  <div>
-    <h1 class="fade">Pronto Studios</h1>
-    <p class="fade">Premium video edits, showcases, and media services</p>
-    <a href="shop.html" class="btn fade">Get Started</a>
-    <a href="learn.html" class="btn fade">Learn More</a>
+  <h1>Pronto Studios</h1>
+  <p>Premium video edits, showcases, and media services</p>
+
+  <div class="buttons">
+    <a href="shop.html">Get Started</a>
+    <a href="learn.html">Learn More</a>
   </div>
 </div>
 
