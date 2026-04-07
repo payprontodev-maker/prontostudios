@@ -6,21 +6,27 @@
 <title>Pronto Studios</title>
 
 <style>
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, Arial;
+  font-family: Arial;
   background: #0a0f1c;
   color: white;
 }
 
-/* HEADER (SAME AS SHOP) */
+/* HEADER FIXED */
 header {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px 60px;
-  background: rgba(0,0,0,0.3);
+  background: rgba(0,0,0,0.4);
   backdrop-filter: blur(10px);
+  flex-wrap: nowrap;
 }
 
 .logo {
@@ -30,14 +36,22 @@ header {
 }
 
 .logo img {
-  width: 40px;
+  width: 42px;
+  height: 42px;
+  object-fit: cover;
   border-radius: 10px;
+}
+
+nav {
+  display: flex;
+  align-items: center;
 }
 
 nav a {
   color: #aaa;
   margin-left: 25px;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 nav a:hover {
@@ -47,7 +61,7 @@ nav a:hover {
 /* HERO */
 .hero {
   text-align: center;
-  padding: 120px 20px;
+  padding: 140px 20px;
 }
 
 .hero h1 {
@@ -56,7 +70,6 @@ nav a:hover {
 
 .hero p {
   color: #aaa;
-  margin: 15px 0;
 }
 
 .buttons a {
@@ -67,16 +80,6 @@ nav a:hover {
   background: linear-gradient(135deg,#3a7bff,#2563eb);
   color: white;
   text-decoration: none;
-}
-
-/* ANIMATION */
-.hero {
-  animation: fadeUp 0.6s ease;
-}
-
-@keyframes fadeUp {
-  from {opacity:0; transform: translateY(20px);}
-  to {opacity:1; transform: translateY(0);}
 }
 </style>
 </head>
