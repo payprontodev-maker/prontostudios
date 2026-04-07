@@ -21,7 +21,7 @@ color:white;
 overflow-x:hidden;
 }
 
-/* BACKGROUND */
+/* SPARKLES */
 canvas{
 position:fixed;
 top:0;
@@ -29,6 +29,7 @@ left:0;
 z-index:-1;
 }
 
+/* GLOW */
 .bg-glow{
 position:fixed;
 width:900px;
@@ -93,7 +94,6 @@ border-radius:25px;
 overflow:hidden;
 transition:0.4s;
 position:relative;
-backdrop-filter:blur(20px);
 }
 
 .card img{
@@ -114,7 +114,6 @@ margin-bottom:10px;
 .price{
 color:#00d4ff;
 margin-bottom:15px;
-font-size:18px;
 }
 
 /* BADGE */
@@ -126,7 +125,6 @@ background:linear-gradient(90deg,#ff0080,#ff8c00);
 padding:5px 12px;
 border-radius:20px;
 font-size:12px;
-font-weight:bold;
 }
 
 /* HOVER */
@@ -144,12 +142,6 @@ background:linear-gradient(90deg,#7a5cff,#00d4ff);
 color:white;
 cursor:pointer;
 width:100%;
-transition:0.3s;
-}
-
-.btn:hover{
-transform:scale(1.08);
-box-shadow:0 0 25px #7a5cff;
 }
 
 /* POPUP */
@@ -171,7 +163,6 @@ padding:40px;
 border-radius:20px;
 width:340px;
 text-align:center;
-animation:fadeUp 0.4s ease;
 }
 
 .popup-box input{
@@ -192,11 +183,6 @@ background:#7a5cff;
 color:white;
 cursor:pointer;
 }
-
-@keyframes fadeUp{
-from{opacity:0;transform:translateY(40px);}
-to{opacity:1;}
-}
 </style>
 </head>
 
@@ -215,56 +201,85 @@ to{opacity:1;}
 </div>
 </header>
 
-<div class="grid" id="grid"></div>
+<div class="grid">
+
+<div class="card">
+<div class="badge">Most Popular</div>
+<img src="product.png">
+<div class="card-body">
+<h3>Turf Showcases</h3>
+<div class="price">$4.5</div>
+<button class="btn" onclick="openPopup('Turf Showcases',4.5)">Purchase</button>
+</div>
+</div>
+
+<div class="card">
+<img src="product.png">
+<div class="card-body">
+<h3>Gang Movie Trailer</h3>
+<div class="price">$10</div>
+<button class="btn" onclick="openPopup('Gang Movie Trailer',10)">Purchase</button>
+</div>
+</div>
+
+<div class="card">
+<img src="product.png">
+<div class="card-body">
+<h3>Custom Film</h3>
+<div class="price">$7.5</div>
+<button class="btn" onclick="openPopup('Custom Film',7.5)">Purchase</button>
+</div>
+</div>
+
+<div class="card">
+<img src="product.png">
+<div class="card-body">
+<h3>Gang Pics</h3>
+<div class="price">$1.5</div>
+<button class="btn" onclick="openPopup('Gang Pics',1.5)">Purchase</button>
+</div>
+</div>
+
+<div class="card">
+<img src="product.png">
+<div class="card-body">
+<h3>Gang Edits</h3>
+<div class="price">$5</div>
+<button class="btn" onclick="openPopup('Gang Edits',5)">Purchase</button>
+</div>
+</div>
+
+<div class="card">
+<img src="product.png">
+<div class="card-body">
+<h3>Custom Edits</h3>
+<div class="price">$4</div>
+<button class="btn" onclick="openPopup('Custom Edits',4)">Purchase</button>
+</div>
+</div>
+
+<div class="card">
+<img src="product.png">
+<div class="card-body">
+<h3>Advertisement</h3>
+<div class="price">$2</div>
+<button class="btn" onclick="openPopup('Advertisement',2)">Purchase</button>
+</div>
+</div>
+
+</div>
 
 <!-- POPUP -->
 <div id="popup">
 <div class="popup-box">
 <h2>Enter Discord</h2>
 <input id="discord" placeholder="username#0000">
-<button onclick="buy()">Continue</button>
+<button onclick="buy()">Continue to Payment</button>
 <button onclick="closePopup()">Cancel</button>
 </div>
 </div>
 
 <script>
-window.addEventListener("DOMContentLoaded",()=>{
-
-const products=[
-["Turf Showcases",4.5,true],
-["Gang Movie Trailer",10,false],
-["Custom Film",7.5,false],
-["Gang Pics",1.5,false],
-["Gang Edits",5,false],
-["Custom Edits",4,false],
-["Advertisement",2,false]
-];
-
-const grid=document.getElementById("grid");
-
-products.forEach(p=>{
-let card=document.createElement("div");
-card.className="card";
-
-card.innerHTML=`
-${p[2] ? '<div class="badge">Most Popular</div>' : ''}
-<img src="product.png">
-<div class="card-body">
-<h3>${p[0]}</h3>
-<div class="price">$${p[1]}</div>
-<button class="btn">Purchase</button>
-</div>
-`;
-
-card.querySelector(".btn").addEventListener("click",()=>{
-openPopup(p[0],p[1]);
-});
-
-grid.appendChild(card);
-});
-
-});
-
 let item="",price=0;
 
 function openPopup(i,p){
@@ -285,7 +300,7 @@ alert("Enter Discord username");
 return;
 }
 
-/* WEBHOOK */
+/* DISCORD WEBHOOK */
 fetch("YOUR_WEBHOOK_URL",{
 method:"POST",
 headers:{"Content-Type":"application/json"},
