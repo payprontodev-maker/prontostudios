@@ -2,85 +2,101 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pronto Studios</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 * {
-  box-sizing: border-box;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:sans-serif;
 }
 
 body {
-  margin: 0;
-  font-family: Arial;
-  background: #0a0f1c;
-  color: white;
+  background: radial-gradient(circle at top, #0a1228, #020611);
+  color:white;
+  overflow-x:hidden;
 }
 
-/* HEADER FIXED */
+/* HEADER */
 header {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 60px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 40px;
   background: rgba(0,0,0,0.4);
   backdrop-filter: blur(10px);
-  flex-wrap: nowrap;
 }
 
 .logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  display:flex;
+  align-items:center;
+  gap:10px;
 }
 
 .logo img {
-  width: 42px;
-  height: 42px;
-  object-fit: cover;
-  border-radius: 10px;
-}
-
-nav {
-  display: flex;
-  align-items: center;
+  width:40px;
 }
 
 nav a {
-  color: #aaa;
-  margin-left: 25px;
-  text-decoration: none;
-  white-space: nowrap;
+  margin-left:25px;
+  color:#aaa;
+  text-decoration:none;
+  font-size:14px;
+  transition:0.3s;
 }
 
 nav a:hover {
-  color: white;
+  color:#6c8cff;
 }
 
 /* HERO */
 .hero {
-  text-align: center;
-  padding: 140px 20px;
+  height:90vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  animation: fadeIn 1.2s ease;
 }
 
 .hero h1 {
-  font-size: 56px;
+  font-size:55px;
+  background: linear-gradient(90deg,#6c8cff,#a855f7);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
 }
 
 .hero p {
-  color: #aaa;
+  margin-top:15px;
+  color:#aaa;
 }
 
-.buttons a {
-  display: inline-block;
-  margin: 10px;
-  padding: 12px 25px;
-  border-radius: 999px;
-  background: linear-gradient(135deg,#3a7bff,#2563eb);
-  color: white;
-  text-decoration: none;
+.btn {
+  margin-top:30px;
+  padding:14px 30px;
+  border-radius:30px;
+  border:none;
+  cursor:pointer;
+  font-size:16px;
+  background: linear-gradient(90deg,#6c8cff,#7c3aed);
+  color:white;
+  transition:0.3s;
 }
+
+.btn:hover {
+  transform:scale(1.08);
+  box-shadow:0 0 20px rgba(108,140,255,0.4);
+}
+
+/* ANIMATION */
+@keyframes fadeIn {
+  from {opacity:0; transform:translateY(20px);}
+  to {opacity:1; transform:translateY(0);}
+}
+
 </style>
 </head>
 
@@ -89,26 +105,27 @@ nav a:hover {
 <header>
   <div class="logo">
     <img src="logo.png">
-    <strong>Pronto</strong>
+    <span>Pronto Studios</span>
   </div>
 
   <nav>
     <a href="index.html">Home</a>
-    <a href="shop.html">Purchase</a>
-    <a href="learn.html">Learn More</a>
-    <a href="about.html">About</a>
+    <a href="shop.html">Shop</a>
   </nav>
 </header>
 
-<div class="hero">
+<section class="hero">
   <h1>Pronto Studios</h1>
-  <p>Premium video edits, showcases, and media services</p>
+  <p>Premium edits, showcases, and content creation</p>
 
-  <div class="buttons">
-    <a href="shop.html">Get Started</a>
-    <a href="learn.html">Learn More</a>
-  </div>
-</div>
+  <button class="btn" onclick="goShop()">Go to Shop</button>
+</section>
+
+<script>
+function goShop(){
+  window.location.href = "shop.html";
+}
+</script>
 
 </body>
 </html>
