@@ -1,290 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<header id="navbar">
+  <div class="nav-container">
 
-<title>Pronto Studios</title>
-<link rel="icon" href="logo.png">
+    <div class="logo">
+      <img src="logo.png">
+      <span>Pronto Studios</span>
+    </div>
 
-<style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Segoe UI',sans-serif;
-scroll-behavior:smooth;
-}
+    <nav>
 
-body{
-background:#020617;
-color:white;
-overflow-x:hidden;
-}
+      <div class="nav-item dropdown">
+        <a href="#">Services ▾</a>
+        <div class="dropdown-menu">
+          <a href="shop.html">Turf Showcases</a>
+          <a href="shop.html">Gang Trailers</a>
+          <a href="shop.html">Custom Edits</a>
+        </div>
+      </div>
 
-/* BACKGROUND GLOW */
-.bg-glow{
-position:fixed;
-width:600px;
-height:600px;
-background:#7a5cff;
-filter:blur(150px);
-opacity:0.2;
-top:-200px;
-left:-200px;
-animation:moveGlow 10s infinite alternate;
-z-index:-1;
-}
+      <a href="shop.html">Shop</a>
 
-@keyframes moveGlow{
-0%{transform:translate(0,0);}
-100%{transform:translate(200px,200px);}
-}
+      <div class="profile">
+        <div class="avatar"></div>
+        <div class="profile-menu">
+          <p>Guest</p>
+          <button onclick="alert('Login system coming soon')">Login</button>
+        </div>
+      </div>
 
-/* NAV */
-header{
-position:fixed;
-width:100%;
-display:flex;
-justify-content:space-between;
-padding:20px 60px;
-background:rgba(255,255,255,0.05);
-backdrop-filter:blur(20px);
-z-index:1000;
-}
+    </nav>
 
-.logo{
-display:flex;
-align-items:center;
-gap:10px;
-}
-
-.logo img{width:40px;}
-
-nav a{
-margin-left:25px;
-color:#aaa;
-text-decoration:none;
-transition:0.3s;
-}
-
-nav a:hover{color:white;}
-
-/* HERO */
-.hero{
-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-padding:20px;
-}
-
-.hero h1{
-font-size:75px;
-background:linear-gradient(90deg,#7a5cff,#00d4ff);
--webkit-background-clip:text;
-color:transparent;
-animation:fadeUp 1s ease;
-}
-
-.hero p{
-margin-top:20px;
-color:#aaa;
-max-width:600px;
-animation:fadeUp 1.3s ease;
-}
-
-.btn{
-margin-top:30px;
-padding:15px 40px;
-border:none;
-border-radius:30px;
-background:linear-gradient(90deg,#7a5cff,#00d4ff);
-color:white;
-cursor:pointer;
-transition:0.3s;
-animation:fadeUp 1.6s ease;
-}
-
-.btn:hover{
-transform:scale(1.1);
-box-shadow:0 0 40px #7a5cff;
-}
-
-/* SECTION */
-.section{
-padding:100px 60px;
-text-align:center;
-opacity:0;
-transform:translateY(40px);
-transition:1s;
-}
-
-.section.show{
-opacity:1;
-transform:translateY(0);
-}
-
-.features{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:30px;
-margin-top:50px;
-}
-
-.feature{
-background:rgba(255,255,255,0.05);
-padding:30px;
-border-radius:20px;
-backdrop-filter:blur(20px);
-transition:0.3s;
-}
-
-.feature:hover{
-transform:translateY(-12px) scale(1.05);
-box-shadow:0 0 30px rgba(122,92,255,0.4);
-}
-
-/* FOOTER */
-footer{
-text-align:center;
-padding:30px;
-color:#666;
-}
-
-/* POPUP */
-#popupOverlay{
-position:fixed;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.9);
-backdrop-filter:blur(10px);
-display:flex;
-justify-content:center;
-align-items:center;
-z-index:9999;
-}
-
-#popupBox{
-background:rgba(255,255,255,0.05);
-padding:40px;
-border-radius:20px;
-max-width:500px;
-text-align:center;
-animation:fadeUp 0.5s ease;
-}
-
-#popupBox button{
-margin-top:20px;
-padding:12px 25px;
-border:none;
-border-radius:10px;
-background:linear-gradient(90deg,#7a5cff,#00d4ff);
-color:white;
-cursor:pointer;
-}
-
-/* ANIMATIONS */
-@keyframes fadeUp{
-from{opacity:0;transform:translateY(30px);}
-to{opacity:1;transform:translateY(0);}
-}
-
-/* MOBILE */
-@media(max-width:768px){
-.hero h1{font-size:40px;}
-header{padding:15px 20px;}
-.section{padding:60px 20px;}
-}
-</style>
-</head>
-
-<body>
-
-<div class="bg-glow"></div>
-
-<header>
-<div class="logo">
-<img src="logo.png">
-<h3>Pronto Studios</h3>
-</div>
-
-<nav>
-<a href="shop.html">Shop</a>
-</nav>
+  </div>
 </header>
-
-<div class="hero">
-<h1>Pronto Studios</h1>
-<p>Premium cinematic edits, showcases, and content built to dominate.</p>
-<button class="btn" onclick="location.href='shop.html'">Go To Shop</button>
-</div>
-
-<div class="section">
-<h2>Why Choose Us</h2>
-<p>We deliver high-impact visuals that elevate your presence.</p>
-
-<div class="features">
-<div class="feature">
-<h3>Elite Quality</h3>
-<p>Top-tier edits with cinematic precision.</p>
-</div>
-
-<div class="feature">
-<h3>Fast Delivery</h3>
-<p>Quick turnaround without sacrificing quality.</p>
-</div>
-
-<div class="feature">
-<h3>Custom Built</h3>
-<p>Every project tailored to your vision.</p>
-</div>
-</div>
-</div>
-
-<div class="section">
-<h2>Our Mission</h2>
-<p>
-We aim to push content creation to the next level within Street Wars 2 and beyond.
-</p>
-</div>
-
-<footer>
-© 2026 Pronto Studios
-</footer>
-
-<!-- POPUP -->
-<div id="popupOverlay">
-<div id="popupBox">
-<h2>Welcome</h2>
-<p>
-Enter your real Discord username when purchasing.<br><br>
-We use it to contact you.<br><br>
-Invalid usernames = no order completion.
-</p>
-<button onclick="closePopup()">I Understand</button>
-</div>
-</div>
-
-<script>
-function closePopup(){
-document.getElementById("popupOverlay").style.display="none";
-}
-
-/* SCROLL ANIMATION */
-const sections=document.querySelectorAll(".section");
-
-window.addEventListener("scroll",()=>{
-sections.forEach(sec=>{
-const top=sec.getBoundingClientRect().top;
-if(top < window.innerHeight - 100){
-sec.classList.add("show");
-}
-});
-});
-</script>
-
-</body>
-</html>
