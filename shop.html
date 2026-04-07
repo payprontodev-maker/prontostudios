@@ -23,52 +23,65 @@ header {
 }
 
 .logo {display:flex;align-items:center;gap:10px;}
-.logo img {width:35px;}
-nav a {margin-left:20px;color:#aaa;text-decoration:none;}
+.logo img {width:40px;}
+
+nav a {
+  margin-left:20px;
+  color:#aaa;
+  text-decoration:none;
+}
 nav a:hover {color:#6c8cff;}
 
-/* HERO */
-.hero {text-align:center;padding:50px 20px;}
-.hero h1 {font-size:40px;}
-
-/* SHOP */
+/* SHOP GRID */
 .shop {
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
   gap:25px;
   padding:40px;
 }
 
+/* CARD */
 .card {
-  background: rgba(255,255,255,0.03);
-  border-radius:15px;
+  background: rgba(255,255,255,0.04);
+  border-radius:18px;
   overflow:hidden;
   transition:0.3s;
 }
+
 .card:hover {
-  transform:translateY(-5px);
-  box-shadow:0 0 20px rgba(100,140,255,0.3);
+  transform:translateY(-8px);
+  box-shadow:0 0 25px rgba(100,140,255,0.3);
 }
 
 .card img {
   width:100%;
-  height:140px;
+  height:150px;
   object-fit:cover;
 }
 
 .card-content {
-  padding:15px;
+  padding:18px;
 }
 
-.price {color:#6c8cff;margin:10px 0;}
+.price {
+  color:#6c8cff;
+  margin:10px 0;
+  font-weight:bold;
+}
 
-.buy-btn {
-  background:#6c8cff;
-  padding:8px 15px;
-  border-radius:15px;
-  cursor:pointer;
+/* BUTTON */
+button {
+  background: linear-gradient(90deg,#6c8cff,#7c3aed);
+  padding:10px 18px;
+  border-radius:20px;
   border:none;
   color:white;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+button:hover {
+  transform:scale(1.05);
 }
 
 /* MODAL */
@@ -78,17 +91,17 @@ nav a:hover {color:#6c8cff;}
   left:0;
   width:100%;
   height:100%;
-  background:rgba(0,0,0,0.7);
+  background:rgba(0,0,0,0.75);
   display:none;
   justify-content:center;
   align-items:center;
 }
 
 .modal-box {
-  background:#111;
+  background:#111827;
   padding:25px;
-  border-radius:10px;
-  width:300px;
+  border-radius:15px;
+  width:320px;
   text-align:center;
 }
 
@@ -97,14 +110,8 @@ nav a:hover {color:#6c8cff;}
   padding:10px;
   margin-top:10px;
   border:none;
-  border-radius:5px;
+  border-radius:8px;
 }
-
-.status {
-  margin-top:10px;
-  font-size:14px;
-}
-
 </style>
 </head>
 
@@ -122,37 +129,71 @@ nav a:hover {color:#6c8cff;}
   </nav>
 </header>
 
-<section class="hero">
-  <h1>Shop Services</h1>
-</section>
-
 <section class="shop">
 
+<!-- ITEMS -->
+
 <div class="card">
-  <img src="product.png">
-  <div class="card-content">
-    <h3>Turf Showcase</h3>
-    <div class="price">$4.50</div>
-    <button class="buy-btn" onclick="openModal('Turf Showcase', 4.5)">Buy</button>
-  </div>
+<img src="product.png">
+<div class="card-content">
+<h3>Turf Showcases</h3>
+<div class="price">$4.50</div>
+<button onclick="openModal('Turf Showcases', 4.5)">Buy</button>
+</div>
 </div>
 
 <div class="card">
-  <img src="product.png">
-  <div class="card-content">
-    <h3>Gang Movie Trailer</h3>
-    <div class="price">$10</div>
-    <button class="buy-btn" onclick="openModal('Gang Movie Trailer', 10)">Buy</button>
-  </div>
+<img src="product.png">
+<div class="card-content">
+<h3>Gang Movie Trailer</h3>
+<div class="price">$10</div>
+<button onclick="openModal('Gang Movie Trailer', 10)">Buy</button>
+</div>
 </div>
 
 <div class="card">
-  <img src="product.png">
-  <div class="card-content">
-    <h3>Custom Film</h3>
-    <div class="price">$7.50</div>
-    <button class="buy-btn" onclick="openModal('Custom Film', 7.5)">Buy</button>
-  </div>
+<img src="product.png">
+<div class="card-content">
+<h3>Custom Film</h3>
+<div class="price">$7.50</div>
+<button onclick="openModal('Custom Film', 7.5)">Buy</button>
+</div>
+</div>
+
+<div class="card">
+<img src="product.png">
+<div class="card-content">
+<h3>Gang Pics</h3>
+<div class="price">$1.50</div>
+<button onclick="openModal('Gang Pics', 1.5)">Buy</button>
+</div>
+</div>
+
+<div class="card">
+<img src="product.png">
+<div class="card-content">
+<h3>Gang Edits</h3>
+<div class="price">$5</div>
+<button onclick="openModal('Gang Edits', 5)">Buy</button>
+</div>
+</div>
+
+<div class="card">
+<img src="product.png">
+<div class="card-content">
+<h3>Custom Edits</h3>
+<div class="price">$4</div>
+<button onclick="openModal('Custom Edits', 4)">Buy</button>
+</div>
+</div>
+
+<div class="card">
+<img src="product.png">
+<div class="card-content">
+<h3>Advertisement</h3>
+<div class="price">$2</div>
+<button onclick="openModal('Advertisement', 2)">Buy</button>
+</div>
 </div>
 
 </section>
@@ -161,19 +202,16 @@ nav a:hover {color:#6c8cff;}
 <div class="modal" id="modal">
   <div class="modal-box">
     <h3 id="serviceName"></h3>
-
     <input type="text" id="username" placeholder="Enter Discord Username">
-
-    <button class="buy-btn" onclick="purchase()">Proceed</button>
-
-    <div class="status" id="statusText"></div>
+    <br><br>
+    <button onclick="purchase()">Proceed</button>
   </div>
 </div>
 
 <script>
 
-const WEBHOOK_URL = "https://discord.com/api/webhooks/1490854953772650567/_p1b0BaWHgkefgow0IYrRBgU_ONaUO_Hunt9yQy7HSJcI7BB1bJUBf_-xKpeqPFn8EhF";
-const PAYPAL_LINK = "https://www.paypal.com/paypalme/StephanMerdanes";
+const WEBHOOK_URL = "PASTE YOUR WEBHOOK HERE";
+const PAYPAL_LINK = "https://www.paypal.com/paypalme/YOURNAME";
 
 let currentService = "";
 let currentPrice = 0;
@@ -193,26 +231,17 @@ function purchase(){
     return;
   }
 
-  document.getElementById("statusText").innerText = "Pending Payment...";
-
-  // Send webhook
   fetch(WEBHOOK_URL, {
     method: "POST",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify({
-      content: `🛒 New Order\nUser: ${user}\nService: ${currentService}\nPrice: $${currentPrice}\nStatus: Pending`
+      content: `🛒 NEW ORDER\nUser: ${user}\nService: ${currentService}\nPrice: $${currentPrice}`
     })
   });
 
-  // Redirect to PayPal
   window.open(PAYPAL_LINK, "_blank");
 
-  document.getElementById("statusText").innerText = "Waiting for payment...";
-
-  // Fake completion (you can manually confirm later)
-  setTimeout(()=>{
-    document.getElementById("statusText").innerText = "Completed (after confirmation)";
-  }, 5000);
+  alert("Order sent! Complete payment on PayPal.");
 }
 
 </script>
