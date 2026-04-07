@@ -3,23 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Learn More - Pronto Studios</title>
+<title>Learn More</title>
 
 <style>
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, Arial;
+  font-family: Arial;
   background: #0a0f1c;
   color: white;
 }
 
-/* SAME HEADER */
+/* SAME FIXED HEADER */
 header {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px 60px;
-  background: rgba(0,0,0,0.3);
+  background: rgba(0,0,0,0.4);
   backdrop-filter: blur(10px);
 }
 
@@ -30,14 +35,20 @@ header {
 }
 
 .logo img {
-  width: 40px;
+  width: 42px;
+  height: 42px;
   border-radius: 10px;
+}
+
+nav {
+  display: flex;
 }
 
 nav a {
   color: #aaa;
   margin-left: 25px;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 nav a:hover {
@@ -56,31 +67,10 @@ nav a:hover {
   padding: 25px;
   border-radius: 16px;
   margin-bottom: 20px;
-  transition: 0.3s;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 0 20px rgba(58,123,255,0.2);
 }
 
 h2 {
   color: #3a7bff;
-}
-
-/* ANIMATION */
-.card {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeUp 0.5s ease forwards;
-}
-
-.card:nth-child(1){animation-delay:.1s}
-.card:nth-child(2){animation-delay:.2s}
-.card:nth-child(3){animation-delay:.3s}
-
-@keyframes fadeUp {
-  to { opacity: 1; transform: translateY(0); }
 }
 </style>
 </head>
@@ -105,17 +95,17 @@ h2 {
 
   <div class="card">
     <h2>What We Do</h2>
-    <p>We create high-quality video edits, showcases, and media content for gaming communities.</p>
+    <p>We create high-quality video edits, showcases, and media content.</p>
   </div>
 
   <div class="card">
     <h2>Why Choose Us</h2>
-    <p>Fast delivery, clean editing style, and consistent results trusted by creators.</p>
+    <p>Fast delivery and clean editing trusted by creators.</p>
   </div>
 
   <div class="card">
     <h2>How It Works</h2>
-    <p>Select a service, complete payment, and receive your content quickly.</p>
+    <p>Select a service, pay, and receive your content quickly.</p>
   </div>
 
 </div>
