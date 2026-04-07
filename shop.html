@@ -18,7 +18,6 @@ font-family:'Segoe UI',sans-serif;
 body{
 background:#020617;
 color:white;
-overflow-x:hidden;
 }
 
 /* BACKGROUND */
@@ -26,7 +25,7 @@ canvas{
 position:fixed;
 top:0;
 left:0;
-z-index:0;
+z-index:-1;
 }
 
 .bg-glow{
@@ -37,3 +36,298 @@ background:#7a5cff;
 filter:blur(200px);
 opacity:0.25;
 top:-300px;
+left:-300px;
+z-index:-1;
+}
+
+/* HEADER */
+header{
+position:fixed;
+top:0;
+width:100%;
+display:flex;
+justify-content:center;
+z-index:1000;
+}
+
+.nav{
+margin-top:15px;
+width:90%;
+max-width:1200px;
+display:flex;
+justify-content:space-between;
+padding:15px 30px;
+border-radius:20px;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(20px);
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.logo img{width:40px;}
+
+/* GRID */
+.grid{
+padding:140px 40px 40px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+}
+
+/* CARD */
+.card{
+background:rgba(255,255,255,0.05);
+border-radius:20px;
+overflow:hidden;
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+box-shadow:0 0 30px #7a5cff;
+}
+
+.card img{
+width:100%;
+height:160px;
+object-fit:cover;
+}
+
+.card-body{
+padding:20px;
+text-align:center;
+}
+
+.price{
+color:#00d4ff;
+margin:10px 0;
+}
+
+/* BUTTON */
+.btn{
+padding:12px;
+border:none;
+border-radius:25px;
+background:linear-gradient(90deg,#7a5cff,#00d4ff);
+color:white;
+cursor:pointer;
+width:100%;
+}
+
+/* POPUP */
+#popup{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.95);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:99999;
+}
+
+.popup-box{
+background:#0f172a;
+padding:30px;
+border-radius:20px;
+width:300px;
+text-align:center;
+}
+
+.popup-box input{
+width:100%;
+padding:10px;
+margin-top:10px;
+border:none;
+border-radius:10px;
+}
+
+.popup-box button{
+margin-top:10px;
+padding:10px;
+width:100%;
+border:none;
+border-radius:10px;
+background:#7a5cff;
+color:white;
+cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="sparkles"></canvas>
+<div class="bg-glow"></div>
+
+<header>
+<div class="nav">
+<div class="logo">
+<img src="logo.png">
+<h3>Pronto Studios</h3>
+</div>
+<a href="index.html">Home</a>
+</div>
+</header>
+
+<div class="grid">
+
+<!-- PRODUCTS -->
+<div class="card">
+<img src="product.png">
+<div class="card-body">
+<h3>Turf Showcases</h3>
+<div class="price">$4.50</div>
+<button class="btn" onclick="openPopup('Turf Showcases',4.5)">Purchase</button>
+</div>
+</div>
+
+<div class="card">
+<img src="product.png">
+<div class="card-body">
+<h3>Gang Movie Trailer</h3>
+<div class="price">$10</div>
+<button class="btn" onclick="openPopup('Gang Movie Trailer',10)">Purchase</button>
+</div>
+</div>
+
+<div class="card">
+<img src="product.png">
+<div class="card-body">
+<h3>Custom Film</h3>
+<div class="price">$7.50</div>
+<button class="btn" onclick="openPopup('Custom Film',7.5)">Purchase</button>
+</div>
+</div>
+
+<div class="card">
+<img src="product.png">
+<div class="card-body">
+<h3>Gang Pics</h3>
+<div class="price">$1.50</div>
+<button class="btn" onclick="openPopup('Gang Pics',1.5)">Purchase</button>
+</div>
+</div>
+
+<div class="card">
+<img src="product.png">
+<div class="card-body">
+<h3>Gang Edits</h3>
+<div class="price">$5</div>
+<button class="btn" onclick="openPopup('Gang Edits',5)">Purchase</button>
+</div>
+</div>
+
+<div class="card">
+<img src="product.png">
+<div class="card-body">
+<h3>Custom Edits</h3>
+<div class="price">$4</div>
+<button class="btn" onclick="openPopup('Custom Edits',4)">Purchase</button>
+</div>
+</div>
+
+<div class="card">
+<img src="product.png">
+<div class="card-body">
+<h3>Advertisement</h3>
+<div class="price">$2</div>
+<button class="btn" onclick="openPopup('Advertisement',2)">Purchase</button>
+</div>
+</div>
+
+</div>
+
+<!-- POPUP -->
+<div id="popup">
+<div class="popup-box">
+<h2>Enter Discord</h2>
+<input id="discord" placeholder="username#0000">
+<button onclick="buy()">Continue</button>
+<button onclick="closePopup()">Cancel</button>
+</div>
+</div>
+
+<script>
+let item="",price=0;
+
+function openPopup(i,p){
+item=i;
+price=p;
+document.getElementById("popup").style.display="flex";
+}
+
+function closePopup(){
+document.getElementById("popup").style.display="none";
+}
+
+function buy(){
+let user=document.getElementById("discord").value;
+
+if(!user){
+alert("Enter Discord username");
+return;
+}
+
+/* WEBHOOK */
+fetch("YOUR_WEBHOOK_URL",{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({
+content:`🛒 ORDER\nUser: ${user}\nItem: ${item}\nPrice: $${price}`
+})
+});
+
+/* PAYPAL */
+window.open("https://paypal.me/YOUR_PAYPAL_USERNAME/"+price,"_blank");
+
+closePopup();
+}
+
+/* SPARKLES */
+const canvas=document.getElementById("sparkles");
+const ctx=canvas.getContext("2d");
+
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let stars=[];
+for(let i=0;i<80;i++){
+stars.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+r:Math.random()*1.5,
+s:Math.random()*0.5
+});
+}
+
+function animate(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+stars.forEach(s=>{
+ctx.beginPath();
+ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+ctx.fillStyle="white";
+ctx.fill();
+
+s.y-=s.s;
+if(s.y<0){
+s.y=canvas.height;
+s.x=Math.random()*canvas.width;
+}
+});
+
+requestAnimationFrame(animate);
+}
+
+animate();
+</script>
+
+</body>
+</html>
