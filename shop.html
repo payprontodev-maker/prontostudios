@@ -18,70 +18,63 @@ header {
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:20px 40px;
+  padding:20px 30px;
   background: rgba(0,0,0,0.4);
 }
 
 .logo {display:flex;align-items:center;gap:10px;}
-.logo img {width:40px;}
+.logo img {width:35px;}
 
 nav a {
-  margin-left:20px;
+  margin-left:15px;
   color:#aaa;
   text-decoration:none;
 }
-nav a:hover {color:#6c8cff;}
 
-/* SHOP GRID */
+/* GRID */
 .shop {
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:25px;
-  padding:40px;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:20px;
+  padding:25px;
 }
 
 /* CARD */
 .card {
-  background: rgba(255,255,255,0.04);
-  border-radius:18px;
+  background: rgba(255,255,255,0.05);
+  border-radius:15px;
   overflow:hidden;
   transition:0.3s;
 }
 
 .card:hover {
-  transform:translateY(-8px);
-  box-shadow:0 0 25px rgba(100,140,255,0.3);
+  transform:translateY(-5px);
+  box-shadow:0 0 20px rgba(100,140,255,0.3);
 }
 
 .card img {
   width:100%;
-  height:150px;
+  height:140px;
   object-fit:cover;
 }
 
 .card-content {
-  padding:18px;
+  padding:15px;
 }
 
 .price {
   color:#6c8cff;
   margin:10px 0;
-  font-weight:bold;
 }
 
 /* BUTTON */
 button {
-  background: linear-gradient(90deg,#6c8cff,#7c3aed);
-  padding:10px 18px;
-  border-radius:20px;
+  width:100%;
+  padding:10px;
   border:none;
+  border-radius:20px;
+  background: linear-gradient(90deg,#6c8cff,#7c3aed);
   color:white;
-  cursor:pointer;
-  transition:0.3s;
-}
-
-button:hover {
-  transform:scale(1.05);
 }
 
 /* MODAL */
@@ -91,7 +84,7 @@ button:hover {
   left:0;
   width:100%;
   height:100%;
-  background:rgba(0,0,0,0.75);
+  background:rgba(0,0,0,0.85);
   display:none;
   justify-content:center;
   align-items:center;
@@ -99,9 +92,9 @@ button:hover {
 
 .modal-box {
   background:#111827;
-  padding:25px;
+  padding:20px;
   border-radius:15px;
-  width:320px;
+  width:300px;
   text-align:center;
 }
 
@@ -109,8 +102,8 @@ button:hover {
   width:100%;
   padding:10px;
   margin-top:10px;
-  border:none;
   border-radius:8px;
+  border:none;
 }
 </style>
 </head>
@@ -132,7 +125,6 @@ button:hover {
 <section class="shop">
 
 <!-- ITEMS -->
-
 <div class="card">
 <img src="product.png">
 <div class="card-content">
@@ -202,16 +194,16 @@ button:hover {
 <div class="modal" id="modal">
   <div class="modal-box">
     <h3 id="serviceName"></h3>
-    <input type="text" id="username" placeholder="Enter Discord Username">
+    <input type="text" id="username" placeholder="Discord Username">
     <br><br>
-    <button onclick="purchase()">Proceed</button>
+    <button onclick="purchase()">Confirm Purchase</button>
   </div>
 </div>
 
 <script>
 
-const WEBHOOK_URL = "https://discord.com/api/webhooks/1490854953772650567/_p1b0BaWHgkefgow0IYrRBgU_ONaUO_Hunt9yQy7HSJcI7BB1bJUBf_-xKpeqPFn8EhF";
-const PAYPAL_LINK = "https://www.paypal.com/paypalme/StephanMerdanes";
+const WEBHOOK_URL = "PASTE YOUR WEBHOOK HERE";
+const PAYPAL_LINK = "https://www.paypal.com/paypalme/YOURNAME";
 
 let currentService = "";
 let currentPrice = 0;
@@ -223,6 +215,10 @@ function openModal(service, price){
   currentPrice = price;
 }
 
+function generateOrderID(){
+  return "ORD" + Math.floor(Math.random()*1000000);
+}
+
 function purchase(){
   const user = document.getElementById("username").value;
 
@@ -231,19 +227,43 @@ function purchase(){
     return;
   }
 
+  const orderID = generateOrderID();
+  const time = new Date().toLocaleString();
+
+  // SAVE TO ADMIN DASHBOARD
+  let orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+  const newOrder = {
+    id: orderID,
+    user: user,
+    service: currentService,
+    price: currentPrice,
+    time: time
+  };
+
+  orders.push(newOrder);
+  localStorage.setItem("orders", JSON.stringify(orders));
+
+  // SEND TO DISCORD
   fetch(WEBHOOK_URL, {
     method: "POST",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify({
-      content: `🛒 NEW ORDER\nUser: ${user}\nService: ${currentService}\nPrice: $${currentPrice}`
+      content:
+`🛒 NEW ORDER
+Order ID: ${orderID}
+User: ${user}
+Purchased: ${currentService}
+Price: $${currentPrice}
+Time: ${time}`
     })
   });
 
+  // PAYPAL
   window.open(PAYPAL_LINK, "_blank");
 
-  alert("Order sent! Complete payment on PayPal.");
+  alert("Order placed! Complete payment on PayPal.");
 }
-
 </script>
 
 </body>
