@@ -22,7 +22,6 @@ body {
   overflow:hidden;
 }
 
-/* GLOW BACKGROUND */
 .glow {
   position:absolute;
   width:500px;
@@ -38,7 +37,6 @@ body {
   100% { transform: translateY(0px);}
 }
 
-/* LOGIN BOX */
 .box {
   position:relative;
   z-index:2;
@@ -52,22 +50,17 @@ body {
   animation: fadeUp 1s ease;
 }
 
-/* LOGO */
 .logo img {
   width:60px;
   margin-bottom:10px;
   border-radius:10px;
 }
 
-/* TITLE */
 .box h2 {
   margin-bottom:20px;
-  font-weight:600;
 }
 
-/* INPUTS */
 .input-group {
-  position:relative;
   margin-bottom:15px;
 }
 
@@ -78,10 +71,8 @@ body {
   border:none;
   background: rgba(255,255,255,0.07);
   color:white;
-  outline:none;
 }
 
-/* BUTTON */
 button {
   width:100%;
   padding:12px;
@@ -89,7 +80,6 @@ button {
   border-radius:25px;
   background: linear-gradient(90deg,#6c8cff,#7c3aed);
   color:white;
-  font-size:15px;
   cursor:pointer;
   transition:0.3s;
 }
@@ -99,14 +89,12 @@ button:hover {
   box-shadow:0 0 20px rgba(108,140,255,0.5);
 }
 
-/* FOOTER TEXT */
 .note {
   margin-top:15px;
   font-size:12px;
   color:#aaa;
 }
 
-/* ANIMATION */
 @keyframes fadeUp {
   from {opacity:0; transform:translateY(20px);}
   to {opacity:1; transform:translateY(0);}
@@ -145,7 +133,7 @@ function login(){
   const u = document.getElementById("user").value;
   const p = document.getElementById("pass").value;
 
-  if(u === "admin" && p === "pronto123"){
+  if(u === "prontostudiosadmindashboard" && p === "payisyourdaddy"){
     localStorage.setItem("admin", "true");
     window.location.href = "dashboard.html";
   } else {
