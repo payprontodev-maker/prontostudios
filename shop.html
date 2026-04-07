@@ -13,16 +13,9 @@
 body{
 background:#020617;
 color:white;
-overflow:hidden;
 }
 
-/* TRANSITION */
-body.fade-out{
-opacity:0;
-transition:0.4s;
-}
-
-/* NAV */
+/* HEADER */
 header{
 position:fixed;
 width:100%;
@@ -57,18 +50,6 @@ background:linear-gradient(90deg,#7a5cff,#00d4ff);
 color:transparent;
 }
 
-/* INPUT */
-.user-input{
-margin-top:20px;
-}
-
-.user-input input{
-padding:10px;
-border-radius:10px;
-border:none;
-outline:none;
-}
-
 /* PRODUCTS */
 .grid{
 padding:40px;
@@ -77,7 +58,6 @@ grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 gap:25px;
 }
 
-/* CARD */
 .card{
 background:rgba(255,255,255,0.05);
 border-radius:20px;
@@ -111,32 +91,56 @@ color:white;
 cursor:pointer;
 }
 
-/* CURSOR */
-.cursor{
-position:fixed;
-width:12px;
-height:12px;
-background:#7a5cff;
-border-radius:50%;
-pointer-events:none;
-z-index:9999;
-box-shadow:0 0 25px #7a5cff;
-}
-
-/* CANVAS */
-canvas{
+/* 🔥 POPUP */
+#buyPopup{
 position:fixed;
 top:0;
 left:0;
-z-index:-1;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.85);
+backdrop-filter:blur(12px);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:9999;
+}
+
+.popup-box{
+background:linear-gradient(145deg,#0d1025,#05070f);
+padding:35px;
+border-radius:20px;
+width:320px;
+text-align:center;
+box-shadow:0 0 50px rgba(122,92,255,0.4);
+animation:pop 0.4s ease;
+}
+
+.popup-box h2{
+margin-bottom:10px;
+}
+
+.popup-box input{
+width:100%;
+padding:12px;
+margin-top:15px;
+border:none;
+border-radius:10px;
+outline:none;
+}
+
+.popup-box button{
+margin-top:15px;
+}
+
+@keyframes pop{
+from{transform:scale(0.7);opacity:0;}
+to{transform:scale(1);opacity:1;}
 }
 </style>
 </head>
 
 <body>
-
-<canvas id="bg"></canvas>
-<div class="cursor" id="cursor"></div>
 
 <header>
 <div class="logo">
@@ -145,158 +149,89 @@ z-index:-1;
 </div>
 
 <nav>
-<a onclick="goHome()">Home</a>
+<a href="index.html">Home</a>
 </nav>
 </header>
 
 <div class="hero">
 <h1>Shop</h1>
-
-<div class="user-input">
-<input type="text" id="discord" placeholder="Enter Discord Username">
-</div>
 </div>
 
 <div class="grid">
 
-<!-- PRODUCT TEMPLATE -->
+<!-- PRODUCTS -->
+<script>
+const products = [
+["Turf Showcases",4.5],
+["Gang Movie Trailer",10],
+["Custom Film",7.5],
+["Gang Pics",1.5],
+["Gang Edits",5],
+["Custom Edits",4],
+["Advertisement",2]
+];
+
+document.write(products.map(p=>`
 <div class="card">
 <img src="product.png">
 <div class="card-body">
-<h3>Turf Showcases</h3>
-<div class="price">$4.50</div>
-<button onclick="buy('Turf Showcases',4.5)">Buy</button>
+<h3>${p[0]}</h3>
+<div class="price">$${p[1]}</div>
+<button onclick="openPopup('${p[0]}',${p[1]})">Buy</button>
 </div>
+</div>
+`).join(""));
+</script>
+
 </div>
 
-<div class="card">
-<img src="product.png">
-<div class="card-body">
-<h3>Gang Movie Trailer</h3>
-<div class="price">$10</div>
-<button onclick="buy('Gang Movie Trailer',10)">Buy</button>
+<!-- 🔥 POPUP -->
+<div id="buyPopup">
+<div class="popup-box">
+<h2>Enter Discord</h2>
+<p style="font-size:13px;color:#aaa;">We’ll contact you for your order</p>
+<input id="discordInput" placeholder="username#0000">
+<button onclick="confirmBuy()">Continue</button>
+<button onclick="closePopup()">Cancel</button>
 </div>
-</div>
-
-<div class="card">
-<img src="product.png">
-<div class="card-body">
-<h3>Custom Film</h3>
-<div class="price">$7.50</div>
-<button onclick="buy('Custom Film',7.5)">Buy</button>
-</div>
-</div>
-
-<div class="card">
-<img src="product.png">
-<div class="card-body">
-<h3>Gang Pics</h3>
-<div class="price">$1.50</div>
-<button onclick="buy('Gang Pics',1.5)">Buy</button>
-</div>
-</div>
-
-<div class="card">
-<img src="product.png">
-<div class="card-body">
-<h3>Gang Edits</h3>
-<div class="price">$5</div>
-<button onclick="buy('Gang Edits',5)">Buy</button>
-</div>
-</div>
-
-<div class="card">
-<img src="product.png">
-<div class="card-body">
-<h3>Custom Edits</h3>
-<div class="price">$4</div>
-<button onclick="buy('Custom Edits',4)">Buy</button>
-</div>
-</div>
-
-<div class="card">
-<img src="product.png">
-<div class="card-body">
-<h3>Advertisement</h3>
-<div class="price">$2</div>
-<button onclick="buy('Advertisement',2)">Buy</button>
-</div>
-</div>
-
 </div>
 
 <script>
+let selectedItem="";
+let selectedPrice=0;
 
-/* NAV TRANSITIONS */
-function goHome(){
-document.body.classList.add("fade-out");
-setTimeout(()=>{
-window.location.href="index.html";
-},400);
+function openPopup(item,price){
+selectedItem=item;
+selectedPrice=price;
+document.getElementById("buyPopup").style.display="flex";
 }
 
-/* CURSOR */
-const cursor=document.getElementById("cursor");
-document.addEventListener("mousemove",e=>{
-cursor.style.left=e.clientX+"px";
-cursor.style.top=e.clientY+"px";
-});
-
-/* PARTICLES */
-const canvas=document.getElementById("bg");
-const ctx=canvas.getContext("2d");
-
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
-
-let particles=[];
-for(let i=0;i<80;i++){
-particles.push({
-x:Math.random()*canvas.width,
-y:Math.random()*canvas.height,
-r:Math.random()*2
-});
+function closePopup(){
+document.getElementById("buyPopup").style.display="none";
 }
 
-function animate(){
-ctx.clearRect(0,0,canvas.width,canvas.height);
-
-particles.forEach(p=>{
-ctx.beginPath();
-ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-ctx.fillStyle="#7a5cff";
-ctx.fill();
-
-p.y-=0.2;
-if(p.y<0)p.y=canvas.height;
-});
-
-requestAnimationFrame(animate);
-}
-animate();
-
-/* 🔥 KEEP YOUR LOGIC SAME */
-const webhook = "https://discord.com/api/webhooks/1490854953772650567/_p1b0BaWHgkefgow0IYrRBgU_ONaUO_Hunt9yQy7HSJcI7BB1bJUBf_-xKpeqPFn8EhF";
-
-function buy(item, price){
-let user=document.getElementById("discord").value;
+function confirmBuy(){
+let user=document.getElementById("discordInput").value;
 
 if(!user){
 alert("Enter Discord username");
 return;
 }
 
-fetch(webhook,{
+/* 🔥 DISCORD WEBHOOK */
+fetch("YOUR_WEBHOOK_URL",{
 method:"POST",
 headers:{"Content-Type":"application/json"},
 body:JSON.stringify({
-content:`🛒 ORDER\nUser: ${user}\nItem: ${item}\nPrice: $${price}`
+content:`🛒 NEW ORDER\nUser: ${user}\nItem: ${selectedItem}\nPrice: $${selectedPrice}`
 })
 });
 
-window.open("https://www.paypal.com/paypalme/StephanMerdanes/"+price,"_blank");
-}
+/* 💸 PAYPAL */
+window.open("https://paypal.me/YOUR_PAYPAL_USERNAME/"+selectedPrice,"_blank");
 
+closePopup();
+}
 </script>
 
 </body>
