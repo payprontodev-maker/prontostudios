@@ -6,152 +6,67 @@
 <title>Pronto Studios</title>
 
 <style>
-* {
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family: 'Segoe UI', sans-serif;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif;}
 
-body {
-  background: radial-gradient(circle at top, #0a1228, #020611);
+body{
+  background: radial-gradient(circle at top,#0a1228,#020611);
   color:white;
-  overflow-x:hidden;
 }
 
-/* NAVBAR */
-header {
+/* NAV */
+header{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:20px 40px;
-  background: rgba(0,0,0,0.4);
-  backdrop-filter: blur(10px);
+  padding:20px 30px;
 }
 
-.logo {
+.logo{
   display:flex;
   align-items:center;
   gap:10px;
 }
 
-.logo img {
-  width:40px;
-  border-radius:8px;
-}
+.logo img{width:40px;border-radius:8px;}
 
-nav a {
-  margin-left:20px;
-  text-decoration:none;
+nav a{
+  margin-left:15px;
   color:#aaa;
-  font-size:14px;
-}
-
-nav a:hover {
-  color:#6c8cff;
+  text-decoration:none;
 }
 
 /* HERO */
-.hero {
+.hero{
   height:90vh;
   display:flex;
   justify-content:center;
   align-items:center;
   text-align:center;
-  position:relative;
 }
 
-/* glow */
-.hero::before {
-  content:"";
-  position:absolute;
-  width:600px;
-  height:600px;
-  background: radial-gradient(circle, #6c8cff, transparent 70%);
-  filter: blur(120px);
-}
-
-/* content */
-.hero-content {
-  position:relative;
-  z-index:2;
-  animation:fadeUp 1.2s ease;
-}
-
-.hero img {
-  width:180px;
+.hero img{
+  width:150px;
   margin-bottom:20px;
-  filter: drop-shadow(0 0 25px rgba(108,140,255,0.6));
 }
 
-.hero h1 {
-  font-size:60px;
-  background: linear-gradient(90deg,#ffffff,#a78bfa);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
+.hero h1{
+  font-size:50px;
 }
 
-.hero p {
+.hero p{
+  color:#aaa;
   margin-top:10px;
-  color:#aaa;
 }
 
-/* BUTTONS */
-.buttons {
-  margin-top:30px;
-  display:flex;
-  justify-content:center;
-  gap:15px;
-  flex-wrap:wrap;
-}
-
-.btn {
-  padding:14px 30px;
-  border-radius:30px;
+button{
+  margin-top:25px;
+  padding:15px 35px;
   border:none;
-  font-size:15px;
+  border-radius:30px;
+  background:linear-gradient(90deg,#6c8cff,#7c3aed);
+  color:white;
   cursor:pointer;
-  transition:0.3s;
-}
-
-.primary {
-  background: linear-gradient(90deg,#6c8cff,#7c3aed);
-  color:white;
-  box-shadow:0 0 20px rgba(108,140,255,0.4);
-}
-
-.primary:hover {
-  transform:scale(1.08);
-}
-
-/* ADMIN BUTTON (subtle) */
-.admin {
-  background: transparent;
-  border:1px solid rgba(255,255,255,0.2);
-  color:#aaa;
-}
-
-.admin:hover {
-  color:white;
-  border-color:#6c8cff;
-}
-
-/* FOOTER */
-.footer {
-  text-align:center;
-  padding:30px;
-  color:#666;
-}
-
-/* ANIMATION */
-@keyframes fadeUp {
-  from {opacity:0; transform:translateY(30px);}
-  to {opacity:1; transform:translateY(0);}
-}
-
-/* MOBILE */
-@media(max-width:600px){
-  .hero h1 {font-size:40px;}
+  font-size:16px;
 }
 </style>
 </head>
@@ -170,35 +85,14 @@ nav a:hover {
   </nav>
 </header>
 
-<section class="hero">
-
-  <div class="hero-content">
+<div class="hero">
+  <div>
     <img src="logo.png">
-
     <h1>PRONTO STUDIOS</h1>
-    <p>Premium edits, showcases & content creation</p>
-
-    <div class="buttons">
-      <button class="btn primary" onclick="goShop()">Go to Shop</button>
-      <button class="btn admin" onclick="goAdmin()">Admin</button>
-    </div>
+    <p>Premium edits, showcases & content services</p>
+    <button onclick="location.href='shop.html'">Go to Shop</button>
   </div>
-
-</section>
-
-<div class="footer">
-  © 2026 Pronto Studios
 </div>
-
-<script>
-function goShop(){
-  window.location.href = "shop.html";
-}
-
-function goAdmin(){
-  window.location.href = "admin.html";
-}
-</script>
 
 </body>
 </html>
