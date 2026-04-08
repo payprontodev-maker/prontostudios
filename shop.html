@@ -1,107 +1,238 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Shop - Pronto</title>
-<link rel="icon" href="logo.png">
-
-<style>
-body{
-margin:0;
-font-family:Arial;
-background:#030712;
-color:white;
-}
-
-header{
-display:flex;
-justify-content:space-between;
-padding:20px 40px;
-}
-
-header img{width:40px;}
-
-.grid{
-padding:40px;
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
-}
-
-.card{
-background:#111827;
-padding:20px;
-border-radius:10px;
-text-align:center;
-}
-
-.card img{width:100%;border-radius:10px;}
-
-.price{color:#00d4ff;margin:10px;}
-
-button{
-padding:10px;
-border:none;
-background:#7a5cff;
-color:white;
-border-radius:5px;
-cursor:pointer;
-width:100%;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pronto Studios | Shop - Street Wars 2 Video Services</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600&display=swap');
+        
+        :root {
+            --accent: #00f0ff;
+        }
+        
+        * {
+            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 200ms;
+        }
+        
+        .neon-glow {
+            box-shadow: 0 0 20px -5px #00f0ff;
+        }
+        
+        .product-card {
+            background: #0a0a0a;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        
+        .product-card:hover {
+            border-color: #00f0ff;
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px -15px rgba(0, 240, 255, 0.3);
+        }
+        
+        .price-tag {
+            background: linear-gradient(90deg, #00f0ff, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
 </head>
+<body class="bg-[#050505] text-white font-['Inter']">
 
-<body>
+    <!-- NAVBAR (same as homepage) -->
+    <nav class="bg-black/80 backdrop-blur-lg border-b border-white/10 sticky top-0 z-50">
+        <div class="max-w-screen-2xl mx-auto px-6 py-5 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-2xl flex items-center justify-center text-2xl font-bold rotate-12">⚡</div>
+                <h1 class="text-3xl font-semibold tracking-tighter" style="font-family: 'Space Grotesk', sans-serif;">PRONTO<span class="text-[#00f0ff]">STUDIOS</span></h1>
+            </div>
 
-<header>
-<div>
-<img src="logo.png">
-</div>
-<a href="index.html">Home</a>
-</header>
+            <div class="hidden md:flex items-center gap-10 text-lg">
+                <a href="index.html" class="hover:text-[#00f0ff]">Home</a>
+                <a href="shop.html" class="text-[#00f0ff] font-semibold">Shop</a>
+                <a href="terms.html" class="hover:text-[#00f0ff]">Terms</a>
+            </div>
 
-<div class="grid">
+            <div class="flex items-center gap-4">
+                <a href="https://discord.gg/yourserver" target="_blank" 
+                   class="px-6 py-2.5 bg-white/10 hover:bg-white/20 rounded-2xl flex items-center gap-2 text-sm font-medium">
+                    <i class="fab fa-discord"></i> Discord
+                </a>
+                <a href="index.html" class="px-8 py-3 bg-white/10 hover:bg-white/20 rounded-2xl font-medium">
+                    ← Back to Home
+                </a>
+            </div>
+        </div>
+    </nav>
 
-<div class="card">
-<img src="product.png">
-<h3>Turf Showcases</h3>
-<div class="price">$4.50</div>
-<button onclick="buy('Turf Showcases',4.5)">Buy</button>
-</div>
+    <!-- SHOP HEADER -->
+    <div class="max-w-screen-2xl mx-auto px-6 pt-16 pb-12">
+        <div class="text-center mb-16">
+            <div class="inline-flex items-center gap-3 bg-white/5 px-8 py-3 rounded-3xl border border-white/10 mb-6">
+                <span class="text-2xl">🛒</span>
+                <span class="uppercase tracking-widest text-sm font-medium text-[#00f0ff]">Street Wars 2 Services</span>
+            </div>
+            
+            <h1 class="text-6xl md:text-7xl font-bold tracking-tighter mb-4" style="font-family: 'Space Grotesk', sans-serif;">
+                Choose Your <span class="text-[#00f0ff]">Service</span>
+            </h1>
+            <p class="text-xl text-gray-400 max-w-md mx-auto">
+                Professional video editing & GFX made for Street Wars 2. Fast delivery • Unlimited revisions
+            </p>
+        </div>
 
-<div class="card">
-<img src="product.png">
-<h3>Gang Movie Trailer</h3>
-<div class="price">$10</div>
-<button onclick="buy('Gang Movie Trailer',10)">Buy</button>
-</div>
+        <!-- CLEAN PRODUCT GRID -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            
+            <!-- Turf Showcases -->
+            <div class="product-card rounded-3xl p-8 group neon-glow">
+                <div class="h-2 w-16 bg-gradient-to-r from-cyan-400 to-purple-500 rounded mb-6"></div>
+                <div class="text-4xl mb-6">🎥</div>
+                <h3 class="text-3xl font-semibold mb-2">Turf Showcases</h3>
+                <p class="text-gray-400 mb-8 leading-relaxed">Clean, cinematic showcase of your turf with smooth transitions and effects.</p>
+                <div class="flex items-end justify-between">
+                    <div>
+                        <span class="text-xs uppercase tracking-widest text-gray-500">Starting at</span>
+                        <div class="price-tag text-5xl font-bold">$4.50</div>
+                    </div>
+                    <button onclick="buyService('Turf Showcases', 4.50)" 
+                            class="px-8 py-4 bg-white text-black font-semibold rounded-2xl hover:bg-[#00f0ff] hover:text-black flex items-center gap-2">
+                        Buy Now <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
 
-</div>
+            <!-- Gang Movie Trailer -->
+            <div class="product-card rounded-3xl p-8 group neon-glow">
+                <div class="h-2 w-16 bg-gradient-to-r from-cyan-400 to-purple-500 rounded mb-6"></div>
+                <div class="text-4xl mb-6">🎬</div>
+                <h3 class="text-3xl font-semibold mb-2">Gang Movie Trailer</h3>
+                <p class="text-gray-400 mb-8 leading-relaxed">Epic cinematic trailer for your gang. Hollywood-level editing & sound design.</p>
+                <div class="flex items-end justify-between">
+                    <div>
+                        <span class="text-xs uppercase tracking-widest text-gray-500">Starting at</span>
+                        <div class="price-tag text-5xl font-bold">$10</div>
+                    </div>
+                    <button onclick="buyService('Gang Movie Trailer', 10)" 
+                            class="px-8 py-4 bg-white text-black font-semibold rounded-2xl hover:bg-[#00f0ff] hover:text-black flex items-center gap-2">
+                        Buy Now <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
 
-<script>
-function buy(item,price){
-let user=localStorage.getItem("discord");
+            <!-- Custom Film -->
+            <div class="product-card rounded-3xl p-8 group neon-glow">
+                <div class="h-2 w-16 bg-gradient-to-r from-cyan-400 to-purple-500 rounded mb-6"></div>
+                <div class="text-4xl mb-6">🎞️</div>
+                <h3 class="text-3xl font-semibold mb-2">Custom Film</h3>
+                <p class="text-gray-400 mb-8 leading-relaxed">Full short film-style edit of your gameplay or story.</p>
+                <div class="flex items-end justify-between">
+                    <div>
+                        <span class="text-xs uppercase tracking-widest text-gray-500">Starting at</span>
+                        <div class="price-tag text-5xl font-bold">$7.50</div>
+                    </div>
+                    <button onclick="buyService('Custom Film', 7.50)" 
+                            class="px-8 py-4 bg-white text-black font-semibold rounded-2xl hover:bg-[#00f0ff] hover:text-black flex items-center gap-2">
+                        Buy Now <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
 
-if(!user){
-alert("Reload and enter Discord first");
-return;
-}
+            <!-- Gang Pics -->
+            <div class="product-card rounded-3xl p-8 group neon-glow">
+                <div class="h-2 w-16 bg-gradient-to-r from-cyan-400 to-purple-500 rounded mb-6"></div>
+                <div class="text-4xl mb-6">📸</div>
+                <h3 class="text-3xl font-semibold mb-2">Gang Pics</h3>
+                <p class="text-gray-400 mb-8 leading-relaxed">High-quality edited gang screenshots / promotional images.</p>
+                <div class="flex items-end justify-between">
+                    <div>
+                        <span class="text-xs uppercase tracking-widest text-gray-500">Starting at</span>
+                        <div class="price-tag text-5xl font-bold">$1.50</div>
+                    </div>
+                    <button onclick="buyService('Gang Pics', 1.50)" 
+                            class="px-8 py-4 bg-white text-black font-semibold rounded-2xl hover:bg-[#00f0ff] hover:text-black flex items-center gap-2">
+                        Buy Now <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
 
-/* WEBHOOK */
-fetch("YOUR_WEBHOOK_URL",{
-method:"POST",
-headers:{"Content-Type":"application/json"},
-body:JSON.stringify({
-content:`User: ${user}\nItem: ${item}\nPrice: $${price}`
-})
-});
+            <!-- Gang Edits -->
+            <div class="product-card rounded-3xl p-8 group neon-glow">
+                <div class="h-2 w-16 bg-gradient-to-r from-cyan-400 to-purple-500 rounded mb-6"></div>
+                <div class="text-4xl mb-6">🔥</div>
+                <h3 class="text-3xl font-semibold mb-2">Gang Edits</h3>
+                <p class="text-gray-400 mb-8 leading-relaxed">High-energy edits with effects, transitions & music (3-7 seconds).</p>
+                <div class="flex items-end justify-between">
+                    <div>
+                        <span class="text-xs uppercase tracking-widest text-gray-500">Price</span>
+                        <div class="price-tag text-5xl font-bold">$3 - $7</div>
+                    </div>
+                    <button onclick="buyService('Gang Edits', '3-7')" 
+                            class="px-8 py-4 bg-white text-black font-semibold rounded-2xl hover:bg-[#00f0ff] hover:text-black flex items-center gap-2">
+                        Buy Now <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
 
-/* PAYPAL */
-window.open("https://paypal.me/YOUR_PAYPAL_USERNAME/"+price,"_blank");
-}
-</script>
+            <!-- Custom Edits -->
+            <div class="product-card rounded-3xl p-8 group neon-glow">
+                <div class="h-2 w-16 bg-gradient-to-r from-cyan-400 to-purple-500 rounded mb-6"></div>
+                <div class="text-4xl mb-6">✂️</div>
+                <h3 class="text-3xl font-semibold mb-2">Custom Edits</h3>
+                <p class="text-gray-400 mb-8 leading-relaxed">Any custom video edit you need. Tell me your vision.</p>
+                <div class="flex items-end justify-between">
+                    <div>
+                        <span class="text-xs uppercase tracking-widest text-gray-500">Price</span>
+                        <div class="price-tag text-5xl font-bold">$3 - $6</div>
+                    </div>
+                    <button onclick="buyService('Custom Edits', '3-6')" 
+                            class="px-8 py-4 bg-white text-black font-semibold rounded-2xl hover:bg-[#00f0ff] hover:text-black flex items-center gap-2">
+                        Buy Now <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
 
+            <!-- Advertisement -->
+            <div class="product-card rounded-3xl p-8 group neon-glow md:col-span-3 lg:col-span-1">
+                <div class="h-2 w-16 bg-gradient-to-r from-cyan-400 to-purple-500 rounded mb-6"></div>
+                <div class="text-4xl mb-6">📢</div>
+                <h3 class="text-3xl font-semibold mb-2">Advertisement</h3>
+                <p class="text-gray-400 mb-8 leading-relaxed">Short promotional video or image ad for your gang/server.</p>
+                <div class="flex items-end justify-between">
+                    <div>
+                        <span class="text-xs uppercase tracking-widest text-gray-500">Starting at</span>
+                        <div class="price-tag text-5xl font-bold">$2</div>
+                    </div>
+                    <button onclick="buyService('Advertisement', 2)" 
+                            class="px-8 py-4 bg-white text-black font-semibold rounded-2xl hover:bg-[#00f0ff] hover:text-black flex items-center gap-2">
+                        Buy Now <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-16 text-gray-400 text-sm">
+            💸 All prices in USD • Delivery within 24-48 hours • Message me on Discord after purchase with your clips
+        </div>
+    </div>
+
+    <script>
+        function buyService(serviceName, price) {
+            const amount = typeof price === 'number' ? price : price; // for ranges it will be string
+            
+            // For now this will open PayPal later when we connect it
+            alert(`✅ You selected: ${serviceName}\nPrice: $${price}\n\nNext step: I'll generate the PayPal checkout + Discord log for you.`);
+            
+            // You can replace the alert with real PayPal code once we have your email
+            console.log(`Order initiated: ${serviceName} - $${price}`);
+        }
+
+        // Tailwind script already included
+        console.log('%c🛒 Pronto Studios Shop loaded! Clean & minimal just like you asked.', 'color:#00f0ff; font-size:15px');
+    </script>
 </body>
 </html>
