@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600&display=swap');
         
         :root {
             --accent: #00b4ff;
@@ -42,33 +42,21 @@
         .glow-button {
             box-shadow: 0 0 25px -5px var(--accent);
         }
-        
-        .hero-title {
-            font-size: 4.8rem;
-            line-height: 1.05;
-        }
-        
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 3.2rem;
-            }
-        }
     </style>
 </head>
 <body class="bg-[#050505] text-white font-['Inter'] overflow-x-hidden">
 
-    <!-- NAVBAR -->
+    <!-- NAVBAR - Updated with Profile -->
     <nav class="bg-black/90 backdrop-blur-xl border-b border-white/10 sticky top-0 z-50">
         <div class="max-w-screen-2xl mx-auto px-6 py-6 flex items-center justify-between">
             <!-- Logo -->
-            <div>
-                <img src="logo.png" alt="Pronto Studios Logo" class="h-11 w-auto">
-            </div>
+            <img src="logo.png" alt="Pronto Studios" class="h-11 w-auto">
 
             <!-- Desktop Navigation -->
             <div class="hidden md:flex items-center gap-10 text-lg font-medium">
                 <a href="index.html" class="nav-link text-[#00b4ff]">Home</a>
                 <a href="shop.html" class="nav-link hover:text-[#00b4ff]">Shop</a>
+                <a href="profile.html" class="nav-link hover:text-[#00b4ff]">Profile</a>
                 <a href="terms.html" class="nav-link hover:text-[#00b4ff]">Terms</a>
             </div>
 
@@ -96,23 +84,23 @@
             <div class="flex flex-col gap-6 text-xl font-medium">
                 <a href="index.html" class="block py-2">Home</a>
                 <a href="shop.html" class="block py-2">Shop</a>
-                <a href="terms.html" class="block py-2">Terms of Service</a>
+                <a href="profile.html" class="block py-2">Profile</a>
+                <a href="terms.html" class="block py-2">Terms</a>
                 <a href="https://discord.gg/yourserver" class="block py-2">Join Discord</a>
             </div>
         </div>
     </nav>
 
-    <!-- HERO - Much cleaner & spacious -->
+    <!-- HERO -->
     <header class="hero-bg min-h-screen flex items-center relative">
         <div class="max-w-screen-2xl mx-auto px-6 pt-12 pb-24">
             <div class="max-w-2xl">
-                <!-- Badge -->
                 <div class="inline-flex items-center gap-3 bg-white/5 border border-white/10 px-7 py-3 rounded-3xl mb-10">
                     <div class="w-3 h-3 bg-[#00b4ff] rounded-full animate-pulse"></div>
-                    <span class="uppercase tracking-[2px] text-sm font-medium">Pronto Studios</span>
+                    <span class="uppercase tracking-[2px] text-sm font-medium">Street Wars 2 Visuals</span>
                 </div>
 
-                <h1 class="hero-title font-bold tracking-tighter leading-none mb-8" style="font-family: 'Space Grotesk', sans-serif;">
+                <h1 class="text-5xl md:text-6xl font-bold tracking-tighter leading-none mb-8" style="font-family: 'Space Grotesk', sans-serif;">
                     Turning your<br>Street Wars 2 clips<br>into <span class="text-[#00b4ff]">masterpieces</span>
                 </h1>
 
@@ -120,7 +108,6 @@
                     High-quality GFX, cinematic montages, and professional edits made for Street Wars 2.
                 </p>
 
-                <!-- CTA Buttons -->
                 <div class="flex flex-col sm:flex-row gap-5">
                     <a href="shop.html" 
                        class="px-12 py-6 bg-[#00b4ff] hover:bg-[#0099ff] text-black text-xl font-semibold rounded-3xl flex items-center justify-center gap-3 glow-button">
@@ -131,26 +118,11 @@
                     <a href="#" onclick="showMontagesModal()" 
                        class="px-12 py-6 border-2 border-white/40 hover:border-white/70 text-xl font-medium rounded-3xl flex items-center justify-center gap-3">
                         <i class="fas fa-play"></i>
-                        Watch Examples
+                        Watch Examples (soon)
                     </a>
-                </div>
-
-                <!-- Small trust line -->
-                <div class="mt-16 text-sm text-gray-400 flex items-center gap-8">
-                    <div class="flex items-center gap-2">
-                        <i class="fas fa-check text-[#00b4ff]"></i>
-                        <span>Fast Turnaround</span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <i class="fas fa-check text-[#00b4ff]"></i>
-                        <span>Custom Work</span>
-                    </div>
                 </div>
             </div>
         </div>
-
-        <!-- Subtle bottom gradient fade -->
-        <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#050505] to-transparent"></div>
     </header>
 
     <script>
