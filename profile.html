@@ -1,1 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pronto Studios | Profile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600&display=swap');
+        
+        :root {
+            --accent: #00b4ff;
+        }
+        
+        .profile-header {
+            background: linear-gradient(135deg, #0a0a0a 0%, #001f3d 100%);
+        }
+    </style>
+</head>
+<body class="bg-[#050505] text-white font-['Inter']">
 
+    <!-- NAVBAR -->
+    <nav class="bg-black/90 backdrop-blur-xl border-b border-white/10 sticky top-0 z-50">
+        <div class="max-w-screen-2xl mx-auto px-6 py-6 flex items-center justify-between">
+            <img src="logo.png" alt="Pronto Studios" class="h-11 w-auto">
+            
+            <div class="hidden md:flex items-center gap-10 text-lg font-medium">
+                <a href="index.html" class="hover:text-[#00b4ff]">Home</a>
+                <a href="shop.html" class="hover:text-[#00b4ff]">Shop</a>
+                <a href="terms.html" class="hover:text-[#00b4ff]">Terms</a>
+                <a href="profile.html" class="text-[#00b4ff] font-semibold">Profile</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <a href="https://discord.gg/yourserver" target="_blank" 
+                   class="px-7 py-3 bg-white/10 hover:bg-white/15 rounded-2xl flex items-center gap-2 text-sm font-medium">
+                    <i class="fab fa-discord"></i> Join Discord
+                </a>
+                <a href="shop.html" class="px-8 py-3 bg-[#00b4ff] text-black font-semibold rounded-2xl">
+                    Shop Now
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- PROFILE HEADER -->
+    <header class="profile-header py-20">
+        <div class="max-w-screen-2xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <!-- Profile Picture / Avatar -->
+                <div class="w-48 h-48 bg-gradient-to-br from-[#00b4ff] to-purple-600 rounded-3xl flex items-center justify-center text-7xl shadow-2xl flex-shrink-0">
+                    👤
+                </div>
+
+                <div class="flex-1 text-center md:text-left">
+                    <h1 class="text-6xl font-bold tracking-tighter mb-3" style="font-family: 'Space Grotesk', sans-serif;">
+                        Pay, Chris and Ksoo
+                    </h1>
+                    <p class="text-2xl text-[#00b4ff] font-medium mb-6">Founders of Pronto Studios</p>
+                    
+                    <div class="flex flex-wrap justify-center md:justify-start gap-6 text-lg">
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-gamepad text-[#00b4ff]"></i>
+                            <span>Street Wars 2 Content Creators</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-video text-[#00b4ff]"></i>
+                            <span>20+ Videos Delivered</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-trophy text-[#00b4ff]"></i>
+                            <span>Best Editing Group</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="max-w-4xl mx-auto px-6 py-16 space-y-20">
+
+        <!-- About Section -->
+        <section>
+            <h2 class="text-4xl font-semibold mb-8">About Us</h2>
+            <div class="text-xl text-gray-300 leading-relaxed space-y-6">
+                <p>
+                    Hello, We are the founders of Pronto Studios — a dedicated video editing group and GFX artist specializing in Street Wars 2.
+                </p>
+                <p>
+                    We turn raw gameplay into cinematic masterpieces with smooth transitions, clean effects, 
+                    and high-energy edits that help players and gangs stand out in the community.
+                </p>
+                <p>
+                    Our goal is simple: deliver fast, high-quality work that makes your clips look professional and viral-ready.
+                </p>
+            </div>
+        </section>
+
+        <!-- Services Highlight -->
+        <section>
+            <h2 class="text-4xl font-semibold mb-8">What I Offer</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div class="bg-zinc-900/50 border border-white/10 rounded-3xl p-8">
+                    <h3 class="text-2xl font-medium mb-3">Cinematic Editing</h3>
+                    <p class="text-gray-400">Turf showcases, gang trailers, and full custom films.</p>
+                </div>
+                <div class="bg-zinc-900/50 border border-white/10 rounded-3xl p-8">
+                    <h3 class="text-2xl font-medium mb-3">High-Energy Edits</h3>
+                    <p class="text-gray-400">Gang edits, short clips, and advertisement videos.</p>
+                </div>
+                <div class="bg-zinc-900/50 border border-white/10 rounded-3xl p-8">
+                    <h3 class="text-2xl font-medium mb-3">GFX & Visuals</h3>
+                    <p class="text-gray-400">Custom effects, thumbnails, and promotional images.</p>
+                </div>
+                <div class="bg-zinc-900/50 border border-white/10 rounded-3xl p-8">
+                    <h3 class="text-2xl font-medium mb-3">Fast Delivery</h3>
+                    <p class="text-gray-400">Most orders completed within 24-48 hours.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Me -->
+        <section>
+            <h2 class="text-4xl font-semibold mb-8">Why Work With Me?</h2>
+            <ul class="grid grid-cols-1 md:grid-cols-2 gap-8 text-lg">
+                <li class="flex gap-4">
+                    <span class="text-3xl text-[#00b4ff]">⚡</span>
+                    <div>
+                        <strong>Fast Turnaround</strong><br>
+                        <span class="text-gray-400">I respect your time.</span>
+                    </div>
+                </li>
+                <li class="flex gap-4">
+                    <span class="text-3xl text-[#00b4ff]">🎨</span>
+                    <div>
+                        <strong>Creative & Clean Edits</strong><br>
+                        <span class="text-gray-400">Modern style that stands out.</span>
+                    </div>
+                </li>
+                <li class="flex gap-4">
+                    <span class="text-3xl text-[#00b4ff]">🔄</span>
+                    <div>
+                        <strong>Unlimited Revisions</strong><br>
+                        <span class="text-gray-400">Until you're 100% satisfied.</span>
+                    </div>
+                </li>
+                <li class="flex gap-4">
+                    <span class="text-3xl text-[#00b4ff]">🛡️</span>
+                    <div>
+                        <strong>Reliable Communication</strong><br>
+                        <span class="text-gray-400">I reply quickly on Discord.</span>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Contact / CTA -->
+        <div class="bg-zinc-900 border border-white/10 rounded-3xl p-12 text-center">
+            <h2 class="text-3xl font-semibold mb-4">Ready to work together?</h2>
+            <p class="text-xl text-gray-400 mb-8">Send me a message on Discord with your idea or order details.</p>
+            <a href="https://discord.gg/yourserver" target="_blank"
+               class="inline-flex items-center gap-3 px-10 py-5 bg-[#00b4ff] text-black font-semibold text-xl rounded-3xl hover:bg-[#0099ff]">
+                <i class="fab fa-discord text-2xl"></i>
+                Message Me on Discord
+            </a>
+        </div>
+
+    </div>
+
+</body>
+</html>
