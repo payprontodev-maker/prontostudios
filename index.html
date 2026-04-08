@@ -3,25 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Pronto Studios - Professional Street Wars 2 video editing, GFX, and montages.">
     <title>Pronto Studios | Street Wars 2 Video Services</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
         
         :root {
-            --accent: #00f0ff;
+            --accent: #00b4ff;
         }
         
         * {
-            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
-            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-            transition-duration: 150ms;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         .hero-bg {
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a0033 100%);
+            background: linear-gradient(135deg, #0a0a0a 0%, #001f3d 100%);
         }
         
         .nav-link {
@@ -33,52 +30,62 @@
             position: absolute;
             width: 0;
             height: 2px;
-            bottom: -2px;
+            bottom: -4px;
             left: 0;
-            background-color: #00f0ff;
+            background-color: var(--accent);
         }
         
         .nav-link:hover:after {
             width: 100%;
         }
         
-        .button-glow {
-            box-shadow: 0 0 15px -5px #00f0ff;
+        .glow-button {
+            box-shadow: 0 0 25px -5px var(--accent);
+        }
+        
+        .hero-title {
+            font-size: 4.8rem;
+            line-height: 1.05;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3.2rem;
+            }
         }
     </style>
 </head>
 <body class="bg-[#050505] text-white font-['Inter'] overflow-x-hidden">
 
-    <!-- NAVBAR with your logo -->
-    <nav class="bg-black/80 backdrop-blur-lg border-b border-white/10 sticky top-0 z-50">
-        <div class="max-w-screen-2xl mx-auto px-6 py-5 flex items-center justify-between">
+    <!-- NAVBAR -->
+    <nav class="bg-black/90 backdrop-blur-xl border-b border-white/10 sticky top-0 z-50">
+        <div class="max-w-screen-2xl mx-auto px-6 py-6 flex items-center justify-between">
             <!-- Logo -->
-            <div class="flex items-center gap-3">
-                <img src="logo.png" alt="Pronto Studios Logo" class="h-10 w-auto">
+            <div>
+                <img src="logo.png" alt="Pronto Studios Logo" class="h-11 w-auto">
             </div>
 
-            <!-- Desktop Nav -->
-            <div class="hidden md:flex items-center gap-10 text-lg">
-                <a href="index.html" class="nav-link font-medium text-[#00f0ff]">Home</a>
-                <a href="shop.html" class="nav-link font-medium">Shop</a>
-                <a href="terms.html" class="nav-link font-medium">Terms</a>
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex items-center gap-10 text-lg font-medium">
+                <a href="index.html" class="nav-link text-[#00b4ff]">Home</a>
+                <a href="shop.html" class="nav-link hover:text-[#00b4ff]">Shop</a>
+                <a href="terms.html" class="nav-link hover:text-[#00b4ff]">Terms</a>
             </div>
 
-            <!-- Right side -->
             <div class="flex items-center gap-4">
                 <a href="https://discord.gg/yourserver" target="_blank"
-                   class="px-6 py-2.5 bg-white/10 hover:bg-white/20 rounded-2xl flex items-center gap-2 text-sm font-medium">
+                   class="px-7 py-3 bg-white/10 hover:bg-white/15 rounded-2xl flex items-center gap-2 text-sm font-medium">
                     <i class="fab fa-discord"></i>
-                    Join Discord
+                    <span>Join Discord</span>
                 </a>
                 
-                <button onclick="window.location.href='shop.html'" 
-                        class="px-8 py-3 bg-gradient-to-r from-[#00f0ff] to-purple-500 text-black font-semibold rounded-2xl flex items-center gap-2 button-glow">
+                <a href="shop.html"
+                   class="px-8 py-3.5 bg-[#00b4ff] hover:bg-[#0099ff] text-black font-semibold rounded-2xl flex items-center gap-3 glow-button">
                     <i class="fas fa-shopping-cart"></i>
                     Shop Now
-                </button>
+                </a>
 
-                <button onclick="toggleMobileMenu()" class="md:hidden text-3xl">
+                <button onclick="toggleMobileMenu()" class="md:hidden text-3xl px-2">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
@@ -86,65 +93,65 @@
 
         <!-- Mobile Menu -->
         <div id="mobileMenu" class="hidden md:hidden bg-black/95 border-t border-white/10 px-6 py-8">
-            <div class="flex flex-col gap-6 text-xl">
-                <a href="index.html" class="block">Home</a>
-                <a href="shop.html" class="block">Shop</a>
-                <a href="terms.html" class="block">Terms of Service</a>
-                <a href="https://discord.gg/yourserver" class="block">Join Discord</a>
+            <div class="flex flex-col gap-6 text-xl font-medium">
+                <a href="index.html" class="block py-2">Home</a>
+                <a href="shop.html" class="block py-2">Shop</a>
+                <a href="terms.html" class="block py-2">Terms of Service</a>
+                <a href="https://discord.gg/yourserver" class="block py-2">Join Discord</a>
             </div>
         </div>
     </nav>
 
-    <!-- HERO SECTION - Cleaned -->
+    <!-- HERO - Much cleaner & spacious -->
     <header class="hero-bg min-h-screen flex items-center relative">
-        <div class="max-w-screen-2xl mx-auto px-6 pt-20">
-            <div class="max-w-3xl">
-                <!-- Premium badge -->
-                <div class="inline-flex items-center gap-2 bg-white/10 text-white text-sm font-medium px-6 py-3 rounded-3xl border border-white/20 mb-8">
-                    <span class="text-[#00f0ff] text-xl">★</span>
-                    Premium Street Wars 2 Visuals
+        <div class="max-w-screen-2xl mx-auto px-6 pt-12 pb-24">
+            <div class="max-w-2xl">
+                <!-- Badge -->
+                <div class="inline-flex items-center gap-3 bg-white/5 border border-white/10 px-7 py-3 rounded-3xl mb-10">
+                    <div class="w-3 h-3 bg-[#00b4ff] rounded-full animate-pulse"></div>
+                    <span class="uppercase tracking-[2px] text-sm font-medium">Street Wars 2 Visuals</span>
                 </div>
 
-                <h1 class="text-7xl md:text-8xl font-bold leading-none tracking-tighter mb-6" style="font-family: 'Space Grotesk', sans-serif;">
-                    Turning Street Wars 2<br>clips into <span class="bg-gradient-to-r from-[#00f0ff] via-purple-400 to-pink-400 bg-clip-text text-transparent">masterpieces</span>
+                <h1 class="hero-title font-bold tracking-tighter leading-none mb-8" style="font-family: 'Space Grotesk', sans-serif;">
+                    Turning your<br>Street Wars 2 clips<br>into <span class="text-[#00b4ff]">masterpieces</span>
                 </h1>
 
-                <p class="text-2xl text-gray-300 max-w-lg mb-12">
-                    Professional GFX, cinematic montages, and premium editing that makes your Street Wars 2 gameplay stand out.
+                <p class="text-2xl text-gray-300 max-w-md mb-14">
+                    High-quality GFX, cinematic montages, and professional edits made for Street Wars 2.
                 </p>
 
-                <div class="flex flex-wrap gap-4">
+                <!-- CTA Buttons -->
+                <div class="flex flex-col sm:flex-row gap-5">
                     <a href="shop.html" 
-                       class="px-10 py-5 bg-gradient-to-r from-[#00f0ff] to-purple-500 text-black font-bold text-xl rounded-3xl flex items-center gap-3 hover:scale-105 button-glow">
-                        View Store
+                       class="px-12 py-6 bg-[#00b4ff] hover:bg-[#0099ff] text-black text-xl font-semibold rounded-3xl flex items-center justify-center gap-3 glow-button">
+                        Browse Services
                         <i class="fas fa-arrow-right"></i>
                     </a>
                     
                     <a href="#" onclick="showMontagesModal()" 
-                       class="px-10 py-5 border border-white/30 hover:border-white/60 font-medium text-xl rounded-3xl flex items-center gap-3">
-                        <i class="fas fa-play-circle"></i>
-                        Watch Montages
+                       class="px-12 py-6 border-2 border-white/40 hover:border-white/70 text-xl font-medium rounded-3xl flex items-center justify-center gap-3">
+                        <i class="fas fa-play"></i>
+                        Watch Examples
                     </a>
+                </div>
+
+                <!-- Small trust line -->
+                <div class="mt-16 text-sm text-gray-400 flex items-center gap-8">
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-check text-[#00b4ff]"></i>
+                        <span>Fast Turnaround</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-check text-[#00b4ff]"></i>
+                        <span>Custom Work</span>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Scroll indicator -->
-        <div class="absolute bottom-10 left-1/2 flex flex-col items-center gap-2 text-white/40 text-sm">
-            Scroll for more
-            <i class="fas fa-chevron-down animate-bounce"></i>
-        </div>
+        <!-- Subtle bottom gradient fade -->
+        <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#050505] to-transparent"></div>
     </header>
-
-    <!-- TRUST BAR (kept the other ones as they look good) -->
-    <div class="bg-black/60 py-6 border-b border-white/10">
-        <div class="max-w-screen-2xl mx-auto px-6 flex flex-wrap justify-center items-center gap-x-12 gap-y-4 text-white/60 text-sm md:text-base">
-            <div class="flex items-center gap-2"><i class="fab fa-youtube text-red-500"></i> Featured on YouTube</div>
-            <div class="flex items-center gap-2"><i class="fas fa-trophy"></i> Street Wars 2 Hall of Fame Editor</div>
-            <div class="flex items-center gap-2"><i class="fas fa-users"></i> Trusted by 150+ players</div>
-            <div class="flex items-center gap-2"><i class="fas fa-shield-alt"></i> No scams • Instant refunds if not satisfied</div>
-        </div>
-    </div>
 
     <script>
         function toggleMobileMenu() {
@@ -153,14 +160,19 @@
 
         function showMontagesModal() {
             const modalHTML = `
-            <div onclick="if(event.target.id === 'modalOverlay')this.remove()" id="modalOverlay" class="fixed inset-0 bg-black/90 flex items-center justify-center z-[9999]">
-                <div class="max-w-4xl w-full mx-4 bg-zinc-900 rounded-3xl p-8">
-                    <h2 class="text-4xl font-bold mb-8 text-center">Street Wars 2 Montage Reel</h2>
-                    <div class="aspect-video bg-black rounded-2xl flex items-center justify-center mb-8">
-                        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/dQw4w9wgxcQ" frameborder="0" allowfullscreen class="rounded-2xl"></iframe>
+            <div onclick="if(event.target.id === 'modalOverlay') this.remove()" id="modalOverlay" 
+                 class="fixed inset-0 bg-black/90 flex items-center justify-center z-[9999]">
+                <div class="max-w-4xl w-full mx-4 bg-zinc-900 rounded-3xl p-10">
+                    <h2 class="text-4xl font-bold mb-8 text-center">Street Wars 2 Montages</h2>
+                    <div class="aspect-video bg-black rounded-2xl overflow-hidden">
+                        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/dQw4w9wgxcQ" 
+                                frameborder="0" allowfullscreen class="rounded-2xl"></iframe>
                     </div>
-                    <p class="text-center text-gray-400">More montages coming soon • DM me on Discord for full portfolio</p>
-                    <button onclick="this.closest('.fixed').remove()" class="mt-8 mx-auto block px-10 py-4 bg-white text-black font-bold rounded-3xl">Close</button>
+                    <p class="text-center text-gray-400 mt-8">Send your clips on Discord for custom work</p>
+                    <button onclick="this.closest('.fixed').remove()" 
+                            class="mt-10 mx-auto block px-12 py-4 bg-white text-black font-semibold rounded-3xl">
+                        Close Preview
+                    </button>
                 </div>
             </div>`;
             document.body.insertAdjacentHTML('beforeend', modalHTML);
