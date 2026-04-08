@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Pronto Studios - Professional Street Wars 2 video editing, GFX, and montages. Turning your clips into masterpieces.">
+    <meta name="description" content="Pronto Studios - Professional Street Wars 2 video editing, GFX, and montages.">
     <title>Pronto Studios | Street Wars 2 Video Services</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
@@ -18,13 +18,6 @@
             transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
             transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
             transition-duration: 150ms;
-        }
-        
-        .neon-text {
-            text-shadow: 
-                0 0 10px var(--accent),
-                0 0 20px var(--accent),
-                0 0 40px var(--accent);
         }
         
         .hero-bg {
@@ -55,15 +48,13 @@
     </style>
 </head>
 <body class="bg-[#050505] text-white font-['Inter'] overflow-x-hidden">
-    <!-- HEADER / NAVBAR -->
+
+    <!-- NAVBAR with your logo -->
     <nav class="bg-black/80 backdrop-blur-lg border-b border-white/10 sticky top-0 z-50">
         <div class="max-w-screen-2xl mx-auto px-6 py-5 flex items-center justify-between">
             <!-- Logo -->
             <div class="flex items-center gap-3">
-                <div class="w-9 h-9 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-2xl flex items-center justify-center text-2xl font-bold rotate-12">
-                    ⚡
-                </div>
-                <h1 class="text-3xl font-semibold tracking-tighter" style="font-family: 'Space Grotesk', sans-serif;">PRONTO<span class="text-[#00f0ff]">STUDIOS</span></h1>
+                <img src="logo.png" alt="Pronto Studios Logo" class="h-10 w-auto">
             </div>
 
             <!-- Desktop Nav -->
@@ -87,7 +78,6 @@
                     Shop Now
                 </button>
 
-                <!-- Mobile menu button -->
                 <button onclick="toggleMobileMenu()" class="md:hidden text-3xl">
                     <i class="fas fa-bars"></i>
                 </button>
@@ -105,7 +95,7 @@
         </div>
     </nav>
 
-    <!-- HERO SECTION - Cleaned up -->
+    <!-- HERO SECTION - Cleaned -->
     <header class="hero-bg min-h-screen flex items-center relative">
         <div class="max-w-screen-2xl mx-auto px-6 pt-20">
             <div class="max-w-3xl">
@@ -136,21 +126,6 @@
                         Watch Montages
                     </a>
                 </div>
-
-                <div class="flex items-center gap-8 text-sm pt-10">
-                    <div class="flex items-center gap-2">
-                        <i class="fas fa-check-circle text-[#00f0ff]"></i>
-                        <span>100% Roblox Safe</span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <i class="fas fa-check-circle text-[#00f0ff]"></i>
-                        <span>Fast Delivery (24-48h)</span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <i class="fas fa-check-circle text-[#00f0ff]"></i>
-                        <span>Unlimited Revisions</span>
-                    </div>
-                </div>
             </div>
         </div>
 
@@ -161,20 +136,19 @@
         </div>
     </header>
 
-    <!-- TRUST BAR -->
+    <!-- TRUST BAR (kept the other ones as they look good) -->
     <div class="bg-black/60 py-6 border-b border-white/10">
         <div class="max-w-screen-2xl mx-auto px-6 flex flex-wrap justify-center items-center gap-x-12 gap-y-4 text-white/60 text-sm md:text-base">
-            <div class="flex items-center gap-2"><i class="fab fa-youtube text-red-500"></i> Featured on TikTok</div>
-            <div class="flex items-center gap-2"><i class="fas fa-trophy"></i> Street Wars 2 Content Creators</div>
-            <div class="flex items-center gap-2"><i class="fas fa-users"></i> Trusted by 30+ players</div>
+            <div class="flex items-center gap-2"><i class="fab fa-youtube text-red-500"></i> Featured on YouTube</div>
+            <div class="flex items-center gap-2"><i class="fas fa-trophy"></i> Street Wars 2 Hall of Fame Editor</div>
+            <div class="flex items-center gap-2"><i class="fas fa-users"></i> Trusted by 150+ players</div>
             <div class="flex items-center gap-2"><i class="fas fa-shield-alt"></i> No scams • Instant refunds if not satisfied</div>
         </div>
     </div>
 
     <script>
         function toggleMobileMenu() {
-            const menu = document.getElementById('mobileMenu')
-            menu.classList.toggle('hidden')
+            document.getElementById('mobileMenu').classList.toggle('hidden');
         }
 
         function showMontagesModal() {
@@ -188,11 +162,9 @@
                     <p class="text-center text-gray-400">More montages coming soon • DM me on Discord for full portfolio</p>
                     <button onclick="this.closest('.fixed').remove()" class="mt-8 mx-auto block px-10 py-4 bg-white text-black font-bold rounded-3xl">Close</button>
                 </div>
-            </div>`
-            document.body.insertAdjacentHTML('beforeend', modalHTML)
+            </div>`;
+            document.body.insertAdjacentHTML('beforeend', modalHTML);
         }
-
-        console.log('%c✅ Pronto Studios Homepage updated - Live preview removed. Clean & sharp!', 'color:#00f0ff; font-size:16px; font-weight:bold')
     </script>
 </body>
 </html>
