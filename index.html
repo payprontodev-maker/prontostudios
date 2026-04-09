@@ -7,18 +7,27 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
         
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-        
-        .heading-font {
-            font-family: 'Space Grotesk', sans-serif;
-        }
-
         .hero-bg {
-            background: linear-gradient(to bottom, #0a0a0a, #000000);
+            background-image: url('./hero-bg.jpg');     /* Change filename if different */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+        }
+        
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.68);   /* Dark overlay - adjust if needed */
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
         }
 
         /* Opening Animation */
@@ -28,9 +37,9 @@
             animation: fadeUp 1s forwards;
         }
 
-        .animate-in-delay1 { animation-delay: 0.3s; }
-        .animate-in-delay2 { animation-delay: 0.6s; }
-        .animate-in-delay3 { animation-delay: 0.9s; }
+        .animate-in-delay1 { animation-delay: 0.2s; }
+        .animate-in-delay2 { animation-delay: 0.5s; }
+        .animate-in-delay3 { animation-delay: 0.8s; }
 
         @keyframes fadeUp {
             to {
@@ -38,71 +47,60 @@
                 transform: translateY(0);
             }
         }
-
-        .logo-animate {
-            opacity: 0;
-            animation: logoPop 1.2s forwards;
-        }
-
-        @keyframes logoPop {
-            0% { opacity: 0; transform: scale(0.6); }
-            60% { transform: scale(1.08); }
-            100% { opacity: 1; transform: scale(1); }
-        }
     </style>
 </head>
-<body class="bg-black text-white overflow-x-hidden">
+<body class="bg-black text-white font-['Inter'] overflow-x-hidden">
 
     <!-- NAVBAR -->
-    <nav class="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-md border-b border-white/10">
-        <div class="max-w-screen-2xl mx-auto px-10 py-6 flex justify-between items-center">
-            <div class="flex items-center gap-3 logo-animate">
-                <img src="logo.png" alt="Pronto Studios" class="h-9">
-            </div>
-            <div class="hidden md:flex items-center gap-10 text-sm font-medium">
-                <a href="index.html" class="hover:text-[#00b4ff]">Home</a>
+    <nav class="bg-black/90 backdrop-blur-2xl border-b border-white/10 sticky top-0 z-50">
+        <div class="max-w-screen-2xl mx-auto px-8 py-6 flex items-center justify-between">
+            <img src="logo.png" alt="Pronto Studios" class="h-12 w-auto">
+            
+            <div class="hidden md:flex items-center gap-12 text-lg font-medium">
+                <a href="index.html" class="text-[#00b4ff]">Home</a>
                 <a href="shop.html" class="hover:text-[#00b4ff]">Shop</a>
                 <a href="profile.html" class="hover:text-[#00b4ff]">Profile</a>
                 <a href="terms.html" class="hover:text-[#00b4ff]">Terms</a>
             </div>
-            <a href="shop.html" class="px-8 py-3 border border-white/30 hover:border-white rounded-full text-sm font-medium">
+
+            <a href="shop.html" class="px-10 py-3.5 bg-[#00b4ff] text-black font-semibold rounded-3xl">
                 Shop Services
             </a>
         </div>
     </nav>
 
-    <!-- HERO with Animation -->
-    <section class="hero-bg min-h-screen flex items-center pt-20">
-        <div class="max-w-screen-2xl mx-auto px-10">
+    <!-- HERO with Background Image + Animation -->
+    <header class="hero-bg min-h-screen flex items-center">
+        <div class="hero-content max-w-screen-2xl mx-auto px-8">
             <div class="max-w-3xl">
                 <!-- Badge -->
-                <div class="animate-in animate-in-delay1 inline-block px-6 py-2.5 bg-white/5 border border-white/10 rounded-full text-sm font-medium mb-8">
+                <div class="animate-in animate-in-delay1 inline-block px-6 py-2.5 bg-white/10 border border-white/20 rounded-full text-sm font-medium mb-8">
                     EST. 2025 • STREET WARS 2 SPECIALIST
                 </div>
 
-                <!-- Main Headline -->
-                <h1 class="animate-in animate-in-delay2 text-7xl md:text-8xl leading-none font-bold heading-font tracking-tighter mb-8">
+                <!-- Headline -->
+                <h1 class="animate-in animate-in-delay2 text-6xl md:text-7xl font-bold tracking-tighter leading-none mb-8" style="font-family: 'Space Grotesk', sans-serif;">
                     We don't just edit.<br>
                     We <span class="text-[#00b4ff]">create legends</span>.
                 </h1>
 
                 <!-- Subtitle -->
-                <p class="animate-in animate-in-delay3 text-xl text-gray-300 max-w-lg mb-12">
-                    Premium cinematic GFX, montages, and video editing that elevate your Street Wars 2 gameplay.
+                <p class="animate-in animate-in-delay3 text-2xl text-gray-200 max-w-lg mb-12">
+                    Premium cinematic GFX, montages, and video editing for Street Wars 2.
                 </p>
 
                 <!-- Buttons -->
-                <div class="animate-in animate-in-delay3 flex gap-6">
-                    <a href="shop.html" class="px-10 py-5 bg-white text-black font-semibold rounded-full hover:bg-gray-200 transition">
+                <div class="animate-in animate-in-delay3 flex flex-col sm:flex-row gap-6">
+                    <a href="shop.html" class="px-12 py-6 bg-white text-black font-semibold text-xl rounded-3xl hover:bg-gray-100">
                         Browse Services
                     </a>
-                    <a href="#" onclick="watchReel()" class="px-10 py-5 border border-white/50 hover:border-white rounded-full font-medium flex items-center gap-3">
+                    <a href="#" onclick="watchReel()" class="px-12 py-6 border border-white/50 hover:border-white text-xl font-medium rounded-3xl flex items-center gap-3">
                         <i class="fas fa-play"></i> Watch Reel
                     </a>
                 </div>
             </div>
         </div>
-    </section>
+    </header>
 
     <script>
         function watchReel() {
