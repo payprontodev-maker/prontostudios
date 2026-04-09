@@ -1,110 +1,274 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pronto Studios | Home</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
-        
-        .hero-bg {
-            background-image: url('./hero-bg.jpg');     /* Change filename if different */
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            position: relative;
-        }
-        
-        .hero-bg::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.68);   /* Dark overlay - adjust if needed */
-            z-index: 1;
-        }
-        
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pronto Studios | Street Wars 2 Video Services</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-        /* Opening Animation */
-        .animate-in {
-            opacity: 0;
-            transform: translateY(40px);
-            animation: fadeUp 1s forwards;
-        }
+    :root {
+      --blue: #0066FF;
+      --blue-dark: #0044CC;
+    }
 
-        .animate-in-delay1 { animation-delay: 0.2s; }
-        .animate-in-delay2 { animation-delay: 0.5s; }
-        .animate-in-delay3 { animation-delay: 0.8s; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      color: #111;
+      background: #fff;
+      overflow-x: hidden;
+    }
 
-        @keyframes fadeUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-    </style>
+    /* NAVIGATION - Extreme clean with blue accent */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(12px);
+      z-index: 1000;
+      padding: 20px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #eee;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    nav.scrolled {
+      padding: 14px 5%;
+      box-shadow: 0 4px 20px rgba(0, 102, 255, 0.15);
+    }
+    .logo-img {
+      height: 42px;
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .logo-img:hover {
+      transform: scale(1.08);
+    }
+    .nav-links a {
+      margin-left: 42px;
+      text-decoration: none;
+      color: #111;
+      font-weight: 600;
+      font-size: 1.05rem;
+      position: relative;
+      transition: color 0.3s;
+    }
+    .nav-links a:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -2px;
+      left: 0;
+      background: var(--blue);
+      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .nav-links a:hover:after { width: 100%; }
+    .nav-links a:hover { color: var(--blue); }
+
+    /* HERO - Extreme cinematic with your background */
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 5%;
+      background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.65)), url('hero-bg.jpg') center/cover no-repeat;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(0,102,255,0.25) 0%, transparent 70%);
+      animation: pulse 15s infinite ease-in-out;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 980px;
+    }
+    .hero h1 {
+      font-size: 5.2rem;
+      font-weight: 700;
+      letter-spacing: -3px;
+      line-height: 1.05;
+      margin-bottom: 18px;
+      opacity: 0;
+      animation: fadeUp 1.2s 0.3s forwards cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .hero p {
+      font-size: 1.55rem;
+      max-width: 720px;
+      margin: 0 auto 42px;
+      opacity: 0;
+      animation: fadeUp 1.2s 0.6s forwards cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .btn {
+      display: inline-block;
+      padding: 18px 48px;
+      background: var(--blue);
+      color: white;
+      text-decoration: none;
+      border-radius: 9999px;
+      font-weight: 700;
+      font-size: 1.2rem;
+      letter-spacing: -0.5px;
+      box-shadow: 0 10px 30px rgba(0, 102, 255, 0.4);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    .btn:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 20px 40px rgba(0, 102, 255, 0.5);
+      background: #0055dd;
+    }
+    .btn::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 40%;
+      height: 300%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
+      transform: skewX(-20deg);
+      animation: shine 4s infinite linear;
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 140px 5% 120px;
+    }
+    h2 {
+      font-size: 3.2rem;
+      text-align: center;
+      margin-bottom: 80px;
+      letter-spacing: -1px;
+    }
+
+    .about {
+      max-width: 860px;
+      margin: 0 auto;
+      text-align: center;
+      font-size: 1.35rem;
+      line-height: 1.7;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .about.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* FOOTER */
+    footer {
+      background: #0a0a0a;
+      color: #aaa;
+      text-align: center;
+      padding: 80px 20px 60px;
+      font-size: 0.95rem;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
+    }
+    @keyframes shine {
+      100% { transform: translateX(300%); }
+    }
+
+    /* Scroll reveal helper */
+    .reveal {
+      opacity: 0;
+      transform: translateY(60px);
+      transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
 </head>
-<body class="bg-black text-white font-['Inter'] overflow-x-hidden">
+<body>
 
-    <!-- NAVBAR -->
-    <nav class="bg-black/90 backdrop-blur-2xl border-b border-white/10 sticky top-0 z-50">
-        <div class="max-w-screen-2xl mx-auto px-8 py-6 flex items-center justify-between">
-            <img src="logo.png" alt="Pronto Studios" class="h-12 w-auto">
-            
-            <div class="hidden md:flex items-center gap-12 text-lg font-medium">
-                <a href="index.html" class="text-[#00b4ff]">Home</a>
-                <a href="shop.html" class="hover:text-[#00b4ff]">Shop</a>
-                <a href="terms.html" class="hover:text-[#00b4ff]">Terms</a>
-            </div>
+  <!-- NAV -->
+  <nav id="navbar">
+    <img src="logo.png" alt="Pronto Studios" class="logo-img">
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop Services</a>
+      <a href="terms.html">Terms</a>
+    </div>
+  </nav>
 
-            <a href="shop.html" class="px-10 py-3.5 bg-[#00b4ff] text-black font-semibold rounded-3xl">
-                Shop Services
-            </a>
-        </div>
-    </nav>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Pronto Studios</h1>
+      <p>Premium cinematic video services for <strong>Street Wars 2</strong><br>— Montages • Trailers • Highlights • Full Edits</p>
+      <a href="shop.html" class="btn">Browse Premium Services</a>
+    </div>
+  </section>
 
-    <!-- HERO with Background Image + Animation -->
-    <header class="hero-bg min-h-screen flex items-center">
-        <div class="hero-content max-w-screen-2xl mx-auto px-8">
-            <div class="max-w-3xl">
-                <!-- Badge -->
-                <div class="animate-in animate-in-delay1 inline-block px-6 py-2.5 bg-white/10 border border-white/20 rounded-full text-sm font-medium mb-8">
-                    EST. 2025 
-                </div>
+  <!-- WHAT WE DO -->
+  <section>
+    <h2>Cinematic Excellence for Street Wars 2</h2>
+    <div class="about reveal" id="about-section">
+      We turn raw Street Wars 2 gameplay into <strong>professional, viral-level videos</strong>. 
+      From clean PvP montages to full cinematic trailers and custom story edits — 
+      every frame is crafted with precision and passion.
+    </div>
+  </section>
 
-                <!-- Headline -->
-                <h1 class="animate-in animate-in-delay2 text-6xl md:text-7xl font-bold tracking-tighter leading-none mb-8" style="font-family: 'Space Grotesk', sans-serif;">
-                    We don't just edit.<br>
-                    We <span class="text-[#00b4ff]">create legends</span>.
-                </h1>
+  <!-- You can add more sections later (e.g. Featured Work, Testimonials) -->
 
-                <!-- Subtitle -->
-                <p class="animate-in animate-in-delay3 text-2xl text-gray-200 max-w-lg mb-12">
-                    Premium cinematic GFX, montages, and video editing for Street Wars 2.
-                </p>
+  <footer>
+    © 2026 Pronto Studios • All Rights Reserved<br>
+    Premium Video Services for Street Wars 2
+  </footer>
 
-                <!-- Buttons -->
-                <div class="animate-in animate-in-delay3 flex flex-col sm:flex-row gap-6">
-                    <a href="shop.html" class="px-12 py-6 bg-white text-black font-semibold text-xl rounded-3xl hover:bg-gray-100">
-                        Browse Services
-                    </a>
-                    <a href="#" onclick="watchReel()" class="px-12 py-6 border border-white/50 hover:border-white text-xl font-medium rounded-3xl flex items-center gap-3">
-                        <i class="fas fa-play"></i> Watch Reel
-                    </a>
-                </div>
-            </div>
-        </div>
-    </header>
+  <script>
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 80) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
 
-    <script>
-        function watchReel() {
-            alert("🎥 Reel coming soon!\n\nDM us on Discord to see our latest work.");
+    // Scroll reveal animation
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
         }
-    </script>
+      });
+    }, { threshold: 0.15 });
+
+    reveals.forEach(reveal => observer.observe(reveal));
+
+    // Extreme smooth scroll
+    document.documentElement.style.scrollBehavior = 'smooth';
+  </script>
 </body>
 </html>
