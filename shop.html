@@ -3,239 +3,219 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pronto Studios | Shop </title>
+    <title>Pronto Studios | Shop Services</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
         
-        :root {
-            --accent: #00b4ff;
+        .shop-bg {
+            background-image: url('./shop-bg.jpg');     /* Put your shop background here */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
         }
         
-        .product-card {
-            background: #0a0a0a;
-            border: 1px solid rgba(255,255,255,0.08);
+        .shop-bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.75);
+            z-index: 1;
         }
         
-        .product-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px -15px rgba(0, 180, 255, 0.3);
+        .content {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Animation */
+        .animate-in {
+            opacity: 0;
+            transform: translateY(40px);
+            animation: fadeUp 1s forwards;
         }
         
-        .price-tag {
-            background: linear-gradient(90deg, #00b4ff, #7b5cff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .animate-in-delay1 { animation-delay: 0.2s; }
+        .animate-in-delay2 { animation-delay: 0.5s; }
+        .animate-in-delay3 { animation-delay: 0.8s; }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
-<body class="bg-[#050505] text-white font-['Inter']">
+<body class="bg-black text-white font-['Inter']">
 
     <!-- NAVBAR -->
-    <nav class="bg-black/90 backdrop-blur-xl border-b border-white/10 sticky top-0 z-50">
-        <div class="max-w-screen-2xl mx-auto px-6 py-6 flex items-center justify-between">
-            <img src="logo.png" alt="Pronto Studios" class="h-11 w-auto">
-            
-            <div class="hidden md:flex items-center gap-10 text-lg font-medium">
+    <nav class="bg-black/90 backdrop-blur-2xl border-b border-white/10 sticky top-0 z-50">
+        <div class="max-w-screen-2xl mx-auto px-8 py-6 flex items-center justify-between">
+            <img src="logo.png" alt="Pronto Studios" class="h-12 w-auto">
+
+            <div class="hidden md:flex items-center gap-12 text-lg font-medium">
                 <a href="index.html" class="hover:text-[#00b4ff]">Home</a>
                 <a href="shop.html" class="text-[#00b4ff] font-semibold">Shop</a>
+                <a href="profile.html" class="hover:text-[#00b4ff]">Profile</a>
                 <a href="terms.html" class="hover:text-[#00b4ff]">Terms</a>
             </div>
 
-            <div class="flex items-center gap-4">
-                <a href="https://discord.gg/ftJ3v3Ff" target="_blank" 
-                   class="px-7 py-3 bg-white/10 hover:bg-white/15 rounded-2xl flex items-center gap-2 text-sm font-medium">
-                    <i class="fab fa-discord"></i> Join Discord
-                </a>
-                <a href="index.html" class="px-8 py-3 bg-white/10 hover:bg-white/20 rounded-2xl font-medium">
-                    ← Back to Home
-                </a>
-            </div>
+            <a href="index.html" class="px-8 py-3.5 bg-white/10 hover:bg-white/20 rounded-3xl font-medium">
+                ← Home
+            </a>
         </div>
     </nav>
 
-    <!-- SHOP HEADER -->
-    <div class="max-w-screen-2xl mx-auto px-6 pt-16 pb-12">
-        <div class="text-center mb-16">
-            <div class="inline-flex items-center gap-3 bg-white/5 px-8 py-3 rounded-3xl border border-white/10 mb-6">
-                <span class="text-2xl">🛒</span>
-                <span class="uppercase tracking-widest text-sm font-medium text-[#00b4ff]">Pronto Services</span>
+    <!-- SHOP HERO -->
+    <header class="shop-bg min-h-[70vh] flex items-center">
+        <div class="content max-w-screen-2xl mx-auto px-8">
+            <div class="max-w-2xl">
+                <div class="animate-in animate-in-delay1 inline-block px-6 py-2.5 bg-white/10 border border-white/20 rounded-full text-sm font-medium mb-6">
+                    SERVICES
+                </div>
+                <h1 class="animate-in animate-in-delay2 text-6xl md:text-7xl font-bold tracking-tighter leading-none mb-8" style="font-family: 'Space Grotesk', sans-serif;">
+                    Choose Your Vision
+                </h1>
+                <p class="animate-in animate-in-delay3 text-xl text-gray-300 max-w-lg">
+                    Premium Street Wars 2 editing services crafted with precision and passion.
+                </p>
             </div>
-            
-            <h1 class="text-6xl md:text-7xl font-bold tracking-tighter mb-4" style="font-family: 'Space Grotesk', sans-serif;">
-                Choose Your Service
-            </h1>
-            <p class="text-xl text-gray-400 max-w-md mx-auto">
-                Professional editing & GFX for Street Wars 2 • Pay securely with PayPal
-            </p>
         </div>
+    </header>
 
-        <!-- SERVICES GRID -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+    <!-- SERVICES GRID -->
+    <div class="max-w-screen-2xl mx-auto px-8 py-20 content">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
 
-            <!-- 1. Turf Showcases -->
-            <div class="product-card rounded-3xl p-8">
-                <div class="text-5xl mb-6">🎥</div>
-                <h3 class="text-3xl font-semibold mb-3">Turf Showcases</h3>
-                <p class="text-gray-400 mb-10 leading-relaxed">Clean cinematic showcase of your turf with smooth transitions and effects.</p>
-                <div class="flex items-end justify-between">
-                    <div>
-                        <span class="text-xs uppercase tracking-widest text-gray-500">Price</span>
-                        <div class="price-tag text-5xl font-bold">$4.50</div>
-                    </div>
+            <!-- Turf Showcases -->
+            <div class="animate-in animate-in-delay1 bg-zinc-900/80 border border-white/10 rounded-3xl p-10 hover:border-[#00b4ff]">
+                <div class="text-6xl mb-8">🎥</div>
+                <h3 class="text-3xl font-semibold mb-4">Turf Showcases</h3>
+                <p class="text-gray-400 mb-10">Cinematic showcase of your turf with smooth transitions and premium effects.</p>
+                <div class="flex justify-between items-end">
+                    <div class="text-5xl font-bold text-[#00b4ff]">$4.50</div>
                     <button onclick="purchaseService('Turf Showcases', 4.50)" 
-                            class="px-9 py-4 bg-[#00b4ff] hover:bg-[#0099ff] text-black font-semibold rounded-2xl">
-                        Buy Now
+                            class="px-10 py-5 bg-[#00b4ff] text-black font-semibold rounded-2xl hover:bg-white hover:text-black">
+                        Select
                     </button>
                 </div>
             </div>
 
-            <!-- 2. Gang Movie Trailer -->
-            <div class="product-card rounded-3xl p-8">
-                <div class="text-5xl mb-6">🎬</div>
-                <h3 class="text-3xl font-semibold mb-3">Gang Movie Trailer</h3>
-                <p class="text-gray-400 mb-10 leading-relaxed">Epic cinematic trailer for your gang with Hollywood-level editing.</p>
-                <div class="flex items-end justify-between">
-                    <div>
-                        <span class="text-xs uppercase tracking-widest text-gray-500">Price</span>
-                        <div class="price-tag text-5xl font-bold">$10</div>
-                    </div>
+            <!-- Gang Movie Trailer -->
+            <div class="animate-in animate-in-delay2 bg-zinc-900/80 border border-white/10 rounded-3xl p-10 hover:border-[#00b4ff]">
+                <div class="text-6xl mb-8">🎬</div>
+                <h3 class="text-3xl font-semibold mb-4">Gang Movie Trailer</h3>
+                <p class="text-gray-400 mb-10">Epic Hollywood-style trailer for your gang.</p>
+                <div class="flex justify-between items-end">
+                    <div class="text-5xl font-bold text-[#00b4ff]">$10</div>
                     <button onclick="purchaseService('Gang Movie Trailer', 10)" 
-                            class="px-9 py-4 bg-[#00b4ff] hover:bg-[#0099ff] text-black font-semibold rounded-2xl">
-                        Buy Now
+                            class="px-10 py-5 bg-[#00b4ff] text-black font-semibold rounded-2xl hover:bg-white hover:text-black">
+                        Select
                     </button>
                 </div>
             </div>
 
-            <!-- 3. Custom Film -->
-            <div class="product-card rounded-3xl p-8">
-                <div class="text-5xl mb-6">🎞️</div>
-                <h3 class="text-3xl font-semibold mb-3">Custom Film</h3>
-                <p class="text-gray-400 mb-10 leading-relaxed">Full short film-style edit of your gameplay or story.</p>
-                <div class="flex items-end justify-between">
-                    <div>
-                        <span class="text-xs uppercase tracking-widest text-gray-500">Price</span>
-                        <div class="price-tag text-5xl font-bold">$7.50</div>
-                    </div>
+            <!-- Custom Film -->
+            <div class="animate-in animate-in-delay3 bg-zinc-900/80 border border-white/10 rounded-3xl p-10 hover:border-[#00b4ff]">
+                <div class="text-6xl mb-8">🎞️</div>
+                <h3 class="text-3xl font-semibold mb-4">Custom Film</h3>
+                <p class="text-gray-400 mb-10">Full short film-style edit of your gameplay or story.</p>
+                <div class="flex justify-between items-end">
+                    <div class="text-5xl font-bold text-[#00b4ff]">$7.50</div>
                     <button onclick="purchaseService('Custom Film', 7.50)" 
-                            class="px-9 py-4 bg-[#00b4ff] hover:bg-[#0099ff] text-black font-semibold rounded-2xl">
-                        Buy Now
+                            class="px-10 py-5 bg-[#00b4ff] text-black font-semibold rounded-2xl hover:bg-white hover:text-black">
+                        Select
                     </button>
                 </div>
             </div>
 
-            <!-- 4. Gang Pics -->
-            <div class="product-card rounded-3xl p-8">
-                <div class="text-5xl mb-6">📸</div>
-                <h3 class="text-3xl font-semibold mb-3">Gang Pics</h3>
-                <p class="text-gray-400 mb-10 leading-relaxed">High-quality edited gang screenshots and promotional images.</p>
-                <div class="flex items-end justify-between">
-                    <div>
-                        <span class="text-xs uppercase tracking-widest text-gray-500">Price</span>
-                        <div class="price-tag text-5xl font-bold">$1.50</div>
-                    </div>
+            <!-- Gang Pics -->
+            <div class="animate-in animate-in-delay1 bg-zinc-900/80 border border-white/10 rounded-3xl p-10 hover:border-[#00b4ff]">
+                <div class="text-6xl mb-8">📸</div>
+                <h3 class="text-3xl font-semibold mb-4">Gang Pics</h3>
+                <p class="text-gray-400 mb-10">High-quality edited gang screenshots and promotional images.</p>
+                <div class="flex justify-between items-end">
+                    <div class="text-5xl font-bold text-[#00b4ff]">$1.50</div>
                     <button onclick="purchaseService('Gang Pics', 1.50)" 
-                            class="px-9 py-4 bg-[#00b4ff] hover:bg-[#0099ff] text-black font-semibold rounded-2xl">
-                        Buy Now
+                            class="px-10 py-5 bg-[#00b4ff] text-black font-semibold rounded-2xl hover:bg-white hover:text-black">
+                        Select
                     </button>
                 </div>
             </div>
 
-            <!-- 5. Gang Edits -->
-            <div class="product-card rounded-3xl p-8">
-                <div class="text-5xl mb-6">🔥</div>
-                <h3 class="text-3xl font-semibold mb-3">Gang Edits</h3>
-                <p class="text-gray-400 mb-10 leading-relaxed">High-energy short edits with effects, transitions & music.</p>
-                <div class="flex items-end justify-between">
-                    <div>
-                        <span class="text-xs uppercase tracking-widest text-gray-500">Price</span>
-                        <div class="price-tag text-5xl font-bold">$5</div>
-                    </div>
+            <!-- Gang Edits -->
+            <div class="animate-in animate-in-delay2 bg-zinc-900/80 border border-white/10 rounded-3xl p-10 hover:border-[#00b4ff]">
+                <div class="text-6xl mb-8">🔥</div>
+                <h3 class="text-3xl font-semibold mb-4">Gang Edits</h3>
+                <p class="text-gray-400 mb-10">High-energy short edits with effects and trending audio.</p>
+                <div class="flex justify-between items-end">
+                    <div class="text-5xl font-bold text-[#00b4ff]">$5</div>
                     <button onclick="purchaseService('Gang Edits', 5)" 
-                            class="px-9 py-4 bg-[#00b4ff] hover:bg-[#0099ff] text-black font-semibold rounded-2xl">
-                        Buy Now
+                            class="px-10 py-5 bg-[#00b4ff] text-black font-semibold rounded-2xl hover:bg-white hover:text-black">
+                        Select
                     </button>
                 </div>
             </div>
 
-            <!-- 6. Custom Edits -->
-            <div class="product-card rounded-3xl p-8">
-                <div class="text-5xl mb-6">✂️</div>
-                <h3 class="text-3xl font-semibold mb-3">Custom Edits</h3>
-                <p class="text-gray-400 mb-10 leading-relaxed">Any custom video edit you need. Tell me your vision.</p>
-                <div class="flex items-end justify-between">
-                    <div>
-                        <span class="text-xs uppercase tracking-widest text-gray-500">Price</span>
-                        <div class="price-tag text-5xl font-bold">$4</div>
-                    </div>
+            <!-- Custom Edits -->
+            <div class="animate-in animate-in-delay3 bg-zinc-900/80 border border-white/10 rounded-3xl p-10 hover:border-[#00b4ff]">
+                <div class="text-6xl mb-8">✂️</div>
+                <h3 class="text-3xl font-semibold mb-4">Custom Edits</h3>
+                <p class="text-gray-400 mb-10">Any custom video edit you need. Tell us your vision.</p>
+                <div class="flex justify-between items-end">
+                    <div class="text-5xl font-bold text-[#00b4ff]">$4</div>
                     <button onclick="purchaseService('Custom Edits', 4)" 
-                            class="px-9 py-4 bg-[#00b4ff] hover:bg-[#0099ff] text-black font-semibold rounded-2xl">
-                        Buy Now
+                            class="px-10 py-5 bg-[#00b4ff] text-black font-semibold rounded-2xl hover:bg-white hover:text-black">
+                        Select
                     </button>
                 </div>
             </div>
 
-            <!-- 7. Advertisement -->
-            <div class="product-card rounded-3xl p-8 lg:col-span-1">
-                <div class="text-5xl mb-6">📢</div>
-                <h3 class="text-3xl font-semibold mb-3">Advertisement</h3>
-                <p class="text-gray-400 mb-10 leading-relaxed">Short promotional video or image ad for your gang or server.</p>
-                <div class="flex items-end justify-between">
-                    <div>
-                        <span class="text-xs uppercase tracking-widest text-gray-500">Price</span>
-                        <div class="price-tag text-5xl font-bold">$2</div>
-                    </div>
+            <!-- Advertisement -->
+            <div class="animate-in animate-in-delay1 bg-zinc-900/80 border border-white/10 rounded-3xl p-10 hover:border-[#00b4ff] lg:col-span-3 lg:max-w-md lg:mx-auto">
+                <div class="text-6xl mb-8">📢</div>
+                <h3 class="text-3xl font-semibold mb-4">Advertisement</h3>
+                <p class="text-gray-400 mb-10">Short promotional videos or images for your gang or server.</p>
+                <div class="flex justify-between items-end">
+                    <div class="text-5xl font-bold text-[#00b4ff]">$2</div>
                     <button onclick="purchaseService('Advertisement', 2)" 
-                            class="px-9 py-4 bg-[#00b4ff] hover:bg-[#0099ff] text-black font-semibold rounded-2xl">
-                        Buy Now
+                            class="px-10 py-5 bg-[#00b4ff] text-black font-semibold rounded-2xl hover:bg-white hover:text-black">
+                        Select
                     </button>
                 </div>
             </div>
 
-        </div>
-
-        <div class="text-center mt-16 text-gray-400 text-sm">
-            💸 All prices in USD • Delivery within 24-48 hours • Open a ticket after purchase.
         </div>
     </div>
 
     <script>
-        // ================== YOUR SETTINGS ==================
-        const PAYPAL_EMAIL = "merdanessstephan@gmail.com";           // ← CHANGE THIS TO YOUR PAYPAL EMAIL
-        const DISCORD_WEBHOOK = "https://discord.com/api/webhooks/1490854953772650567/_p1b0BaWHgkefgow0IYrRBgU_ONaUO_Hunt9yQy7HSJcI7BB1bJUBf_-xKpeqPFn8EhF"; // ← CHANGE THIS TO YOUR WEBHOOK URL
+        const PAYPAL_EMAIL = "yourpaypal@email.com";           // ← CHANGE THIS
+        const DISCORD_WEBHOOK = "https://discord.com/api/webhooks/..."; // ← CHANGE THIS
 
         async function purchaseService(serviceName, price) {
-            const discordName = prompt("Enter your Discord username so I can contact you:") || "Anonymous";
+            const discordName = prompt("Enter your Discord username (required):") || "Anonymous";
 
-            // Send order to Discord
             const embed = {
-                title: "🛒 New Pronto Studios Order!",
+                title: "🛒 New Order",
                 color: 0x00b4ff,
                 fields: [
                     { name: "Service", value: serviceName, inline: true },
                     { name: "Price", value: `$${price}`, inline: true },
-                    { name: "Buyer", value: discordName, inline: true },
-                    { name: "Ordered At", value: new Date().toLocaleString(), inline: false }
-                ],
-                footer: { text: "Pronto Studios • Street Wars 2" }
+                    { name: "Buyer", value: discordName, inline: true }
+                ]
             };
 
             try {
                 await fetch(DISCORD_WEBHOOK, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ 
-                        username: "Pronto Orders Bot",
-                        embeds: [embed] 
-                    })
+                    body: JSON.stringify({ username: "Pronto Shop", embeds: [embed] })
                 });
-            } catch (e) {
-                console.log("Discord notification sent (or failed silently)");
-            }
+            } catch(e) {}
 
-            // Redirect to PayPal
             const paypalUrl = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=${encodeURIComponent(PAYPAL_EMAIL)}&item_name=${encodeURIComponent(serviceName)}&amount=${price}&currency_code=USD`;
             window.location.href = paypalUrl;
         }
