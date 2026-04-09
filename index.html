@@ -3,48 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pronto Studios | Home</title>
+    <title>Pronto Studios | Cinematic Street Wars 2 Visuals</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
 
-        /* Hero Background Slideshow */
         .hero-bg {
-            position: relative;
-            min-height: 100vh;
-            overflow: hidden;
-        }
-
-        .hero-bg .slide {
-            position: absolute;
-            inset: 0;
+            background-image: url('./hero-bg.jpg'); /* ← Your single background image */
             background-size: cover;
             background-position: center;
-            opacity: 0;
-            transition: opacity 1.8s ease-in-out;
-            z-index: 1;
+            background-attachment: fixed;
+            position: relative;
+            min-height: 100vh;
         }
 
-        .hero-bg .slide.active {
-            opacity: 1;
-        }
-
-        /* Dark overlay */
         .hero-bg::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.88));
-            z-index: 2;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.85));
+            z-index: 1;
         }
 
         .hero-content {
             position: relative;
-            z-index: 3;
+            z-index: 2;
         }
 
-        /* Animations */
+        /* Entrance Animation */
         .animate-in {
             opacity: 0;
             transform: translateY(50px);
@@ -61,6 +49,7 @@
             }
         }
 
+        /* Neon hover effect */
         .neon-btn {
             transition: all 0.3s ease;
         }
@@ -83,6 +72,7 @@
             <div class="hidden md:flex items-center gap-10 text-lg font-medium">
                 <a href="index.html" class="text-[#00b4ff] hover:text-white transition">Home</a>
                 <a href="shop.html" class="hover:text-[#00b4ff] transition">Shop</a>
+                <a href="profile.html" class="hover:text-[#00b4ff] transition">Profile</a>
                 <a href="terms.html" class="hover:text-[#00b4ff] transition">Terms</a>
             </div>
 
@@ -93,23 +83,14 @@
         </div>
     </nav>
 
-    <!-- HERO WITH SLIDESHOW -->
+    <!-- HERO -->
     <header class="hero-bg flex items-center">
-        <!-- Background Slides -->
-        <div id="slides" class="absolute inset-0">
-            <!-- Add as many images as you want here -->
-            <div class="slide active" style="background-image: url('./images/slide1.jpg');"></div>
-            <div class="slide" style="background-image: url('./images/slide2.jpg');"></div>
-            <div class="slide" style="background-image: url('./images/slide3.jpg');"></div>
-            <div class="slide" style="background-image: url('./images/slide4.jpg');"></div>
-        </div>
-
-        <div class="hero-content max-w-screen-2xl mx-auto px-6 md:px-8 relative z-10">
+        <div class="hero-content max-w-screen-2xl mx-auto px-6 md:px-8">
             <div class="max-w-2xl">
                 <!-- Badge -->
                 <div class="animate-in animate-in-delay1 inline-flex items-center gap-2 px-6 py-2.5 bg-white/10 border border-white/20 rounded-full text-sm font-medium tracking-wider mb-8">
                     <span class="w-2 h-2 bg-[#00b4ff] rounded-full animate-pulse"></span>
-                    EST. 2026
+                    EST. 2025 • STREET WARS 2 SPECIALIST
                 </div>
 
                 <!-- Headline -->
@@ -136,34 +117,16 @@
                         Watch Reel
                     </a>
                 </div>
+
+                <p class="mt-12 text-sm text-gray-400 flex items-center gap-2">
+                    <i class="fas fa-check-circle text-emerald-400"></i>
+                    Trusted by top Street Wars 2 creators
+                </p>
             </div>
         </div>
     </header>
 
     <script>
-        // Background Slideshow
-        function startSlideshow() {
-            const slides = document.querySelectorAll('.slide');
-            let currentIndex = 0;
-
-            function showNextSlide() {
-                // Remove active from current
-                slides[currentIndex].classList.remove('active');
-
-                // Move to next
-                currentIndex = (currentIndex + 1) % slides.length;
-
-                // Activate next
-                slides[currentIndex].classList.add('active');
-            }
-
-            // Change slide every 6 seconds
-            setInterval(showNextSlide, 6000);
-        }
-
-        // Start slideshow when page loads
-        window.addEventListener('load', startSlideshow);
-
         function watchReel() {
             alert("🎥 Reel coming soon!\n\nDM us on Discord to see our latest Street Wars 2 work.");
         }
