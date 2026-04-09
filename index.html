@@ -3,151 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pronto Studios | Home</title>
+    <title>Pronto Studios | Cinematic Street Wars 2 Visuals</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap');
         
-        :root {
-            --accent: #00b4ff;
+        body {
+            font-family: 'Inter', sans-serif;
         }
         
-        * {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        .heading-font {
+            font-family: 'Space Grotesk', sans-serif;
         }
-        
+
         .hero-bg {
-            background: linear-gradient(135deg, #0a0a0a 0%, #001f3d 100%);
+            background: linear-gradient(to bottom, #0a0a0a, #000000);
         }
-        
-        .nav-link {
-            position: relative;
+
+        /* Opening Animation */
+        .animate-in {
+            opacity: 0;
+            transform: translateY(40px);
+            animation: fadeUp 1s forwards;
         }
-        
-        .nav-link:after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px;
-            left: 0;
-            background-color: var(--accent);
+
+        .animate-in-delay1 { animation-delay: 0.3s; }
+        .animate-in-delay2 { animation-delay: 0.6s; }
+        .animate-in-delay3 { animation-delay: 0.9s; }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        
-        .nav-link:hover:after {
-            width: 100%;
+
+        .logo-animate {
+            opacity: 0;
+            animation: logoPop 1.2s forwards;
         }
-        
-        .glow-button {
-            box-shadow: 0 0 25px -5px var(--accent);
+
+        @keyframes logoPop {
+            0% { opacity: 0; transform: scale(0.6); }
+            60% { transform: scale(1.08); }
+            100% { opacity: 1; transform: scale(1); }
         }
     </style>
 </head>
-<body class="bg-[#050505] text-white font-['Inter'] overflow-x-hidden">
+<body class="bg-black text-white overflow-x-hidden">
 
-    <!-- NAVBAR - Updated with Profile -->
-    <nav class="bg-black/90 backdrop-blur-xl border-b border-white/10 sticky top-0 z-50">
-        <div class="max-w-screen-2xl mx-auto px-6 py-6 flex items-center justify-between">
-            <!-- Logo -->
-            <img src="logo.png" alt="Pronto Studios" class="h-11 w-auto">
-
-            <!-- Desktop Navigation -->
-            <div class="hidden md:flex items-center gap-10 text-lg font-medium">
-                <a href="index.html" class="nav-link text-[#00b4ff]">Home</a>
-                <a href="shop.html" class="nav-link hover:text-[#00b4ff]">Shop</a>
-                <a href="profile.html" class="nav-link hover:text-[#00b4ff]">Profile</a>
-                <a href="terms.html" class="nav-link hover:text-[#00b4ff]">Terms</a>
+    <!-- NAVBAR -->
+    <nav class="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-screen-2xl mx-auto px-10 py-6 flex justify-between items-center">
+            <div class="flex items-center gap-3 logo-animate">
+                <img src="logo.png" alt="Pronto Studios" class="h-9">
             </div>
-
-            <div class="flex items-center gap-4">
-                <a href="https://discord.gg/6pbyumeG" target="_blank"
-                   class="px-7 py-3 bg-white/10 hover:bg-white/15 rounded-2xl flex items-center gap-2 text-sm font-medium">
-                    <i class="fab fa-discord"></i>
-                    <span>Join Discord</span>
-                </a>
-                
-                <a href="shop.html"
-                   class="px-8 py-3.5 bg-[#00b4ff] hover:bg-[#0099ff] text-black font-semibold rounded-2xl flex items-center gap-3 glow-button">
-                    <i class="fas fa-shopping-cart"></i>
-                    Shop Now
-                </a>
-
-                <button onclick="toggleMobileMenu()" class="md:hidden text-3xl px-2">
-                    <i class="fas fa-bars"></i>
-                </button>
+            <div class="hidden md:flex items-center gap-10 text-sm font-medium">
+                <a href="index.html" class="hover:text-[#00b4ff]">Home</a>
+                <a href="shop.html" class="hover:text-[#00b4ff]">Shop</a>
+                <a href="profile.html" class="hover:text-[#00b4ff]">Profile</a>
+                <a href="terms.html" class="hover:text-[#00b4ff]">Terms</a>
             </div>
-        </div>
-
-        <!-- Mobile Menu -->
-        <div id="mobileMenu" class="hidden md:hidden bg-black/95 border-t border-white/10 px-6 py-8">
-            <div class="flex flex-col gap-6 text-xl font-medium">
-                <a href="index.html" class="block py-2">Home</a>
-                <a href="shop.html" class="block py-2">Shop</a>
-                <a href="profile.html" class="block py-2">Profile</a>
-                <a href="terms.html" class="block py-2">Terms</a>
-                <a href="https://discord.gg/6pbyumeG" class="block py-2">Join Discord</a>
-            </div>
+            <a href="shop.html" class="px-8 py-3 border border-white/30 hover:border-white rounded-full text-sm font-medium">
+                Shop Services
+            </a>
         </div>
     </nav>
 
-    <!-- HERO -->
-    <header class="hero-bg min-h-screen flex items-center relative">
-        <div class="max-w-screen-2xl mx-auto px-6 pt-12 pb-24">
-            <div class="max-w-2xl">
-                <div class="inline-flex items-center gap-3 bg-white/5 border border-white/10 px-7 py-3 rounded-3xl mb-10">
-                    <div class="w-3 h-3 bg-[#00b4ff] rounded-full animate-pulse"></div>
-                    <span class="uppercase tracking-[2px] text-sm font-medium">Pronto Studios</span>
+    <!-- HERO with Animation -->
+    <section class="hero-bg min-h-screen flex items-center pt-20">
+        <div class="max-w-screen-2xl mx-auto px-10">
+            <div class="max-w-3xl">
+                <!-- Badge -->
+                <div class="animate-in animate-in-delay1 inline-block px-6 py-2.5 bg-white/5 border border-white/10 rounded-full text-sm font-medium mb-8">
+                    EST. 2025 • STREET WARS 2 SPECIALIST
                 </div>
 
-                <h1 class="text-5xl md:text-6xl font-bold tracking-tighter leading-none mb-8" style="font-family: 'Space Grotesk', sans-serif;">
-                    Turning your<br>Street Wars 2 clips<br>into <span class="text-[#00b4ff]">masterpieces</span>
+                <!-- Main Headline -->
+                <h1 class="animate-in animate-in-delay2 text-7xl md:text-8xl leading-none font-bold heading-font tracking-tighter mb-8">
+                    We don't just edit.<br>
+                    We <span class="text-[#00b4ff]">create legends</span>.
                 </h1>
 
-                <p class="text-2xl text-gray-300 max-w-md mb-14">
-                    High-quality GFX, cinematic montages, and professional edits made for Street Wars 2.
+                <!-- Subtitle -->
+                <p class="animate-in animate-in-delay3 text-xl text-gray-300 max-w-lg mb-12">
+                    Premium cinematic GFX, montages, and video editing that elevate your Street Wars 2 gameplay.
                 </p>
 
-                <div class="flex flex-col sm:flex-row gap-5">
-                    <a href="shop.html" 
-                       class="px-12 py-6 bg-[#00b4ff] hover:bg-[#0099ff] text-black text-xl font-semibold rounded-3xl flex items-center justify-center gap-3 glow-button">
-                        Services
-                        <i class="fas fa-arrow-right"></i>
+                <!-- Buttons -->
+                <div class="animate-in animate-in-delay3 flex gap-6">
+                    <a href="shop.html" class="px-10 py-5 bg-white text-black font-semibold rounded-full hover:bg-gray-200 transition">
+                        Browse Services
                     </a>
-                    
-                    <a href="#" onclick="showMontagesModal()" 
-                       class="px-12 py-6 border-2 border-white/40 hover:border-white/70 text-xl font-medium rounded-3xl flex items-center justify-center gap-3">
-                        <i class="fas fa-play"></i>
-                        Preview Montages
+                    <a href="#" onclick="watchReel()" class="px-10 py-5 border border-white/50 hover:border-white rounded-full font-medium flex items-center gap-3">
+                        <i class="fas fa-play"></i> Watch Reel
                     </a>
                 </div>
             </div>
         </div>
-    </header>
+    </section>
 
     <script>
-        function toggleMobileMenu() {
-            document.getElementById('mobileMenu').classList.toggle('hidden');
-        }
-
-        function showMontagesModal() {
-            const modalHTML = `
-            <div onclick="if(event.target.id === 'modalOverlay') this.remove()" id="modalOverlay" 
-                 class="fixed inset-0 bg-black/90 flex items-center justify-center z-[9999]">
-                <div class="max-w-4xl w-full mx-4 bg-zinc-900 rounded-3xl p-10">
-                    <h2 class="text-4xl font-bold mb-8 text-center">Street Wars 2 Montages</h2>
-                    <div class="aspect-video bg-black rounded-2xl overflow-hidden">
-                        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/dQw4w9wgxcQ" 
-                                frameborder="0" allowfullscreen class="rounded-2xl"></iframe>
-                    </div>
-                    <p class="text-center text-gray-400 mt-8">Send your clips on Discord for custom work</p>
-                    <button onclick="this.closest('.fixed').remove()" 
-                            class="mt-10 mx-auto block px-12 py-4 bg-white text-black font-semibold rounded-3xl">
-                        Close Preview
-                    </button>
-                </div>
-            </div>`;
-            document.body.insertAdjacentHTML('beforeend', modalHTML);
+        function watchReel() {
+            alert("🎥 Reel coming soon!\n\nDM us on Discord to see our latest work.");
         }
     </script>
 </body>
