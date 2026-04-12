@@ -10,72 +10,25 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
         
         .hero-bg {
-            background-image: url('./hero-bg.jpg');
+            background-image: url('./hero-bg.png');   /* ← Your exact filename */
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             position: relative;
             min-height: 100vh;
-            overflow: hidden;
         }
         
         .hero-bg::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.85));
+            background: rgba(0, 0, 0, 0.70);
             z-index: 1;
         }
         
         .hero-content {
             position: relative;
             z-index: 2;
-        }
-
-        /* Insane Animations */
-        .fade-up {
-            opacity: 0;
-            transform: translateY(80px);
-            animation: fadeUp 1.2s forwards;
-        }
-
-        .fade-up-delay1 { animation-delay: 0.3s; }
-        .fade-up-delay2 { animation-delay: 0.6s; }
-        .fade-up-delay3 { animation-delay: 1s; }
-
-        @keyframes fadeUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .glow-text {
-            text-shadow: 0 0 40px rgba(0, 180, 255, 0.6),
-                         0 0 80px rgba(0, 180, 255, 0.4);
-        }
-
-        .scanline {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                to bottom,
-                transparent 50%,
-                rgba(0, 180, 255, 0.08) 50%
-            );
-            background-size: 100% 4px;
-            pointer-events: none;
-            animation: scan 8s linear infinite;
-            z-index: 3;
-            opacity: 0.15;
-        }
-
-        @keyframes scan {
-            0% { background-position: 0 0; }
-            100% { background-position: 0 800px; }
         }
     </style>
 </head>
@@ -99,79 +52,81 @@
         </div>
     </nav>
 
-    <!-- HERO with Insane Animations -->
+    <!-- HERO -->
     <header class="hero-bg flex items-center">
-        <div class="scanline"></div>
-        
         <div class="hero-content max-w-screen-2xl mx-auto px-8">
-            <div class="max-w-3xl">
-                <!-- Badge -->
-                <div class="fade-up inline-flex items-center gap-3 px-6 py-3 bg-white/10 border border-white/20 rounded-full text-sm font-medium mb-10">
-                    <span class="relative flex h-3 w-3">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00b4ff] opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-3 w-3 bg-[#00b4ff]"></span>
-                    </span>
-                    LIVE IN THE STREETS
+            <div class="max-w-2xl">
+                <div class="inline-flex items-center gap-3 px-6 py-3 bg-white/10 border border-white/20 rounded-full text-sm font-medium mb-8">
+                    PREMIUM STREET WARS 2 VISUALS
                 </div>
 
-                <!-- Headline -->
-                <h1 class="fade-up fade-up-delay1 text-6xl md:text-7xl font-bold tracking-tighter leading-none mb-8 glow-text" style="font-family: 'Space Grotesk', sans-serif;">
-                    We don't just edit.<br>
-                    We <span class="text-[#00b4ff]">create legends</span>.
+                <h1 class="text-5xl md:text-6xl font-bold tracking-tighter leading-tight mb-8" style="font-family: 'Space Grotesk', sans-serif;">
+                    Turning Street Wars 2 clips<br>into cinematic masterpieces
                 </h1>
 
-                <!-- Subtitle -->
-                <p class="fade-up fade-up-delay2 text-2xl text-gray-200 mb-14 max-w-lg">
-                    Cinematic GFX, viral montages, and premium editing that turns raw Street Wars 2 gameplay into pure fire.
+                <p class="text-xl text-gray-200 mb-12 max-w-lg">
+                    Professional GFX, montages, and high-quality editing that makes your gameplay stand out.
                 </p>
 
-                <!-- CTA -->
-                <div class="fade-up fade-up-delay3">
-                    <a href="shop.html" 
-                       class="inline-block px-14 py-7 bg-white text-black font-semibold text-2xl rounded-3xl hover:scale-110 hover:shadow-2xl transition-all duration-300">
-                        Browse Services
-                    </a>
-                </div>
+                <a href="shop.html" 
+                   class="inline-block px-12 py-6 bg-white text-black font-semibold text-xl rounded-3xl hover:bg-gray-100">
+                    Browse Services
+                </a>
             </div>
         </div>
     </header>
 
-    <!-- SCROLL CONTENT -->
-    <section class="py-28 bg-zinc-950">
+    <!-- SCROLL SECTION 1: Why Us -->
+    <section class="py-24 bg-zinc-950">
         <div class="max-w-screen-2xl mx-auto px-8">
-            <div class="grid md:grid-cols-3 gap-12">
-                <div class="fade-up">
+            <div class="grid md:grid-cols-3 gap-12 text-center">
+                <div>
                     <div class="text-6xl mb-6">⚡</div>
-                    <h3 class="text-3xl font-semibold mb-4">Lightning Fast</h3>
-                    <p class="text-gray-400">24-48 hour delivery on most orders.</p>
+                    <h3 class="text-2xl font-semibold mb-4">Lightning Delivery</h3>
+                    <p class="text-gray-400">Most orders completed in 24-48 hours.</p>
                 </div>
-                <div class="fade-up">
+                <div>
                     <div class="text-6xl mb-6">🎨</div>
-                    <h3 class="text-3xl font-semibold mb-4">Cinematic Quality</h3>
+                    <h3 class="text-2xl font-semibold mb-4">Cinematic Quality</h3>
                     <p class="text-gray-400">Hollywood-level edits and effects.</p>
                 </div>
-                <div class="fade-up">
-                    <div class="text-6xl mb-6">🔥</div>
-                    <h3 class="text-3xl font-semibold mb-4">Made For The Streets</h3>
-                    <p class="text-gray-400">Designed specifically for Street Wars 2 players.</p>
+                <div>
+                    <div class="text-6xl mb-6">🔄</div>
+                    <h3 class="text-2xl font-semibold mb-4">Unlimited Revisions</h3>
+                    <p class="text-gray-400">Until you're completely satisfied.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <script>
-        // Trigger animations when scrolling into view (extra insane touch)
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animationPlayState = 'running';
-                }
-            });
-        }, { threshold: 0.1 });
+    <!-- SCROLL SECTION 2: Services Preview -->
+    <section class="py-24 bg-black">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold tracking-tighter">Our Services</h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-zinc-900 p-8 rounded-3xl">
+                    <div class="text-5xl mb-6">🎥</div>
+                    <h3 class="text-2xl font-semibold mb-3">Turf Showcases</h3>
+                    <p class="text-gray-400 mb-6">$4.50</p>
+                    <a href="shop.html" class="text-[#00b4ff] hover:underline">View Details →</a>
+                </div>
+                <div class="bg-zinc-900 p-8 rounded-3xl">
+                    <div class="text-5xl mb-6">🎬</div>
+                    <h3 class="text-2xl font-semibold mb-3">Gang Movie Trailer</h3>
+                    <p class="text-gray-400 mb-6">$10</p>
+                    <a href="shop.html" class="text-[#00b4ff] hover:underline">View Details →</a>
+                </div>
+                <div class="bg-zinc-900 p-8 rounded-3xl">
+                    <div class="text-5xl mb-6">✂️</div>
+                    <h3 class="text-2xl font-semibold mb-3">Custom Edits</h3>
+                    <p class="text-gray-400 mb-6">$4</p>
+                    <a href="shop.html" class="text-[#00b4ff] hover:underline">View Details →</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        document.querySelectorAll('.fade-up').forEach(el => {
-            observer.observe(el);
-        });
-    </script>
 </body>
 </html>
