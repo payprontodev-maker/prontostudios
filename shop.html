@@ -10,42 +10,42 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
         
         .shop-bg {
-            background-image: url('./shop-bg.jpg');     /* Put your shop background here */
+            background-image: url('./shop-bg.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             position: relative;
+            overflow: hidden;
         }
         
         .shop-bg::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: rgba(0, 0, 0, 0.75);
+            background: rgba(0, 0, 0, 0.78);
             z-index: 1;
         }
-        
-        .content {
-            position: relative;
+
+        /* Particle Container */
+        #particles {
+            position: absolute;
+            inset: 0;
             z-index: 2;
+            pointer-events: none;
         }
 
-        /* Animation */
-        .animate-in {
-            opacity: 0;
-            transform: translateY(40px);
-            animation: fadeUp 1s forwards;
+        .particle {
+            position: absolute;
+            background: rgba(0, 180, 255, 0.6);
+            border-radius: 50%;
+            animation: floatParticle linear infinite;
         }
-        
-        .animate-in-delay1 { animation-delay: 0.2s; }
-        .animate-in-delay2 { animation-delay: 0.5s; }
-        .animate-in-delay3 { animation-delay: 0.8s; }
 
-        @keyframes fadeUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        @keyframes floatParticle {
+            0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { transform: translateY(-100px) scale(1.2); opacity: 0; }
         }
     </style>
 </head>
@@ -57,133 +57,115 @@
             <img src="logo.png" alt="Pronto Studios" class="h-12 w-auto">
 
             <div class="hidden md:flex items-center gap-12 text-lg font-medium">
-                <a href="index.html" class="hover:text-[#00b4ff]">Home</a>
-                <a href="shop.html" class="text-[#00b4ff] font-semibold">Shop</a>
-                <a href="terms.html" class="hover:text-[#00b4ff]">Terms</a>
+                <a href="../index.html" class="hover:text-[#00b4ff]">Home</a>
+                <a href="../shop.html" class="text-[#00b4ff] font-semibold">Shop</a>
+                <a href="../careers/index.html" class="hover:text-[#00b4ff]">Careers</a>
+                <a href="../terms.html" class="hover:text-[#00b4ff]">Terms</a>
             </div>
 
-            <a href="index.html" class="px-8 py-3.5 bg-white/10 hover:bg-white/20 rounded-3xl font-medium">
+            <a href="../index.html" class="px-8 py-3.5 bg-white/10 hover:bg-white/20 rounded-3xl font-medium">
                 ← Home
             </a>
         </div>
     </nav>
 
-    <!-- SHOP HERO -->
-    <header class="shop-bg min-h-[70vh] flex items-center">
-        <div class="content max-w-screen-2xl mx-auto px-8">
+    <!-- HERO -->
+    <header class="shop-bg min-h-[70vh] flex items-center relative">
+        <div id="particles"></div>
+        
+        <div class="relative z-10 max-w-screen-2xl mx-auto px-8">
             <div class="max-w-2xl">
-                <div class="animate-in animate-in-delay1 inline-block px-6 py-2.5 bg-white/10 border border-white/20 rounded-full text-sm font-medium mb-6">
+                <div class="inline-flex items-center gap-3 px-6 py-3 bg-white/10 border border-white/20 rounded-full text-sm font-medium mb-8">
                     SERVICES
                 </div>
-                <h1 class="animate-in animate-in-delay2 text-6xl md:text-7xl font-bold tracking-tighter leading-none mb-8" style="font-family: 'Space Grotesk', sans-serif;">
+                <h1 class="text-6xl md:text-7xl font-bold tracking-tighter leading-none mb-8" style="font-family: 'Space Grotesk', sans-serif;">
                     Choose Your Vision
                 </h1>
-                <p class="animate-in animate-in-delay3 text-xl text-gray-300 max-w-lg">
-                    Premium Street Wars 2 editing services crafted with precision and passion.
+                <p class="text-xl text-gray-300">
+                    Premium Street Wars 2 editing & GFX services.
                 </p>
             </div>
         </div>
     </header>
 
     <!-- SERVICES GRID -->
-    <div class="max-w-screen-2xl mx-auto px-8 py-20 content">
+    <div class="max-w-screen-2xl mx-auto px-8 py-20 bg-black">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
 
-            <!-- Turf Showcases -->
-            <div class="animate-in animate-in-delay1 bg-zinc-900/80 border border-white/10 rounded-3xl p-10 hover:border-[#00b4ff]">
+            <div class="bg-zinc-900/90 border border-white/10 rounded-3xl p-10 hover:border-[#00b4ff] group">
                 <div class="text-6xl mb-8">🎥</div>
                 <h3 class="text-3xl font-semibold mb-4">Turf Showcases</h3>
-                <p class="text-gray-400 mb-10">Cinematic showcase of your turf with smooth transitions and premium effects.</p>
+                <p class="text-gray-400 mb-10">Cinematic showcase of your turf with smooth transitions and effects.</p>
                 <div class="flex justify-between items-end">
                     <div class="text-5xl font-bold text-[#00b4ff]">$4.50</div>
                     <button onclick="purchaseService('Turf Showcases', 4.50)" 
-                            class="px-10 py-5 bg-[#00b4ff] text-black font-semibold rounded-2xl hover:bg-white hover:text-black">
-                        Select
-                    </button>
+                            class="px-10 py-5 bg-[#00b4ff] text-black font-semibold rounded-2xl hover:bg-white hover:text-black">Select</button>
                 </div>
             </div>
 
-            <!-- Gang Movie Trailer -->
-            <div class="animate-in animate-in-delay2 bg-zinc-900/80 border border-white/10 rounded-3xl p-10 hover:border-[#00b4ff]">
+            <div class="bg-zinc-900/90 border border-white/10 rounded-3xl p-10 hover:border-[#00b4ff] group">
                 <div class="text-6xl mb-8">🎬</div>
                 <h3 class="text-3xl font-semibold mb-4">Gang Movie Trailer</h3>
                 <p class="text-gray-400 mb-10">Epic Hollywood-style trailer for your gang.</p>
                 <div class="flex justify-between items-end">
                     <div class="text-5xl font-bold text-[#00b4ff]">$10</div>
                     <button onclick="purchaseService('Gang Movie Trailer', 10)" 
-                            class="px-10 py-5 bg-[#00b4ff] text-black font-semibold rounded-2xl hover:bg-white hover:text-black">
-                        Select
-                    </button>
+                            class="px-10 py-5 bg-[#00b4ff] text-black font-semibold rounded-2xl hover:bg-white hover:text-black">Select</button>
                 </div>
             </div>
 
-            <!-- Custom Film -->
-            <div class="animate-in animate-in-delay3 bg-zinc-900/80 border border-white/10 rounded-3xl p-10 hover:border-[#00b4ff]">
+            <div class="bg-zinc-900/90 border border-white/10 rounded-3xl p-10 hover:border-[#00b4ff] group">
                 <div class="text-6xl mb-8">🎞️</div>
                 <h3 class="text-3xl font-semibold mb-4">Custom Film</h3>
                 <p class="text-gray-400 mb-10">Full short film-style edit of your gameplay or story.</p>
                 <div class="flex justify-between items-end">
                     <div class="text-5xl font-bold text-[#00b4ff]">$7.50</div>
                     <button onclick="purchaseService('Custom Film', 7.50)" 
-                            class="px-10 py-5 bg-[#00b4ff] text-black font-semibold rounded-2xl hover:bg-white hover:text-black">
-                        Select
-                    </button>
+                            class="px-10 py-5 bg-[#00b4ff] text-black font-semibold rounded-2xl hover:bg-white hover:text-black">Select</button>
                 </div>
             </div>
 
-            <!-- Gang Pics -->
-            <div class="animate-in animate-in-delay1 bg-zinc-900/80 border border-white/10 rounded-3xl p-10 hover:border-[#00b4ff]">
+            <div class="bg-zinc-900/90 border border-white/10 rounded-3xl p-10 hover:border-[#00b4ff] group">
                 <div class="text-6xl mb-8">📸</div>
                 <h3 class="text-3xl font-semibold mb-4">Gang Pics</h3>
-                <p class="text-gray-400 mb-10">High-quality edited gang screenshots and promotional images.</p>
+                <p class="text-gray-400 mb-10">High-quality edited gang screenshots.</p>
                 <div class="flex justify-between items-end">
                     <div class="text-5xl font-bold text-[#00b4ff]">$1.50</div>
                     <button onclick="purchaseService('Gang Pics', 1.50)" 
-                            class="px-10 py-5 bg-[#00b4ff] text-black font-semibold rounded-2xl hover:bg-white hover:text-black">
-                        Select
-                    </button>
+                            class="px-10 py-5 bg-[#00b4ff] text-black font-semibold rounded-2xl hover:bg-white hover:text-black">Select</button>
                 </div>
             </div>
 
-            <!-- Gang Edits -->
-            <div class="animate-in animate-in-delay2 bg-zinc-900/80 border border-white/10 rounded-3xl p-10 hover:border-[#00b4ff]">
+            <div class="bg-zinc-900/90 border border-white/10 rounded-3xl p-10 hover:border-[#00b4ff] group">
                 <div class="text-6xl mb-8">🔥</div>
                 <h3 class="text-3xl font-semibold mb-4">Gang Edits</h3>
-                <p class="text-gray-400 mb-10">High-energy short edits with effects and trending audio.</p>
+                <p class="text-gray-400 mb-10">High-energy short edits with effects and music.</p>
                 <div class="flex justify-between items-end">
                     <div class="text-5xl font-bold text-[#00b4ff]">$5</div>
                     <button onclick="purchaseService('Gang Edits', 5)" 
-                            class="px-10 py-5 bg-[#00b4ff] text-black font-semibold rounded-2xl hover:bg-white hover:text-black">
-                        Select
-                    </button>
+                            class="px-10 py-5 bg-[#00b4ff] text-black font-semibold rounded-2xl hover:bg-white hover:text-black">Select</button>
                 </div>
             </div>
 
-            <!-- Custom Edits -->
-            <div class="animate-in animate-in-delay3 bg-zinc-900/80 border border-white/10 rounded-3xl p-10 hover:border-[#00b4ff]">
+            <div class="bg-zinc-900/90 border border-white/10 rounded-3xl p-10 hover:border-[#00b4ff] group">
                 <div class="text-6xl mb-8">✂️</div>
                 <h3 class="text-3xl font-semibold mb-4">Custom Edits</h3>
-                <p class="text-gray-400 mb-10">Any custom video edit you need. Tell us your vision.</p>
+                <p class="text-gray-400 mb-10">Any custom video edit you need.</p>
                 <div class="flex justify-between items-end">
                     <div class="text-5xl font-bold text-[#00b4ff]">$4</div>
                     <button onclick="purchaseService('Custom Edits', 4)" 
-                            class="px-10 py-5 bg-[#00b4ff] text-black font-semibold rounded-2xl hover:bg-white hover:text-black">
-                        Select
-                    </button>
+                            class="px-10 py-5 bg-[#00b4ff] text-black font-semibold rounded-2xl hover:bg-white hover:text-black">Select</button>
                 </div>
             </div>
 
-            <!-- Advertisement -->
-            <div class="animate-in animate-in-delay1 bg-zinc-900/80 border border-white/10 rounded-3xl p-10 hover:border-[#00b4ff] lg:col-span-3 lg:max-w-md lg:mx-auto">
+            <div class="bg-zinc-900/90 border border-white/10 rounded-3xl p-10 hover:border-[#00b4ff] group lg:col-span-3 lg:max-w-md lg:mx-auto">
                 <div class="text-6xl mb-8">📢</div>
                 <h3 class="text-3xl font-semibold mb-4">Advertisement</h3>
-                <p class="text-gray-400 mb-10">Short promotional videos or images for your gang or server.</p>
+                <p class="text-gray-400 mb-10">Short promotional videos for your gang or server.</p>
                 <div class="flex justify-between items-end">
                     <div class="text-5xl font-bold text-[#00b4ff]">$2</div>
                     <button onclick="purchaseService('Advertisement', 2)" 
-                            class="px-10 py-5 bg-[#00b4ff] text-black font-semibold rounded-2xl hover:bg-white hover:text-black">
-                        Select
-                    </button>
+                            class="px-10 py-5 bg-[#00b4ff] text-black font-semibold rounded-2xl hover:bg-white hover:text-black">Select</button>
                 </div>
             </div>
 
@@ -191,8 +173,28 @@
     </div>
 
     <script>
-        const PAYPAL_EMAIL = "merdanessstephan@gmail.com";           // ← CHANGE THIS
-        const DISCORD_WEBHOOK = "https://discord.com/api/webhooks/1490854953772650567/_p1b0BaWHgkefgow0IYrRBgU_ONaUO_Hunt9yQy7HSJcI7BB1bJUBf_-xKpeqPFn8EhF"; // ← CHANGE THIS
+        // Particle Background
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 60; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                const size = Math.random() * 4 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.animationDuration = `${Math.random() * 15 + 10}s`;
+                particle.style.animationDelay = `-${Math.random() * 15}s`;
+                particle.style.opacity = Math.random() * 0.6 + 0.2;
+                
+                container.appendChild(particle);
+            }
+        }
+
+        // PayPal + Discord
+        const PAYPAL_EMAIL = "merdanessstephan@gmail.com";
+        const DISCORD_WEBHOOK = "https://discordapp.com/api/webhooks/1490854953772650567/_p1b0BaWHgkefgow0IYrRBgU_ONaUO_Hunt9yQy7HSJcI7BB1bJUBf_-xKpeqPFn8EhF";
 
         async function purchaseService(serviceName, price) {
             const discordName = prompt("Enter your Discord username (required):") || "Anonymous";
@@ -218,6 +220,9 @@
             const paypalUrl = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=${encodeURIComponent(PAYPAL_EMAIL)}&item_name=${encodeURIComponent(serviceName)}&amount=${price}&currency_code=USD`;
             window.location.href = paypalUrl;
         }
+
+        // Initialize particles when page loads
+        window.onload = createParticles;
     </script>
 </body>
 </html>
