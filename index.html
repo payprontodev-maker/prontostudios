@@ -3,44 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pronto Studios | Home</title>
+    <title>Pronto Studios | Street Wars 2 Visuals</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
-
+        
         .hero-bg {
-            background-image: url('./hero-bg.jpg'); /* ← Your single background image */
+            background-image: url('./hero-bg.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             position: relative;
             min-height: 100vh;
+            overflow: hidden;
         }
-
+        
         .hero-bg::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.85));
+            background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.85));
             z-index: 1;
         }
-
+        
         .hero-content {
             position: relative;
             z-index: 2;
         }
 
-        /* Entrance Animation */
-        .animate-in {
+        /* Insane Animations */
+        .fade-up {
             opacity: 0;
-            transform: translateY(50px);
-            animation: fadeUp 1.1s forwards;
+            transform: translateY(80px);
+            animation: fadeUp 1.2s forwards;
         }
-        .animate-in-delay1 { animation-delay: 0.2s; }
-        .animate-in-delay2 { animation-delay: 0.5s; }
-        .animate-in-delay3 { animation-delay: 0.8s; }
+
+        .fade-up-delay1 { animation-delay: 0.3s; }
+        .fade-up-delay2 { animation-delay: 0.6s; }
+        .fade-up-delay3 { animation-delay: 1s; }
 
         @keyframes fadeUp {
             to {
@@ -49,86 +50,128 @@
             }
         }
 
-        /* Neon hover effect */
-        .neon-btn {
-            transition: all 0.3s ease;
+        .glow-text {
+            text-shadow: 0 0 40px rgba(0, 180, 255, 0.6),
+                         0 0 80px rgba(0, 180, 255, 0.4);
         }
-        .neon-btn:hover {
-            box-shadow: 0 0 25px #00b4ff;
-            transform: translateY(-3px);
+
+        .scanline {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                transparent 50%,
+                rgba(0, 180, 255, 0.08) 50%
+            );
+            background-size: 100% 4px;
+            pointer-events: none;
+            animation: scan 8s linear infinite;
+            z-index: 3;
+            opacity: 0.15;
+        }
+
+        @keyframes scan {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 800px; }
         }
     </style>
 </head>
 <body class="bg-black text-white font-['Inter'] overflow-x-hidden">
 
     <!-- NAVBAR -->
-    <nav class="bg-black/95 backdrop-blur-2xl border-b border-white/10 sticky top-0 z-50">
-        <div class="max-w-screen-2xl mx-auto px-6 md:px-8 py-5 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <img src="logo.png" alt="Pronto Studios" class="h-11 w-auto">
-                <span class="font-semibold tracking-widest text-xl hidden sm:block">PRONTO</span>
-            </div>
-           
-            <div class="hidden md:flex items-center gap-10 text-lg font-medium">
-                <a href="index.html" class="text-[#00b4ff] hover:text-white transition">Home</a>
-                <a href="shop.html" class="hover:text-[#00b4ff] transition">Shop</a>
-                <a href="terms.html" class="hover:text-[#00b4ff] transition">Terms</a>
+    <nav class="bg-black/90 backdrop-blur-2xl border-b border-white/10 sticky top-0 z-50">
+        <div class="max-w-screen-2xl mx-auto px-8 py-6 flex items-center justify-between">
+            <img src="logo.png" alt="Pronto Studios" class="h-12 w-auto">
+
+            <div class="hidden md:flex items-center gap-12 text-lg font-medium">
+                <a href="index.html" class="text-[#00b4ff]">Home</a>
+                <a href="shop.html" class="hover:text-[#00b4ff]">Shop</a>
+                <a href="careers/index.html" class="hover:text-[#00b4ff]">Careers</a>
+                <a href="terms.html" class="hover:text-[#00b4ff]">Terms</a>
             </div>
 
-            <a href="shop.html" 
-               class="px-9 py-3.5 bg-[#00b4ff] hover:bg-white text-black font-semibold rounded-3xl transition-all neon-btn">
+            <a href="shop.html" class="px-10 py-3.5 bg-[#00b4ff] text-black font-semibold rounded-3xl">
                 Shop Services
             </a>
         </div>
     </nav>
 
-    <!-- HERO -->
+    <!-- HERO with Insane Animations -->
     <header class="hero-bg flex items-center">
-        <div class="hero-content max-w-screen-2xl mx-auto px-6 md:px-8">
-            <div class="max-w-2xl">
+        <div class="scanline"></div>
+        
+        <div class="hero-content max-w-screen-2xl mx-auto px-8">
+            <div class="max-w-3xl">
                 <!-- Badge -->
-                <div class="animate-in animate-in-delay1 inline-flex items-center gap-2 px-6 py-2.5 bg-white/10 border border-white/20 rounded-full text-sm font-medium tracking-wider mb-8">
-                    <span class="w-2 h-2 bg-[#00b4ff] rounded-full animate-pulse"></span>
-                    EST. 2026
+                <div class="fade-up inline-flex items-center gap-3 px-6 py-3 bg-white/10 border border-white/20 rounded-full text-sm font-medium mb-10">
+                    <span class="relative flex h-3 w-3">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00b4ff] opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-3 w-3 bg-[#00b4ff]"></span>
+                    </span>
+                    LIVE IN THE STREETS
                 </div>
 
                 <!-- Headline -->
-                <h1 class="animate-in animate-in-delay2 text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-none mb-8" 
-                    style="font-family: 'Space Grotesk', sans-serif;">
+                <h1 class="fade-up fade-up-delay1 text-6xl md:text-7xl font-bold tracking-tighter leading-none mb-8 glow-text" style="font-family: 'Space Grotesk', sans-serif;">
                     We don't just edit.<br>
                     We <span class="text-[#00b4ff]">create legends</span>.
                 </h1>
 
                 <!-- Subtitle -->
-                <p class="animate-in animate-in-delay3 text-2xl md:text-3xl text-gray-200 max-w-md mb-14">
-                    Premium cinematic GFX, montages, and video editing for <span class="font-semibold text-white">Street Wars 2</span>.
+                <p class="fade-up fade-up-delay2 text-2xl text-gray-200 mb-14 max-w-lg">
+                    Cinematic GFX, viral montages, and premium editing that turns raw Street Wars 2 gameplay into pure fire.
                 </p>
 
-                <!-- Buttons -->
-                <div class="animate-in animate-in-delay3 flex flex-col sm:flex-row gap-5">
+                <!-- CTA -->
+                <div class="fade-up fade-up-delay3">
                     <a href="shop.html" 
-                       class="px-14 py-7 bg-white text-black font-semibold text-2xl rounded-3xl hover:bg-gray-100 transition-all neon-btn flex items-center justify-center">
+                       class="inline-block px-14 py-7 bg-white text-black font-semibold text-2xl rounded-3xl hover:scale-110 hover:shadow-2xl transition-all duration-300">
                         Browse Services
                     </a>
-                    <a href="#" onclick="watchReel()" 
-                       class="px-14 py-7 border-2 border-white/60 hover:border-white text-2xl font-medium rounded-3xl flex items-center justify-center gap-4 transition-all neon-btn">
-                        <i class="fas fa-play text-[#00b4ff]"></i> 
-                        Watch Reel
-                    </a>
                 </div>
-
-                <p class="mt-12 text-sm text-gray-400 flex items-center gap-2">
-                    <i class="fas fa-check-circle text-emerald-400"></i>
-                    Trusted by 100+ users
-                </p>
             </div>
         </div>
     </header>
 
+    <!-- SCROLL CONTENT -->
+    <section class="py-28 bg-zinc-950">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="fade-up">
+                    <div class="text-6xl mb-6">⚡</div>
+                    <h3 class="text-3xl font-semibold mb-4">Lightning Fast</h3>
+                    <p class="text-gray-400">24-48 hour delivery on most orders.</p>
+                </div>
+                <div class="fade-up">
+                    <div class="text-6xl mb-6">🎨</div>
+                    <h3 class="text-3xl font-semibold mb-4">Cinematic Quality</h3>
+                    <p class="text-gray-400">Hollywood-level edits and effects.</p>
+                </div>
+                <div class="fade-up">
+                    <div class="text-6xl mb-6">🔥</div>
+                    <h3 class="text-3xl font-semibold mb-4">Made For The Streets</h3>
+                    <p class="text-gray-400">Designed specifically for Street Wars 2 players.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <script>
-        function watchReel() {
-            alert("🎥 Reel coming soon!\n\nDM us on Discord to see our latest Street Wars 2 work.");
-        }
+        // Trigger animations when scrolling into view (extra insane touch)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-up').forEach(el => {
+            observer.observe(el);
+        });
     </script>
 </body>
 </html>
