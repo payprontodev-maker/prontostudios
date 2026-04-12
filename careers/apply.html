@@ -42,7 +42,7 @@
 
             <div>
                 <label class="block text-sm font-medium mb-2">Your TikTok / YouTube (if applying for Content Creator)</label>
-                <input type="text" id="social" placeholder="https://tiktok.com/..." 
+                <input type="text" id="social" placeholder="Tiktok Username here" 
                        class="w-full bg-zinc-900 border border-white/20 rounded-2xl px-6 py-4 text-lg">
             </div>
 
@@ -54,7 +54,7 @@
 
             <div>
                 <label class="block text-sm font-medium mb-2">Your application results will be sent via dms. Your applicaation can take up to 3 days to be reviewed. If you understand type "I understand"</label>
-                <input type="text" id="portfolio" placeholder="Link to previous work" 
+                <input type="text" id="portfolio" placeholder="I understand" 
                        class="w-full bg-zinc-900 border border-white/20 rounded-2xl px-6 py-4 text-lg">
             </div>
 
@@ -91,7 +91,7 @@
                     { name: "Discord Username", value: discord, inline: true },
                     { name: "Social Link", value: social || "None provided", inline: true },
                     { name: "Why Join?", value: why || "No response", inline: false },
-                    { name: "Portfolio", value: portfolio || "None provided", inline: false }
+                    { name: "I understand", value: understand || "None provided", inline: false }
                 ],
                 timestamp: new Date().toISOString()
             };
