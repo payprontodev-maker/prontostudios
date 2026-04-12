@@ -16,19 +16,39 @@
             background-attachment: fixed;
             position: relative;
             min-height: 100vh;
+            overflow: hidden;
         }
         
         .hero-bg::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: rgba(0, 0, 0, 0.72);
+            background: rgba(0, 0, 0, 0.75);
             z-index: 1;
         }
-        
-        .hero-content {
-            position: relative;
-            z-index: 2;
+
+        .particle {
+            position: absolute;
+            background: rgba(0, 180, 255, 0.7);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: particleFloat linear infinite;
+        }
+
+        @keyframes particleFloat {
+            0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { transform: translateY(-100px) scale(1.5); opacity: 0; }
+        }
+
+        .glow-text {
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 20px #00b4ff; }
+            to { text-shadow: 0 0 60px #00b4ff, 0 0 100px #00b4ff; }
         }
     </style>
 </head>
@@ -53,14 +73,16 @@
     </nav>
 
     <!-- HERO -->
-    <header class="hero-bg flex items-center">
-        <div class="hero-content max-w-screen-2xl mx-auto px-8">
+    <header class="hero-bg flex items-center relative">
+        <div id="particles" class="absolute inset-0 z-10"></div>
+        
+        <div class="relative z-20 max-w-screen-2xl mx-auto px-8">
             <div class="max-w-2xl">
                 <div class="inline-flex items-center gap-3 px-6 py-3 bg-white/10 border border-white/20 rounded-full text-sm font-medium mb-8">
                     PREMIUM STREET WARS 2 VISUALS
                 </div>
 
-                <h1 class="text-5xl md:text-6xl font-bold tracking-tighter leading-tight mb-8" style="font-family: 'Space Grotesk', sans-serif;">
+                <h1 class="text-5xl md:text-6xl font-bold tracking-tighter leading-tight mb-8 glow-text" style="font-family: 'Space Grotesk', sans-serif;">
                     Turning Street Wars 2 clips<br>into cinematic masterpieces
                 </h1>
 
@@ -68,13 +90,37 @@
                     Professional GFX, montages, and high-quality editing that makes your gameplay stand out.
                 </p>
 
-                <a href="shop.html" 
-                   class="inline-block px-12 py-6 bg-white text-black font-semibold text-xl rounded-3xl hover:bg-gray-100">
+                <a href="shop.html" class="inline-block px-12 py-6 bg-white text-black font-semibold text-xl rounded-3xl hover:scale-105 transition">
                     Browse Services
                 </a>
             </div>
         </div>
     </header>
 
+    <!-- Why Us -->
+    <section class="py-24 bg-zinc-950">
+        <div class="max-w-screen-2xl mx-auto px-8 grid md:grid-cols-3 gap-12">
+            <div><div class="text-6xl mb-6">⚡</div><h3 class="text-2xl font-semibold mb-4">Lightning Fast</h3><p class="text-gray-400">24-48 hour delivery</p></div>
+            <div><div class="text-6xl mb-6">🎨</div><h3 class="text-2xl font-semibold mb-4">Cinematic Quality</h3><p class="text-gray-400">Hollywood-level edits</p></div>
+            <div><div class="text-6xl mb-6">🔄</div><h3 class="text-2xl font-semibold mb-4">Unlimited Revisions</h3><p class="text-gray-400">Until you're satisfied</p></div>
+        </div>
+    </section>
+
+    <script>
+        // Create floating particles
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 80; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle';
+                p.style.width = p.style.height = Math.random() * 5 + 2 + 'px';
+                p.style.left = Math.random() * 100 + '%';
+                p.style.animationDuration = Math.random() * 20 + 15 + 's';
+                p.style.animationDelay = '-' + Math.random() * 20 + 's';
+                container.appendChild(p);
+            }
+        }
+        window.onload = createParticles;
+    </script>
 </body>
 </html>
