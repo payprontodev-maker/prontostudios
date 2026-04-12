@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pronto Studios | Careers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+        
+        body { font-family: 'Inter', sans-serif; }
+        .heading { font-family: 'Space Grotesk', sans-serif; }
+    </style>
+</head>
+<body class="bg-black text-white">
+
+    <!-- Navbar -->
+    <nav class="bg-black/90 backdrop-blur-2xl border-b border-white/10 sticky top-0 z-50">
+        <div class="max-w-screen-2xl mx-auto px-8 py-6 flex items-center justify-between">
+            <img src="../logo.png" alt="Pronto Studios" class="h-12 w-auto">
+            <div class="hidden md:flex gap-10 text-lg">
+                <a href="../index.html" class="hover:text-[#00b4ff]">Home</a>
+                <a href="../shop.html" class="hover:text-[#00b4ff]">Shop</a>
+                <a href="../profile.html" class="hover:text-[#00b4ff]">Profile</a>
+                <a href="index.html" class="text-[#00b4ff] font-semibold">Careers</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="min-h-screen bg-gradient-to-br from-black to-[#001233] flex items-center">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <div class="max-w-2xl">
+                <p class="text-[#00b4ff] tracking-widest text-sm mb-4">JOIN THE TEAM</p>
+                <h1 class="text-7xl font-bold heading tracking-tighter leading-none mb-8">
+                    Help build the future<br>of Street Wars 2 visuals
+                </h1>
+                <p class="text-xl text-gray-300 mb-12">
+                    We're looking for talented and dedicated people to join Pronto Studios.
+                </p>
+                <a href="apply.html" class="inline-block px-12 py-6 bg-[#00b4ff] text-black font-semibold rounded-3xl text-xl hover:bg-white">
+                    View Open Positions →
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Positions -->
+    <div class="max-w-screen-2xl mx-auto px-8 py-24">
+        <h2 class="text-5xl font-bold heading tracking-tighter mb-16">Open Positions</h2>
+        
+        <div class="grid md:grid-cols-2 gap-8">
+            <div onclick="window.location.href='apply.html?position=Content%20Creator'" 
+                 class="cursor-pointer bg-zinc-900 border border-white/10 rounded-3xl p-10 hover:border-[#00b4ff]">
+                <h3 class="text-3xl font-semibold mb-4">Pronto Studios Content Creator</h3>
+                <p class="text-gray-400">Create viral content for Pronto Studios on TikTok and YouTube.</p>
+            </div>
+            
+            <div onclick="window.location.href='apply.html?position=Editing%20Team'" 
+                 class="cursor-pointer bg-zinc-900 border border-white/10 rounded-3xl p-10 hover:border-[#00b4ff]">
+                <h3 class="text-3xl font-semibold mb-4">Pronto Studios Editing Team</h3>
+                <p class="text-gray-400">Edit high-quality videos and montages for our clients.</p>
+            </div>
+            
+            <div onclick="window.location.href='apply.html?position=Shop%20Customer%20Service'" 
+                 class="cursor-pointer bg-zinc-900 border border-white/10 rounded-3xl p-10 hover:border-[#00b4ff]">
+                <h3 class="text-3xl font-semibold mb-4">Pronto Studios Shop Customer Service</h3>
+                <p class="text-gray-400">Assist customers after purchase and collect order details.</p>
+            </div>
+            
+            <div onclick="window.location.href='apply.html?position=Staff%20Team'" 
+                 class="cursor-pointer bg-zinc-900 border border-white/10 rounded-3xl p-10 hover:border-[#00b4ff]">
+                <h3 class="text-3xl font-semibold mb-4">Pronto Studios Staff Team</h3>
+                <p class="text-gray-400">Help manage and grow our Discord community.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
