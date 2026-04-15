@@ -9,50 +9,38 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
         
-        .hero-bg {
-            background-image: url('./hero-bg.png');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            position: relative;
-            min-height: 100vh;
-            overflow: hidden;
+        :root {
+            --accent: #00b4ff;
         }
         
-        .hero-bg::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.75);
-            z-index: 1;
-        }
-
-        .particle {
-            position: absolute;
-            background: rgba(0, 180, 255, 0.7);
-            border-radius: 50%;
-            pointer-events: none;
-            animation: particleFloat linear infinite;
-        }
-
-        @keyframes particleFloat {
-            0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
-            10% { opacity: 0.8; }
-            90% { opacity: 0.8; }
-            100% { transform: translateY(-100px) scale(1.5); opacity: 0; }
-        }
-
         .glow-text {
-            animation: glow 3s ease-in-out infinite alternate;
+            animation: insaneGlow 4s ease-in-out infinite alternate;
         }
 
-        @keyframes glow {
+        @keyframes insaneGlow {
             from { text-shadow: 0 0 20px #00b4ff; }
-            to { text-shadow: 0 0 60px #00b4ff, 0 0 100px #00b4ff; }
+            to { text-shadow: 0 0 80px #00b4ff, 0 0 120px #00b4ff; }
+        }
+
+        .stagger {
+            opacity: 0;
+            transform: translateY(60px);
+            animation: staggerUp 1.2s forwards;
+        }
+
+        .stagger1 { animation-delay: 0.3s; }
+        .stagger2 { animation-delay: 0.7s; }
+        .stagger3 { animation-delay: 1.1s; }
+
+        @keyframes staggerUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
-<body class="bg-black text-white font-['Inter'] overflow-x-hidden">
+<body class="bg-[#05080f] text-white font-['Inter'] overflow-x-hidden">
 
     <!-- NAVBAR -->
     <nav class="bg-black/90 backdrop-blur-2xl border-b border-white/10 sticky top-0 z-50">
@@ -62,7 +50,6 @@
             <div class="hidden md:flex items-center gap-12 text-lg font-medium">
                 <a href="index.html" class="text-[#00b4ff]">Home</a>
                 <a href="shop.html" class="hover:text-[#00b4ff]">Shop</a>
-                <a href="careers/index.html" class="hover:text-[#00b4ff]">Careers</a>
                 <a href="terms.html" class="hover:text-[#00b4ff]">Terms</a>
             </div>
 
@@ -73,24 +60,22 @@
     </nav>
 
     <!-- HERO -->
-    <header class="hero-bg flex items-center relative">
-        <div id="particles" class="absolute inset-0 z-10"></div>
-        
-        <div class="relative z-20 max-w-screen-2xl mx-auto px-8">
+    <header class="bg-[#05080f] min-h-screen flex items-center">
+        <div class="max-w-screen-2xl mx-auto px-8">
             <div class="max-w-2xl">
-                <div class="inline-flex items-center gap-3 px-6 py-3 bg-white/10 border border-white/20 rounded-full text-sm font-medium mb-8">
-                    PREMIUM STREET WARS 2 VISUALS
+                <div class="stagger inline-flex items-center gap-3 px-6 py-3 bg-white/10 border border-white/20 rounded-full text-sm font-medium mb-8">
+                    PREMIUM STREET WARS 2 EDITS
                 </div>
 
-                <h1 class="text-5xl md:text-6xl font-bold tracking-tighter leading-tight mb-8 glow-text" style="font-family: 'Space Grotesk', sans-serif;">
+                <h1 class="stagger stagger1 text-5xl md:text-6xl font-bold tracking-tighter leading-tight mb-8 glow-text" style="font-family: 'Space Grotesk', sans-serif;">
                     Turning Street Wars 2 clips<br>into cinematic masterpieces
                 </h1>
 
-                <p class="text-xl text-gray-200 mb-12 max-w-lg">
+                <p class="stagger stagger2 text-xl text-gray-200 mb-12 max-w-lg">
                     Professional GFX, montages, and high-quality editing that makes your gameplay stand out.
                 </p>
 
-                <a href="shop.html" class="inline-block px-12 py-6 bg-white text-black font-semibold text-xl rounded-3xl hover:scale-105 transition">
+                <a href="shop.html" class="stagger stagger3 inline-block px-12 py-6 bg-[#00b4ff] text-black font-semibold text-xl rounded-3xl hover:bg-[#0099ff]">
                     Browse Services
                 </a>
             </div>
@@ -98,29 +83,25 @@
     </header>
 
     <!-- Why Us -->
-    <section class="py-24 bg-zinc-950">
+    <section class="py-24 bg-[#0a0f1a]">
         <div class="max-w-screen-2xl mx-auto px-8 grid md:grid-cols-3 gap-12">
-            <div><div class="text-6xl mb-6">⚡</div><h3 class="text-2xl font-semibold mb-4">Lightning Fast</h3><p class="text-gray-400">24-48 hour delivery</p></div>
-            <div><div class="text-6xl mb-6">🎨</div><h3 class="text-2xl font-semibold mb-4">Cinematic Quality</h3><p class="text-gray-400">Hollywood-level edits</p></div>
-            <div><div class="text-6xl mb-6">🔄</div><h3 class="text-2xl font-semibold mb-4">Unlimited Revisions</h3><p class="text-gray-400">Until you're satisfied</p></div>
+            <div class="stagger text-center">
+                <div class="text-6xl mb-6 text-[#00b4ff]">⚡</div>
+                <h3 class="text-2xl font-semibold mb-4">Lightning Delivery</h3>
+                <p class="text-gray-400">24-48 hour turnaround</p>
+            </div>
+            <div class="stagger text-center">
+                <div class="text-6xl mb-6 text-[#00b4ff]">🎨</div>
+                <h3 class="text-2xl font-semibold mb-4">Cinematic Quality</h3>
+                <p class="text-gray-400">Hollywood-level edits</p>
+            </div>
+            <div class="stagger text-center">
+                <div class="text-6xl mb-6 text-[#00b4ff]">🔄</div>
+                <h3 class="text-2xl font-semibold mb-4">Unlimited Revisions</h3>
+                <p class="text-gray-400">Until you're satisfied</p>
+            </div>
         </div>
     </section>
 
-    <script>
-        // Create floating particles
-        function createParticles() {
-            const container = document.getElementById('particles');
-            for (let i = 0; i < 80; i++) {
-                const p = document.createElement('div');
-                p.className = 'particle';
-                p.style.width = p.style.height = Math.random() * 5 + 2 + 'px';
-                p.style.left = Math.random() * 100 + '%';
-                p.style.animationDuration = Math.random() * 20 + 15 + 's';
-                p.style.animationDelay = '-' + Math.random() * 20 + 's';
-                container.appendChild(p);
-            }
-        }
-        window.onload = createParticles;
-    </script>
 </body>
 </html>
