@@ -10,34 +10,39 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
         
         .hero-bg {
-            background-image: url('./hero-bg.gif');   /* Your GIF */
+            background-image: url('./hero-bg.gif');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             position: relative;
             min-height: 100vh;
-            overflow: hidden;
         }
         
         .hero-bg::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: rgba(0, 0, 0, 0.68);   /* Dark overlay for readability */
+            background: rgba(0, 0, 0, 0.68);
             z-index: 1;
         }
 
-        .glow-text {
-            animation: coolGlow 4s ease-in-out infinite alternate;
+        .glass {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
         }
 
-        @keyframes coolGlow {
+        .glow-text {
+            animation: glow 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
             from { text-shadow: 0 0 20px #00b4ff; }
             to { text-shadow: 0 0 70px #00b4ff, 0 0 110px #00b4ff; }
         }
     </style>
 </head>
-<body class="bg-[#05080f] text-white font-['Inter'] overflow-x-hidden">
+<body class="bg-black text-white font-['Inter'] overflow-x-hidden">
 
     <!-- NAVBAR -->
     <nav class="bg-black/90 backdrop-blur-2xl border-b border-white/10 sticky top-0 z-50">
@@ -47,15 +52,16 @@
             <div class="hidden md:flex items-center gap-12 text-lg font-medium">
                 <a href="index.html" class="text-[#00b4ff]">Home</a>
                 <a href="shop.html" class="hover:text-[#00b4ff]">Shop</a>
-               </div>
+                <a href="terms.html" class="hover:text-[#00b4ff]">Terms</a>
+            </div>
 
-            <a href="shop.html" class="px-10 py-3.5 bg-[#00b4ff] text-black font-semibold rounded-3xl hover:bg-[#0099ff]">
+            <a href="shop.html" class="px-10 py-3.5 bg-[#00b4ff] text-black font-semibold rounded-3xl">
                 Shop Services
             </a>
         </div>
     </nav>
 
-    <!-- HERO with GIF -->
+    <!-- HERO -->
     <header class="hero-bg flex items-center">
         <div class="relative z-10 max-w-screen-2xl mx-auto px-8">
             <div class="max-w-2xl">
@@ -79,23 +85,29 @@
         </div>
     </header>
 
-    <!-- Why Us -->
-    <section class="py-24 bg-[#0a0f1a]">
-        <div class="max-w-screen-2xl mx-auto px-8 grid md:grid-cols-3 gap-12">
-            <div class="text-center">
-                <div class="text-6xl mb-6 text-[#00b4ff]">⚡</div>
-                <h3 class="text-2xl font-semibold mb-4">Lightning Delivery</h3>
-                <p class="text-gray-400">24-48 hour turnaround</p>
-            </div>
-            <div class="text-center">
-                <div class="text-6xl mb-6 text-[#00b4ff]">🎨</div>
-                <h3 class="text-2xl font-semibold mb-4">Cinematic Quality</h3>
-                <p class="text-gray-400">Hollywood-level edits</p>
-            </div>
-            <div class="text-center">
-                <div class="text-6xl mb-6 text-[#00b4ff]">🔄</div>
-                <h3 class="text-2xl font-semibold mb-4">Unlimited Revisions</h3>
-                <p class="text-gray-400">Until you're satisfied</p>
+    <!-- WHY US - Transparent Glass Style -->
+    <section class="py-24 bg-transparent">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <div class="grid md:grid-cols-3 gap-8">
+                
+                <div class="glass rounded-3xl p-10 text-center">
+                    <div class="text-6xl mb-6">⚡</div>
+                    <h3 class="text-2xl font-semibold mb-4">Lightning Delivery</h3>
+                    <p class="text-gray-300">24-48 hour turnaround on most orders</p>
+                </div>
+
+                <div class="glass rounded-3xl p-10 text-center">
+                    <div class="text-6xl mb-6">🎨</div>
+                    <h3 class="text-2xl font-semibold mb-4">Cinematic Quality</h3>
+                    <p class="text-gray-300">Hollywood-level edits and visual effects</p>
+                </div>
+
+                <div class="glass rounded-3xl p-10 text-center">
+                    <div class="text-6xl mb-6">🔄</div>
+                    <h3 class="text-2xl font-semibold mb-4">Unlimited Revisions</h3>
+                    <p class="text-gray-300">Until you're 100% satisfied with the final result</p>
+                </div>
+
             </div>
         </div>
     </section>
